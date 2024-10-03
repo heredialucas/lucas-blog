@@ -1,0 +1,95 @@
+export const timelineData = [
+  {
+    date: "01/07/2024 – CURRENT",
+    location: "Austria",
+    title: "PHARMACIST IN COMMUNITY PHARMACY",
+    points: ["Dispensing Medications", "Patient Counseling and Advice"],
+  },
+  {
+    date: "01/11/2023 – 30/06/2024",
+    location: "Travelling",
+    title: "SHORT SABBATICAL",
+    points: [
+      "Travelling to different countries",
+      "3 weeks Membership in a coworking space",
+      "Attending lectures about innovation, Remote work, Digitalization",
+    ],
+  },
+  {
+    date: "01/10/2022 – 30/11/2023",
+    location: "Innsbruck, Austria",
+    title: "PRACTICAL YEAR IN PHARMACY",
+    points: [
+      "Training period for pharmacists to gain full professional qualification",
+      "Dispensing Medications",
+      "Compounding Medications",
+      "Customer Service and Patient Counseling",
+      "Pharmaceutical Calculations and Dosage Verification",
+      "Stock Management and Ordering",
+      "Communication Skills",
+      "Trainings in different pharmacy-related fields",
+    ],
+  },
+  {
+    date: "01/07/2022 – 31/08/2022",
+    location: "Munich, Germany",
+    title: "STARTUP INTERN AZADIVINE",
+    points: [
+      "Development of therapeutic medical cosmetics based on plant extracts",
+      "Product development: Formulation, packaging selection, laboratory testing",
+      "Collaboration with external companies for stability testing",
+      "Project management",
+      "Regulatory Affairs",
+      "Strong personal initiative in a startup environment",
+    ],
+  },
+  {
+    date: "01/07/2021 – 28/02/2022",
+    location: "Salzburg, Austria",
+    title:
+      "RESEARCH AND CO-AUTHORSHIP DEPARTMENT OF PHARMACEUTICAL AND MEDICAL CHEMISTRY, PMU SALZBURG",
+    points: [
+      "Co-Authorship (Master thesis)",
+      "Structural and clinical characterization of CYP11B2 inhibition by dexfadrostat phosphate",
+      "PMID: 37827219 DOI: 10.1016/j.jsbmb.2023.106409",
+      "Computational pharmaceutical calculations confirmed in the laboratory",
+      "Working with docking software Gold, LigandScout, Pymol",
+      "In silico drug investigations",
+    ],
+  },
+  {
+    date: "01/06/2021 – 30/06/2021",
+    location: "Unternberg, Salzburg, Austria",
+    title: "PHARMACEUTICAL INDUSTRY INTERN VIS-VITALIS GMBH",
+    points: [
+      "Contract manufacturing of dietary supplements",
+      "Development and production on both small and large scale",
+      "Adherence to GMP and GLP standards",
+    ],
+  },
+  {
+    date: "01/03/2021 – 16/04/2021",
+    location: "St.Pölten, Austria",
+    title: "HOSPITAL PHARMACY INTERN UNIVERSITY HOSPITAL OF ST. PÖLTEN",
+    points: [
+      "Manufacturing of hospital compounded preparations",
+      "Insight in sterile laboratory work",
+      "Adherence to Good Manufacturing Practice (GMP) and Good Laboratory Practice (GLP)",
+      "Clinical pharmacy and medication therapy management",
+      "Interprofessional communication",
+      "Improvement of interprofessional collaboration",
+    ],
+  },
+  {
+    date: "01/10/2018 – 31/10/2018",
+    location: "Hall in Tirol, Austria",
+    title: "COMMUNITY PHARMACY INTERN",
+    points: ["Mainly working in the pharmacy’s internal laboratory"],
+  },
+  {
+    date: "01/08/2017 – 31/08/2017",
+    location: "Duluth and Minnesota, United States",
+    title: "ROTATIONAL INTERN UNIVERSITY OF MINNESOTA DULUTH",
+    points: [],
+  },
+];
