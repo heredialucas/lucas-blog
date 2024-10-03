@@ -52,14 +52,14 @@ export default function Home() {
           target="_blank"
           className="text-gray-600 hover:text-[#8B7D6B]"
         >
-          <Instagram size={24} className="hover:size-8   transition-all" />
+          <Instagram size={24} />
         </a>
         <a
           href="https://www.linkedin.com/in/evelyn-hafele-446406261/"
           target="_blank"
           className="text-gray-600 hover:text-[#8B7D6B]"
         >
-          <Linkedin size={24} className="hover:size-8  transition-all" />
+          <Linkedin size={24} />
         </a>
       </div>
     </>
