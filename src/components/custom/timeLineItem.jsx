@@ -19,7 +19,7 @@ export default function TimelineItem({ date, location, title, points, index }) {
           }`}
         >
           <div className="flex flex-col md:flex-row justify-between mb-2">
-            <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-gray-800">{title}</h3>
           </div>
           <div className="flex mb-4 gap-6">
             <span

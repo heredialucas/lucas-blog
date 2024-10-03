@@ -46,7 +46,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex justify-center gap-10 mb-12 ">
+      <div className="flex justify-center gap-10 p-8 md:p-12 ">
         <a
           href="https://www.instagram.com/eve_thechief/"
           target="_blank"

@@ -38,8 +38,8 @@ export default function BlogCard({
           </div>
         </CardContent>
         <CardFooter className="border-t pt-3">
-          <div className="flex items-center justify-between w-full">
-            <div className="flex items-center space-x-2">
+          <div className="flex items-center  w-full">
+            <div className="flex flex-1 items-center space-x-2">
               <Image
                 src={ProfilePicture}
                 alt={author.name}
@@ -52,7 +52,12 @@ export default function BlogCard({
                 <p className="text-xs text-gray-500">{author.timeAgo}</p>
               </div>
             </div>
-            <Link href={`/blog/${id}`}>Read More</Link>
+            <Link
+              href={`/blog/${id}`}
+              className="flex flex-2 text-xs bg-[#9BCAF2] p-2 rounded-xl font-medium hover:bg-[#94BDF2]"
+            >
+              Read More
+            </Link>
           </div>
         </CardFooter>
       </Card>

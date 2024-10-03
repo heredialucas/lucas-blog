@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export default function Contacts() {
   return (
     <>
-      <div className="w-[600px] bg-[#F2F2F2] p-12 rounded-xl border-2 border-[#0D0D0D]">
+      <div className="w-fit md:w-[600px] bg-[#F2F2F2] p-12 rounded-xl border-2 border-[#0D0D0D]">
         <h3 className="text-xl font-semibold text-gray-800 mb-4">Contact Me</h3>
         <form className="space-y-4">
           <Input placeholder="Your Name" />
