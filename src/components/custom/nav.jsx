@@ -15,7 +15,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="flex items-center justify-between p-6 rounded-xl font-semibold">
+      <nav className="flex items-center justify-between relative p-6 rounded-xl font-semibold">
         {/* Logo/Home Link */}
         <div className="space-x-6 text-gray-800">
           <Link

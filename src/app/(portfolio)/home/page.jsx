@@ -6,7 +6,7 @@ import { Instagram, Linkedin } from "lucide-react";
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col-reverse relative md:flex-row items-center md:items-start justify-between mb-12">
+      <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-between mb-12">
         <div className="md:w-2/3 mb-8 md:mb-0">
           <h1 className="text-4xl font-bold mb-2">{"Hi! I'm Eve 🙋🏼‍♀️"}</h1>
 
