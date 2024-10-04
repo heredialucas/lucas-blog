@@ -6,7 +6,7 @@ import { Instagram, Linkedin } from "lucide-react";
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-12">
+      <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-between mb-12">
         <div className="md:w-2/3 mb-8 md:mb-0">
           <h1 className="text-4xl font-bold mb-2">{"Hi! I'm Eve 🙋🏼‍♀️"}</h1>
 
@@ -35,7 +35,7 @@ export default function Home() {
             </a>
           </Button>
         </div>
-        <div className="md:w-1/3 flex justify-center">
+        <div className="mb-6 md:w-1/3 flex justify-center">
           <Image
             src={ProfilePicture}
             alt="Ana's profile picture"
