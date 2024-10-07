@@ -19,11 +19,11 @@ export default function BlogCard({
       >
         <div className="relative h-[160px] overflow-hidden">
           <Image
-            src={image}
-            alt={title}
+            src={image || ""}
+            alt={title || ""}
             width={300}
             height={300}
-            className="object-cover transition-transform duration-300 hover:scale-105"
+            className="object-cover transition-transform duration-300 hover:scale-105 "
           />
         </div>
         <CardContent className="flex-1 pt-4">
@@ -34,7 +34,7 @@ export default function BlogCard({
               {category}
             </span>
             <h2 className="font-bold leading-tight">{title}</h2>
-            <p className="text-gray-600 text-sm line-clamp-2">{summary}</p>
+            <div className="text-gray-600 text-sm line-clamp-2">{summary}</div>
           </div>
         </CardContent>
         <CardFooter className="border-t pt-3">
@@ -42,13 +42,13 @@ export default function BlogCard({
             <div className="flex flex-1 items-center space-x-2">
               <Image
                 src={ProfilePicture}
-                alt={author.name}
+                alt={author}
                 width={50}
                 height={50}
                 className="rounded-full"
               />
               <div>
-                <p className="text-xs font-medium">{author.name}</p>
+                <p className="text-xs font-medium">{author}</p>
                 <p className="text-xs text-gray-500">{author.timeAgo}</p>
               </div>
             </div>
