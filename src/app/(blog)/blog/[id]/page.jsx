@@ -1,6 +1,6 @@
 import { getDataById } from "@/app/api/util/utils";
 import Image from "next/image";
-import ProfilePicture from "@/public/eve.jpeg";
+import ProfilePicture from "@/public/lucas.jpeg";
 import Link from "next/link";
 import parse from "html-react-parser";
 import { formatDate } from "../../utils";

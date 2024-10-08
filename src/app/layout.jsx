@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Evelyn Hefele",
-  description: "Portfolio by Evelyn Hefele",
+  title: "Heredia Lucas",
+  description: "Portfolio by Heredia Lucas",
 };
 
 export default function RootLayout({ children }) {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "../ui/card";
-import ProfilePicture from "@/public/eve.jpeg";
+import ProfilePicture from "@/public/lucas.jpeg";
 import Link from "next/link";
 
 export default function BlogCard({
@@ -43,9 +43,7 @@ export default function BlogCard({
               <Image
                 src={ProfilePicture}
                 alt={author}
-                width={50}
-                height={50}
-                className="rounded-full"
+                className="w-12 h-12 rounded-full object-cover"
               />
               <div>
                 <p className="text-xs font-medium">{author}</p>

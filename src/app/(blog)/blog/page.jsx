@@ -2,6 +2,11 @@ import BlogCard from "@/components/custom/blogCard";
 import { getData } from "@/app/api/util/utils";
 import parse from "html-react-parser";
 
+export const metadata = {
+  title: "Heredia Lucas posts",
+  description: "Posts by Heredia Lucas",
+};
+
 export default async function BlogCards() {
   const { posts } = await getData("posts");
 
@@ -12,7 +17,7 @@ export default async function BlogCards() {
       </div>
 
       {posts.length === 0 && <p>No posts found.</p>}
-      
+
       <div className="flex flex-wrap gap-6">
         {posts.map((post) => (
           <BlogCard

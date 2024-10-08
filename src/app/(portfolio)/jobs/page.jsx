@@ -3,8 +3,8 @@ import Link from "next/link";
 import TimelineItem from "@/components/custom/timeLineItem";
 
 export const metadata = {
-  title: "Evelyn Hefele works",
-  description: "Works by Evelyn Hefele",
+  title: "Heredia Lucas works",
+  description: "Works by Heredia Lucas",
 };
 
 export default function TimelineJobs() {
