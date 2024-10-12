@@ -7,6 +7,7 @@ import ProfilePicture from "@/public/lucas.jpeg";
 import Link from "next/link";
 import { formatText } from "../../lib/utils";
 import { deleteDataById } from "@/app/api/util/actions";
+import { useStore } from "@/zustand/config";
 
 export default function BlogCard({
   id,
@@ -16,8 +17,11 @@ export default function BlogCard({
   author,
   category,
 }) {
+  const { isLoading, setIsLoading } = useStore((state) => state);
   const handleDelete = async () => {
+    setIsLoading(true);
     await deleteDataById("post", id);
+    setIsLoading(false);
   };
 
   return (
@@ -66,7 +70,14 @@ export default function BlogCard({
             <div className="flex gap-2">
               <Link
                 href={`/blog/${id}`}
-                className="flex flex-2 text-xs border-2 border-gray-500 p-2 rounded font-medium hover:bg-[#9fbfe9] hover:text-white"
+                disabled={true}
+                className={`flex flex-2 text-xs border-2  p-2 rounded font-medium hover:bg-[#9fbfe9] hover:text-white ${
+                  isLoading
+                    ? "pointer-events-none border-gray-400 text-gray-400"
+                    : "border-gray-500"
+                }`}
+                aria-disabled={isLoading}
+                tabIndex={isLoading ? -1 : undefined}
               >
                 Read More
               </Link>
@@ -75,6 +86,7 @@ export default function BlogCard({
                 size="sm"
                 className="rounded border-2 border-gray-500 hover:bg-red-600 hover:text-white "
                 onClick={() => handleDelete()}
+                disabled={isLoading}
               >
                 <Trash2 className="h-4 w-4" />
               </Button>

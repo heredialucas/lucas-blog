@@ -1,9 +1,18 @@
+"use client";
+
 import BlogCard from "@/components/custom/blogCard";
 import parse from "html-react-parser";
+import { useStore } from "@/zustand/config";
 
 export function BlogCardsClient({ posts }) {
+  const { isLoading } = useStore((state) => state);
+
   return (
-    <div className="container mx-auto p-6">
+    <div
+      className={`container mx-auto p-6 ${
+        isLoading ? "cursor-wait" : "cursor-default"
+      }`}
+    >
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-semibold">Blog Posts</h1>
       </div>

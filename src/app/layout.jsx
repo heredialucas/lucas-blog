@@ -24,7 +24,9 @@ export default function RootLayout({ children }) {
         id="body-item"
         className={`min-h-screen bg-[#F2F2F2] max-w-6xl mx-auto p-6 ${
           geistSans.variable
-        } ${geistMono.variable} antialiased ${isLoading && "cursor-wait"}`}
+        } ${geistMono.variable} antialiased ${
+          isLoading ? "cursor-wait" : "cursor-default"
+        }`}
       >
         <Nav />
         {children}

@@ -15,7 +15,7 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 
 export default function PostForm() {
   const [editorContent, setEditorContent] = useState("");
-  const { setIsLoading } = useStore((state) => state);
+  const { isLoading, setIsLoading } = useStore((state) => state);
   const ref = useRef();
 
   const handleChange = async (formData) => {
@@ -50,25 +50,36 @@ export default function PostForm() {
         <div>
           <div>
             <Label htmlFor="title">Title</Label>
-            <Input maxLength={100} required name="title" />
+            <Input maxLength={100} required name="title" disabled={isLoading} />
           </div>
           <div>
             <Label htmlFor="category">Category</Label>
-            <Input maxLength={100} required name="category" />
+            <Input
+              maxLength={100}
+              required
+              name="category"
+              disabled={isLoading}
+            />
           </div>
           <div>
             <Label htmlFor="authorName">Author Name</Label>
-            <Input maxLength={100} required name="authorName" />
+            <Input
+              maxLength={100}
+              required
+              name="authorName"
+              disabled={isLoading}
+            />
           </div>
           <div>
             <Label htmlFor="image">Image URL</Label>
-            <Input required type="file" name="image" />
+            <Input required type="file" name="image" disabled={isLoading} />
           </div>
           <div>
             <Label htmlFor="referencePostUrl">Reference Post URL</Label>
             <Input
               name="referencePostUrl"
               placeholder="https://example.com/reference"
+              disabled={isLoading}
             />
           </div>
         </div>
