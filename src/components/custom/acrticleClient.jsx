@@ -8,10 +8,14 @@ import parse from "html-react-parser";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Trash2 } from "lucide-react";
+import { useStore } from "@/zustand/config";
 
 export default function ArticleClient({ post, id }) {
+  const { isLoading, setIsLoading } = useStore((state) => state);
   const handleDelete = async () => {
+    setIsLoading(true);
     await deleteDataById("post", id);
+    setIsLoading(false);
   };
   if (!post) return "Post Not Found";
 
@@ -70,6 +74,7 @@ export default function ArticleClient({ post, id }) {
               size="sm"
               className="rounded border-2 border-gray-500 hover:bg-red-600 hover:text-white "
               onClick={() => handleDelete()}
+              disabled={isLoading}
             >
               <Trash2 className="h-4 w-4" />
             </Button>

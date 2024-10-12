@@ -93,7 +93,9 @@ export default function PostForm() {
         </div>
       </div>
       <div className="flex justify-end w-full mt-4">
-        <Button type="submit">Create Post</Button>
+        <Button disabled={isLoading} type="submit">
+          Create Post
+        </Button>
       </div>
     </form>
   );
