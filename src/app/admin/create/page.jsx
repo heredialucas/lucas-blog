@@ -14,9 +14,12 @@ const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
-export default function PostForm() {
+export default function Create() {
+  const { isLoading, setIsLoading, isAdmin } = useStore((state) => state);
+  if (isAdmin === false) {
+    redirect("/admin/login");
+  }
   const [editorContent, setEditorContent] = useState("");
-  const { isLoading, setIsLoading } = useStore((state) => state);
   const ref = useRef();
 
   const handleChange = async (formData) => {
@@ -46,7 +49,7 @@ export default function PostForm() {
     <form
       ref={ref}
       action={handleChange}
-      className="h-lvh p-6 border-2 border-gray-200 rounded-xl"
+      className=" p-6 border-2 border-gray-200 rounded-xl"
     >
       <div className="flex flex-col  gap-4">
         <div>

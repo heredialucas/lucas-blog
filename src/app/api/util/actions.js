@@ -29,6 +29,26 @@ export async function postData(formData, editorContent, imageUrl) {
   revalidatePath("/blog");
 }
 
+export async function login(formData) {
+  const rawFormData = Object.fromEntries(formData);
+
+  const url = await getUrl();
+
+  const fetchData = await fetch(`${url}/api/admin`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(rawFormData),
+  });
+
+  if (!fetchData.ok) {
+    throw new Error("Error al iniciar sesión");
+  }
+  const res = await fetchData.json();
+  return res;
+}
+
 export async function sendEmail(formData) {
   const rawFormData = Object.fromEntries(formData);
 

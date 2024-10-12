@@ -17,7 +17,7 @@ export default function BlogCard({
   author,
   category,
 }) {
-  const { isLoading, setIsLoading } = useStore((state) => state);
+  const { isLoading, setIsLoading, isAdmin } = useStore((state) => state);
   const handleDelete = async () => {
     setIsLoading(true);
     await deleteDataById("post", id);
@@ -61,7 +61,7 @@ export default function BlogCard({
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <p className="text-xs font-medium break-all">
+                <p className="text-xs font-sm break-all pr-6">
                   {formatText(author)}
                 </p>
                 <p className="text-xs text-gray-500">{author.timeAgo}</p>
@@ -71,7 +71,7 @@ export default function BlogCard({
               <Link
                 href={`/blog/${id}`}
                 disabled={true}
-                className={`flex flex-2 text-xs border-2  p-2 rounded font-medium hover:bg-[#9fbfe9] hover:text-white ${
+                className={`flex flex-2 text-xs border-2  p-2 rounded font-medium hover:bg-blue-200  ${
                   isLoading
                     ? "pointer-events-none border-gray-400 text-gray-400"
                     : "border-gray-500"
@@ -81,15 +81,17 @@ export default function BlogCard({
               >
                 Read More
               </Link>
-              <Button
-                variant="destructive"
-                size="sm"
-                className="rounded border-2 border-gray-500 hover:bg-red-600 hover:text-white "
-                onClick={() => handleDelete()}
-                disabled={isLoading}
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
+              {isAdmin && (
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  className="rounded border-2 border-gray-500 hover:bg-red-600 hover:text-white "
+                  onClick={() => handleDelete()}
+                  disabled={isLoading}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              )}
             </div>
           </div>
         </CardFooter>

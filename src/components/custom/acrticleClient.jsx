@@ -11,7 +11,7 @@ import { Trash2 } from "lucide-react";
 import { useStore } from "@/zustand/config";
 
 export default function ArticleClient({ post, id }) {
-  const { isLoading, setIsLoading } = useStore((state) => state);
+  const { isLoading, setIsLoading, isAdmin } = useStore((state) => state);
   const handleDelete = async () => {
     setIsLoading(true);
     await deleteDataById("post", id);
@@ -47,6 +47,7 @@ export default function ArticleClient({ post, id }) {
             <Image
               src={post.imageUrl}
               alt={post.title}
+              priority={true}
               width={1200}
               height={600}
               className="w-full h-[500px] object-cover rounded-lg"
@@ -69,15 +70,17 @@ export default function ArticleClient({ post, id }) {
             >
               ← Back to Blog
             </Link>
-            <Button
-              variant="destructive"
-              size="sm"
-              className="rounded border-2 border-gray-500 hover:bg-red-600 hover:text-white "
-              onClick={() => handleDelete()}
-              disabled={isLoading}
-            >
-              <Trash2 className="h-4 w-4" />
-            </Button>
+            {isAdmin && (
+              <Button
+                variant="destructive"
+                size="sm"
+                className="rounded border-2 border-gray-500 hover:bg-red-600 hover:text-white "
+                onClick={() => handleDelete()}
+                disabled={isLoading}
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            )}
           </div>
         </footer>
       </div>

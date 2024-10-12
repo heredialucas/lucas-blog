@@ -4,9 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
+import { useStore } from "@/zustand/config";
+import { Button } from "../ui/button";
 
 export default function Nav() {
   const pathname = usePathname();
+  const { isAdmin, setIsAdmin } = useStore((state) => state);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenu = () => {
@@ -38,6 +41,16 @@ export default function Nav() {
           >
             Timeline Jobs
           </Link>
+          {isAdmin && (
+            <Link
+              href="/admin/create"
+              className={`${
+                pathname === "/admin/create" ? "underline" : ""
+              } mr-2 h-4 w-4 text-gray-800 hover:underline`}
+            >
+              Create Post
+            </Link>
+          )}
           <Link
             href="/blog"
             className={`${
@@ -54,6 +67,14 @@ export default function Nav() {
           >
             Contact
           </Link>
+          {isAdmin && (
+            <Button
+              onClick={() => setIsAdmin(false)}
+              className="rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
+            >
+              Sing Out
+            </Button>
+          )}
         </div>
 
         {/* Menú hamburguesa para pantallas pequeñas */}
@@ -81,6 +102,16 @@ export default function Nav() {
             >
               Timeline Jobs
             </Link>
+            {isAdmin && (
+              <Link
+                href="/admin/create"
+                className={`${
+                  pathname === "/admin/create" ? "underline" : ""
+                } mr-2 h-4 w-4 text-gray-800 hover:underline`}
+              >
+                Create Post
+              </Link>
+            )}
             <Link
               href="/blog"
               className={`${
@@ -99,6 +130,14 @@ export default function Nav() {
             >
               Contact
             </Link>
+            {isAdmin && (
+              <Button
+                onClick={() => setIsAdmin(false)}
+                className="rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
+              >
+                Sing Out
+              </Button>
+            )}
           </div>
         </div>
       )}
