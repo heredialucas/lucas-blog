@@ -3,11 +3,13 @@ import puppeteer from "puppeteer";
 
 export async function POST(req) {
   const { url } = await req.json();
-  
+
   let browser;
   try {
     browser = await puppeteer.launch({
+      headless: true, // Se asegura de que Puppeteer use Chromium sin una GUI
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      executablePath: puppeteer.executablePath(), // Utiliza el Chromium incluido
     });
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: "networkidle0" });
