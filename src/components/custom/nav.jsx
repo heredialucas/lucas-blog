@@ -107,7 +107,8 @@ export default function Nav() {
                 href="/admin/create"
                 className={`${
                   pathname === "/admin/create" ? "underline" : ""
-                } mr-2 h-4 w-4 text-gray-800 hover:underline`}
+                } block text-white text-xl hover:underline`}
+                onClick={() => setMenuOpen(false)}
               >
                 Create Post
               </Link>
@@ -132,8 +133,11 @@ export default function Nav() {
             </Link>
             {isAdmin && (
               <Button
-                onClick={() => setIsAdmin(false)}
-                className="rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
+                onClick={() => {
+                  setIsAdmin(false);
+                  setMenuOpen(false);
+                }}
+                className=" text-white text-xl rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
               >
                 Sing Out
               </Button>
