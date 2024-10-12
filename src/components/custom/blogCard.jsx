@@ -1,7 +1,12 @@
+"use client";
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "../ui/card";
+import { Button } from "../ui/button";
+import { Trash2 } from "lucide-react";
 import ProfilePicture from "@/public/lucas.jpeg";
 import Link from "next/link";
+import { formatText } from "../../lib/utils";
+import { deleteDataById } from "@/app/api/util/actions";
 
 export default function BlogCard({
   id,
@@ -11,6 +16,10 @@ export default function BlogCard({
   author,
   category,
 }) {
+  const handleDelete = async () => {
+    await deleteDataById("post", id);
+  };
+
   return (
     <>
       <Card
@@ -31,10 +40,12 @@ export default function BlogCard({
             <span
               className={`inline-block px-1 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-700`}
             >
-              {category}
+              {formatText(category)}
             </span>
-            <h2 className="font-bold leading-tight">{title}</h2>
-            <div className="text-gray-600 text-sm line-clamp-2">{summary}</div>
+            <h2 className="font-bold leading-tight">{formatText(title)}</h2>
+            <div className="text-gray-600 text-sm line-clamp-2">
+              {formatText(summary)}
+            </div>
           </div>
         </CardContent>
         <CardFooter className="border-t pt-3">
@@ -46,16 +57,28 @@ export default function BlogCard({
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <p className="text-xs font-medium">{author}</p>
+                <p className="text-xs font-medium break-all">
+                  {formatText(author)}
+                </p>
                 <p className="text-xs text-gray-500">{author.timeAgo}</p>
               </div>
             </div>
-            <Link
-              href={`/blog/${id}`}
-              className="flex flex-2 text-xs bg-[#9BCAF2] p-2 rounded-xl font-medium hover:bg-[#94BDF2]"
-            >
-              Read More
-            </Link>
+            <div className="flex gap-2">
+              <Link
+                href={`/blog/${id}`}
+                className="flex flex-2 text-xs border-2 border-gray-500 p-2 rounded font-medium hover:bg-[#9fbfe9] hover:text-white"
+              >
+                Read More
+              </Link>
+              <Button
+                variant="destructive"
+                size="sm"
+                className="rounded border-2 border-gray-500 hover:bg-red-600 hover:text-white "
+                onClick={() => handleDelete()}
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </CardFooter>
       </Card>

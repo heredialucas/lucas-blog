@@ -12,7 +12,9 @@ export async function postData(formData, editorContent, imageUrl) {
     rawFormData.imageUrl = imageUrl;
   }
 
-  const fetchData = await fetch(`${getUrl()}/api/posts`, {
+  const url = await getUrl();
+
+  const fetchData = await fetch(`${url}/api/posts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -31,7 +33,9 @@ export async function postData(formData, editorContent, imageUrl) {
 export async function sendEmail(formData) {
   const rawFormData = Object.fromEntries(formData);
 
-  const fetchData = await fetch(`${getUrl()}/api/send`, {
+  const url = await getUrl();
+
+  const fetchData = await fetch(`${url}/api/send`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -49,13 +53,11 @@ export async function sendEmail(formData) {
 export async function postImage(fileData) {
   const uint8Array = new Uint8Array(fileData.data);
   const blob = new Blob([uint8Array], { type: fileData.type });
-  const fetchData = await fetch(
-    `${getUrl()}/api/image?filename=${fileData.name}`,
-    {
-      method: "POST",
-      body: blob,
-    }
-  );
+  const url = await getUrl();
+  const fetchData = await fetch(`${url}/api/image?filename=${fileData.name}`, {
+    method: "POST",
+    body: blob,
+  });
 
   if (!fetchData.ok) {
     throw new Error("Error al subir la imagen");
@@ -65,3 +67,74 @@ export async function postImage(fileData) {
 
   return response;
 }
+
+export const getDataById = async (path, id) => {
+  const url = await getUrl();
+  const fetchData = await fetch(`${url}/api/${path}/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
+
+  if (!fetchData.ok) {
+    throw new Error("Error al obtener los post");
+  }
+
+  const response = await fetchData.json();
+  return response;
+};
+
+export const deleteData = async (path) => {
+  const url = await getUrl();
+  const deleteData = await fetch(`${url}/api/${path}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!deleteData.ok) {
+    throw new Error("Error al eliminar los posts");
+  }
+
+  const response = await deleteData.json();
+  return response;
+};
+
+export const deleteDataById = async (path, id) => {
+  const url = await getUrl();
+  const deleteData = await fetch(`${url}/api/${path}/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id }),
+  });
+
+  if (!deleteData.ok) {
+    throw new Error("Error al eliminar el post");
+  }
+
+  revalidatePath("/blog");
+  redirect("/blog");
+};
+
+export const getData = async (path) => {
+  const url = await getUrl();
+  const fetchData = await fetch(`${url}/api/${path}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
+
+  if (!fetchData.ok) {
+    throw new Error("Error al obtener los posts");
+  }
+
+  const response = await fetchData.json();
+  return response;
+};

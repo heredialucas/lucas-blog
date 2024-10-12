@@ -7,6 +7,7 @@ import { postData, postImage } from "@/app/api/util/actions";
 import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
+import { useStore } from "@/zustand/config";
 
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
@@ -14,9 +15,11 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 
 export default function PostForm() {
   const [editorContent, setEditorContent] = useState("");
+  const { setIsLoading } = useStore((state) => state);
   const ref = useRef();
 
   const handleChange = async (formData) => {
+    setIsLoading(true);
     const file = formData.get("image");
 
     if (file) {
@@ -30,9 +33,10 @@ export default function PostForm() {
         data: serializedFile,
       };
       const image = await postImage(fileData);
-      postData(formData, editorContent, image.url);
+      await postData(formData, editorContent, image.url);
       ref.current.reset();
       setEditorContent("");
+      setIsLoading(false);
     }
   };
 

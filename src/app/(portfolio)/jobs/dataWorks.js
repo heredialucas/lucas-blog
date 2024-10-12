@@ -1,5 +1,15 @@
 export const timelineData = [
   {
+    date: "05/09/2024 – Current",
+    location: "Budapest, Hungary",
+    title: "FREELANCE SOFTWARE DEVELOPER",
+    points: [
+      "Worked on implementing LLMs in various web applications.",
+      "Developed front-end solutions using React and Astro for dynamic and responsive websites.",
+      "Integrated APIs and built scalable systems using Node.js and Next.js.",
+    ],
+  },
+  {
     date: "16/10/2023 – 04/09/2024",
     location: "Bogotá, Colombia",
     title: "SOFTWARE DEVELOPER AT IKATECH SOLUTIONS",

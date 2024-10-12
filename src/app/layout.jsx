@@ -1,6 +1,8 @@
+"use client";
 import localFont from "next/font/local";
 import "./globals.css";
 import Nav from "../components/custom/nav";
+import { useStore } from "@/zustand/config";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -13,17 +15,16 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata = {
-  title: "Heredia Lucas",
-  description: "Portfolio by Heredia Lucas",
-};
-
 export default function RootLayout({ children }) {
+  const { isLoading } = useStore((state) => state);
+
   return (
     <html lang="en">
       <body
         id="body-item"
-        className={`min-h-screen bg-[#F2F2F2] max-w-6xl mx-auto p-6 ${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`min-h-screen bg-[#F2F2F2] max-w-6xl mx-auto p-6 ${
+          geistSans.variable
+        } ${geistMono.variable} antialiased ${isLoading && "cursor-wait"}`}
       >
         <Nav />
         {children}
