@@ -27,7 +27,6 @@ export async function postData(formData, editorContent, imageUrl) {
   }
 
   revalidatePath("/blog");
-  redirect("/blog");
 }
 
 export async function sendEmail(formData) {

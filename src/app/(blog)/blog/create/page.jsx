@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useStore } from "@/zustand/config";
+import { redirect } from "next/navigation";
 
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
@@ -37,6 +38,7 @@ export default function PostForm() {
       ref.current.reset();
       setEditorContent("");
       setIsLoading(false);
+      redirect("/blog");
     }
   };
 
