@@ -1,16 +1,21 @@
 import { NextResponse } from "next/server";
-import puppeteer from "puppeteer";
+import chrome from "chrome-aws-lambda";
+import puppeteer from "puppeteer-core";
 
 export async function POST(req) {
   const { url } = await req.json();
 
   let browser;
   try {
+    // Usar chrome-aws-lambda para obtener la ruta de Chromium en entornos serverless
+    const executablePath = await chrome.executablePath;
+
     browser = await puppeteer.launch({
-      headless: true, // Se asegura de que Puppeteer use Chromium sin una GUI
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      executablePath: puppeteer.executablePath(), // Utiliza el Chromium incluido
+      args: chrome.args,
+      executablePath: executablePath, // Utiliza el ejecutable de chrome-aws-lambda
+      headless: chrome.headless,
     });
+
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: "networkidle0" });
 

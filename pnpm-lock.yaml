@@ -32,6 +32,9 @@ importers:
       '@vercel/postgres':
         specifier: ^0.10.0
         version: 0.10.0
+      chrome-aws-lambda:
+        specifier: ^10.1.0
+        version: 10.1.0(puppeteer-core@23.5.3(bufferutil@4.0.8))
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -53,6 +56,9 @@ importers:
       puppeteer:
         specifier: ^23.5.3
         version: 23.5.3(bufferutil@4.0.8)(typescript@5.6.2)
+      puppeteer-core:
+        specifier: ^23.5.3
+        version: 23.5.3(bufferutil@4.0.8)
       react:
         specifier: ^18
         version: 18.3.1
@@ -1047,6 +1053,12 @@ packages:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
 
+  chrome-aws-lambda@10.1.0:
+    resolution: {integrity: sha512-NZQVf+J4kqG4sVhRm3WNmOfzY0OtTSm+S8rg77pwePa9RCYHzhnzRs8YvNI6L9tALIW6RpmefWiPURt3vURXcw==}
+    engines: {node: '>= 10.16'}
+    peerDependencies:
+      puppeteer-core: ^10.1.0
+
   chromium-bidi@0.8.0:
     resolution: {integrity: sha512-uJydbGdTw0DEUjhoogGveneJVWX/9YuqkWePzMmkBYwtdAqo5d3J/ovNKFr+/2hWXYmYCr6it8mSSTIj6SS6Ug==}
     peerDependencies:
@@ -1963,6 +1975,13 @@ packages:
   kleur@4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
+
+  lambdafs@2.1.1:
+    resolution: {integrity: sha512-x5k8JcoJWkWLvCVBzrl4pzvkEHSgSBqFjg3Dpsc4AcTMq7oUMym4cL/gRTZ6VM4mUMY+M0dIbQ+V1c1tsqqanQ==}
+    engines: {node: '>= 10.16'}
+    hasBin: true
+    bundledDependencies:
+      - tar-fs
 
   language-subtag-registry@0.3.23:
     resolution: {integrity: sha512-0K65Lea881pHotoGEa5gDlMxt3pctLi2RplBb7Ezh4rRdLEOtgi7n4EwK9lamnUCkKBqaeKRVebTq6BAxSkpXQ==}
@@ -3984,6 +4003,11 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
+  chrome-aws-lambda@10.1.0(puppeteer-core@23.5.3(bufferutil@4.0.8)):
+    dependencies:
+      lambdafs: 2.1.1
+      puppeteer-core: 23.5.3(bufferutil@4.0.8)
+
   chromium-bidi@0.8.0(devtools-protocol@0.0.1342118):
     dependencies:
       devtools-protocol: 0.0.1342118
@@ -5073,6 +5097,8 @@ snapshots:
   kleur@3.0.3: {}
 
   kleur@4.1.5: {}
+
+  lambdafs@2.1.1: {}
 
   language-subtag-registry@0.3.23: {}
 
