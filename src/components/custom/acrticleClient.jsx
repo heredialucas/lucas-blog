@@ -24,8 +24,8 @@ export default function ArticleClient({ post, id }) {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-8">
           <div className="space-y-4">
-            <span className="text-orange-500 font-medium">{post.category}</span>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <span className="text-orange-500 font-medium break-words">{post.category}</span>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4 break-words">
               {post.title}
             </h1>
             <div className="flex items-center gap-4">
@@ -35,7 +35,7 @@ export default function ArticleClient({ post, id }) {
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <p className="font-medium text-gray-900">{post.authorName}</p>
+                <p className="font-medium text-gray-900 break-all">{post.authorName}</p>
                 <p className="text-sm text-gray-500">{formatDate(post.date)}</p>
               </div>
             </div>
@@ -55,7 +55,7 @@ export default function ArticleClient({ post, id }) {
           </div>
 
           <article className="prose max-w-none pb-20">
-            <div className="text-gray-800 text-lg leading-relaxed">
+            <div className="text-gray-800 text-lg leading-relaxed break-words">
               {parse(post.summary)}
             </div>
           </article>
