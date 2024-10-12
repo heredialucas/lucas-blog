@@ -1,15 +1,9 @@
-const puppeteer = require("puppeteer");
+import { NextResponse } from "next/server";
+import puppeteer from "puppeteer";
 
-module.exports = async function (req, res) {
-  const { url } = JSON.parse(req.payload);
-
-  if (!url) {
-    return res.json({
-      success: false,
-      message: "Se requiere una URL en el payload.",
-    });
-  }
-
+export async function GET(req) {
+  const { url } = await req.json();
+  
   let browser;
   try {
     browser = await puppeteer.launch({
@@ -36,19 +30,18 @@ module.exports = async function (req, res) {
       };
     });
 
-    return res.json({
-      success: true,
-      data: content,
-    });
+    // Devuelve la respuesta exitosa con los datos scrapeados
+    return NextResponse.json(content);
   } catch (error) {
     console.error("Error al hacer scraping:", error);
-    return res.json({
-      success: false,
-      message: error.message,
-    });
+    // Devuelve una respuesta de error
+    return NextResponse.json(
+      { error: "Error al hacer scraping" },
+      { status: 500 }
+    );
   } finally {
     if (browser) {
       await browser.close();
     }
   }
-};
+}
