@@ -94,6 +94,23 @@ export default function Create() {
             onChange={setEditorContent}
             name="summary"
             theme="snow"
+            modules={{
+              toolbar: [
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                [{ size: ["small", false, "large", "huge"] }],
+                [{ font: [] }],
+                ["bold", "italic", "underline", "strike"],
+                ["blockquote", "code-block"],
+                [{ list: "ordered" }, { list: "bullet" }],
+                [{ script: "sub" }, { script: "super" }],
+                [{ indent: "-1" }, { indent: "+1" }],
+                [{ direction: "rtl" }],
+                [{ color: [] }, { background: [] }],
+                [{ align: [] }],
+                ["image", "video"],
+                ["clean"],
+              ],
+            }}
           />
         </div>
       </div>

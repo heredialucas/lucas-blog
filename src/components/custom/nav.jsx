@@ -69,7 +69,10 @@ export default function Nav() {
           </Link>
           {isAdmin && (
             <Button
-              onClick={() => setIsAdmin(false)}
+              onClick={() => {
+                setIsAdmin(false);
+                localStorage.clear();
+              }}
               className="rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
             >
               Sing Out
@@ -136,6 +139,7 @@ export default function Nav() {
                 onClick={() => {
                   setIsAdmin(false);
                   setMenuOpen(false);
+                  localStorage.clear();
                 }}
                 className=" text-white text-xl rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
               >

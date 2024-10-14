@@ -47,9 +47,6 @@ export default function BlogCard({
               {formatText(category)}
             </span>
             <h2 className="font-bold leading-tight">{formatText(title)}</h2>
-            <div className="text-gray-600 text-sm line-clamp-2">
-              {formatText(summary)}
-            </div>
           </div>
         </CardContent>
         <CardFooter className="border-t pt-3">

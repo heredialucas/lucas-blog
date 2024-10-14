@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Nav from "../components/custom/nav";
 import { useStore } from "@/zustand/config";
+import { useAuthRedirect } from "@/hooks/useStorage";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -16,6 +17,7 @@ const geistMono = localFont({
 });
 
 export default function RootLayout({ children }) {
+  useAuthRedirect();
   const { isLoading } = useStore((state) => state);
 
   return (

@@ -6,12 +6,20 @@ import { Button } from "@/components/ui/button";
 import { login } from "@/app/api/util/actions";
 import { useStore } from "@/zustand/config";
 import { redirect } from "next/navigation";
+import { useAuthRedirect } from "@/hooks/useStorage";
 
 export default function AdminPage() {
-  const { isAdmin, setIsAdmin } = useStore((state) => state);
+  const { setIsAdmin } = useStore((state) => state);
+
+  const isAdminStorage = useAuthRedirect();
+
+  if (isAdminStorage) {
+    redirect("/blog");
+  }
 
   async function handleLogin(formData) {
     const { authenticated } = await login(formData);
+    localStorage.setItem("authenticated", authenticated);
     setIsAdmin(authenticated);
     if (authenticated) {
       redirect("/blog");
