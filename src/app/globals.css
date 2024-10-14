@@ -19,3 +19,47 @@ html {
 .prose ul {
   list-style-type: disc;
 }
+
+/* Estilo para el bloque de código */
+pre.ql-syntax {
+  background-color: #1e1e1e; /* Color de fondo oscuro */
+  border: 1px solid #444; /* Borde oscuro */
+  border-radius: 4px; /* Bordes redondeados */
+  padding: 10px; /* Relleno interno */
+  overflow: auto; /* Habilita el desplazamiento */
+  white-space: pre; /* Mantiene los espacios en blanco y saltos de línea */
+  font-family: "Courier New", Courier, monospace; /* Fuente monoespaciada */
+  font-size: 14px; /* Tamaño de fuente */
+  line-height: 1.5; /* Altura de línea */
+  color: #dcdcdc; /* Color del texto */
+}
+
+/* Opcional: Colores para texto específico (ejemplo) */
+pre.ql-syntax .comment {
+  color: #608b4e; /* Color de comentarios */
+}
+
+pre.ql-syntax .keyword {
+  color: #569cd6; /* Color de palabras clave */
+}
+
+pre.ql-syntax .string {
+  color: #ce9178; /* Color de cadenas */
+}
+
+/* Estilo para las citas (blockquote) */
+blockquote {
+  background-color: #f9f9f9; /* Color de fondo suave */
+  border-left: 4px solid #ccc; /* Borde izquierdo para destacarla */
+  padding: 10px 20px; /* Relleno interno */
+  margin: 10px 0; /* Margen superior e inferior */
+  font-style: italic; /* Cursiva para el texto de la cita */
+  color: #555; /* Color del texto */
+  border-radius: 4px; /* Bordes redondeados */
+  line-height: 1.5; /* Altura de línea para mejorar la legibilidad */
+}
+
+/* Estilo para el texto dentro del blockquote */
+blockquote p {
+  margin: 0; /* Elimina el margen en el párrafo */
+}
