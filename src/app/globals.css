@@ -63,3 +63,25 @@ blockquote {
 blockquote p {
   margin: 0; /* Elimina el margen en el párrafo */
 }
+
+.ql-video {
+  display: block; /* Hace que el iframe se comporte como un bloque */
+  margin: 20px auto; /* Espacio superior e inferior, y centra horizontalmente */
+  width: 100%; /* Ancho completo de la pantalla */
+  max-width: 500px; /* Ancho máximo */
+  height: 500px; /* Altura automática para mantener proporciones */
+  border: 2px solid #ccc; /* Borde alrededor del iframe */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
+
+p img {
+  display: block; /* Hace que la imagen se comporte como un bloque */
+  margin: 20px auto; /* Espacio superior e inferior, y centra horizontalmente */
+  width: 100%; /* Ancho completo del contenedor */
+  max-width: 500px; /* Ancho máximo para evitar que sea demasiado grande */
+  height: auto; /* Altura automática para mantener la proporción de la imagen */
+  border: 2px solid #ccc; /* Borde alrededor de la imagen */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
