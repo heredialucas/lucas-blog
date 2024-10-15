@@ -17,8 +17,8 @@ export default function Contacts() {
 
   return (
     <>
-      <div className="w-fit md:w-[600px] bg-[#F2F2F2] p-12 rounded-xl border-2 border-[#0D0D0D]">
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">Contact Me</h3>
+      <div className="w-fit md:w-[600px] bg-[#F2F2F2] p-12 rounded-xl border-2 border-primary">
+        <h3 className="text-xl font-semibold text-neutral mb-4">Contact Me</h3>
         <form ref={ref} action={handleSubmit} className="space-y-4">
           <div className="grid gap-2">
             <Label htmlFor="name">Name</Label>
@@ -34,7 +34,7 @@ export default function Contacts() {
           </div>
           <Button
             type="submit"
-            className="w-full bg-[#9BCAF2] hover:bg-[#94BDF2] text-[#0D0D0D]"
+            className="w-full btn btn-primary hover:bg-secondary text-[#0D0D0D]"
           >
             Send Message
           </Button>

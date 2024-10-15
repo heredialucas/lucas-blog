@@ -9,14 +9,7 @@ import { formatText } from "../../lib/utils";
 import { deleteDataById } from "@/app/api/util/actions";
 import { useStore } from "@/zustand/config";
 
-export default function BlogCard({
-  id,
-  image,
-  title,
-  summary,
-  author,
-  category,
-}) {
+export default function BlogCard({ id, image, title, author, category }) {
   const { isLoading, setIsLoading, isAdmin } = useStore((state) => state);
   const handleDelete = async () => {
     setIsLoading(true);
@@ -61,7 +54,7 @@ export default function BlogCard({
                 <p className="text-xs font-sm break-all pr-6">
                   {formatText(author)}
                 </p>
-                <p className="text-xs text-gray-500">{author.timeAgo}</p>
+                <p className="text-xs text-neutral">{author.timeAgo}</p>
               </div>
             </div>
             <div className="flex gap-2">

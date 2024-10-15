@@ -20,24 +20,24 @@ export default function Nav() {
     <>
       <nav className="flex items-center justify-between relative p-6 rounded-xl font-semibold">
         {/* Logo/Home Link */}
-        <div className="space-x-6 text-gray-800">
+        <div className="space-x-6 text-neutral">
           <Link
             href="/home"
             className={`${
               pathname === "/home" ? "underline" : ""
-            } mr-2 h-4 w-4 text-gray-800 hover:underline`}
+            } mr-2 h-4 w-4  hover:underline`}
           >
             Home
           </Link>
         </div>
 
         {/* Links que solo se muestran en pantallas medianas en adelante */}
-        <div className="space-x-6 text-gray-800 hidden md:block">
+        <div className="space-x-6 text-neutral hidden md:block">
           <Link
             href="/jobs"
             className={`${
               pathname === "/jobs" ? "underline" : ""
-            } mr-2 h-4 w-4 text-gray-800 hover:underline`}
+            } mr-2 h-4 w-4 text-neutral hover:underline`}
           >
             Timeline Jobs
           </Link>
@@ -46,7 +46,7 @@ export default function Nav() {
               href="/admin/create"
               className={`${
                 pathname === "/admin/create" ? "underline" : ""
-              } mr-2 h-4 w-4 text-gray-800 hover:underline`}
+              } mr-2 h-4 w-4 text-neutral hover:underline`}
             >
               Create Post
             </Link>
@@ -55,7 +55,7 @@ export default function Nav() {
             href="/blog"
             className={`${
               pathname === "/blog" ? "underline" : ""
-            } mr-2 h-4 w-4 text-gray-800 hover:underline`}
+            } mr-2 h-4 w-4 text-neutral hover:underline`}
           >
             Blog
           </Link>
@@ -63,7 +63,7 @@ export default function Nav() {
             href="/contact"
             className={`${
               pathname === "/contact" ? "underline" : ""
-            } mr-2 h-4 w-4 text-gray-800 hover:underline`}
+            } mr-2 h-4 w-4 text-neutral hover:underline`}
           >
             Contact
           </Link>
@@ -82,7 +82,10 @@ export default function Nav() {
 
         {/* Menú hamburguesa para pantallas pequeñas */}
         <div className="block md:hidden">
-          <MenuIcon className="h-6 w-6 text-gray-800" onClick={handleMenu} />
+          <MenuIcon
+            className="h-6 w-6 text-neutral"
+            onClick={handleMenu}
+          />
         </div>
       </nav>
 
