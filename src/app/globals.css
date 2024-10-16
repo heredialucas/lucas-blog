@@ -85,3 +85,13 @@ p img {
   border-radius: 10px; /* Bordes redondeados */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
 }
+
+.ql-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.ql-editor {
+  min-height: 300px;
+}
