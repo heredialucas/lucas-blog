@@ -14,7 +14,7 @@ model Post {
   category         String
   summary          String
   authorName       String
-  imageUrl         String
+  imageUrl         String?
   referencePostUrl String?
   date             String?
 }

@@ -98,7 +98,7 @@ export const getDataById = async (path, id) => {
   });
 
   if (!fetchData.ok) {
-    throw new Error("Error al obtener los post");
+    throw new Error("Error al obtener el post");
   }
 
   const response = await fetchData.json();
@@ -138,6 +138,27 @@ export const deleteDataById = async (path, id) => {
 
   revalidatePath("/blog");
   redirect("/blog");
+};
+
+export const editDataById = async (formData, editorContent, id) => {
+  const rawFormData = Object.fromEntries(formData);
+
+  rawFormData.summary = editorContent;
+
+  const url = await getUrl();
+
+  const updateData = await fetch(`${url}/api/post/${id}`, {
+    method: "PATCH",
+    cache: "no-cache",
+    body: JSON.stringify({ id, rawFormData }),
+  });
+
+  if (!updateData.ok) {
+    throw new Error("Error al editar el post");
+  }
+
+  revalidatePath(`/blog/${id}`);
+  redirect(`/blog/${id}`);
 };
 
 export const getData = async (path) => {

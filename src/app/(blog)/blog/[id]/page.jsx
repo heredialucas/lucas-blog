@@ -1,5 +1,5 @@
 import { getDataById } from "@/app/api/util/actions";
-import ArticleClient from "@/components/custom/acrticleClient";
+import ArticleClient from "@/components/custom/articleClient";
 
 export default async function ArticleServerSide({ params }) {
   const { id } = params;

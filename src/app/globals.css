@@ -64,7 +64,7 @@ blockquote p {
   margin: 0; /* Elimina el margen en el párrafo */
 }
 
-.ql-video {
+iframe.ql-video {
   display: block; /* Hace que el iframe se comporte como un bloque */
   margin: 20px auto; /* Espacio superior e inferior, y centra horizontalmente */
   width: 100%; /* Ancho completo de la pantalla */
@@ -90,6 +90,9 @@ p img {
   position: sticky;
   top: 0;
   z-index: 1;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
 }
 
 .ql-editor {

@@ -2,19 +2,24 @@
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "../ui/card";
 import { Button } from "../ui/button";
-import { Trash2 } from "lucide-react";
+import { Trash2, Edit2 } from "lucide-react";
 import ProfilePicture from "@/public/lucas.jpeg";
 import Link from "next/link";
-import { formatText } from "../../lib/utils";
+import { formatText, extractDate } from "../../lib/utils";
 import { deleteDataById } from "@/app/api/util/actions";
 import { useStore } from "@/zustand/config";
+import { useRouter } from "next/navigation";
 
-export default function BlogCard({ id, image, title, author, category }) {
+export default function BlogCard({ id, image, title, date, author, category }) {
+  const route = useRouter();
   const { isLoading, setIsLoading, isAdmin } = useStore((state) => state);
   const handleDelete = async () => {
     setIsLoading(true);
     await deleteDataById("post", id);
     setIsLoading(false);
+  };
+  const handleEdit = () => {
+    route.push(`/admin/edit/${id}`);
   };
 
   return (
@@ -40,6 +45,13 @@ export default function BlogCard({ id, image, title, author, category }) {
               {formatText(category)}
             </span>
             <h2 className="font-bold leading-tight">{formatText(title)}</h2>
+            {isAdmin && (
+              <p className="text-xs font-sm break-all pr-6">
+                Author: {formatText(author)}
+                <br />
+                Date: {extractDate(date)}
+              </p>
+            )}
           </div>
         </CardContent>
         <CardFooter className="border-t pt-3">
@@ -50,12 +62,13 @@ export default function BlogCard({ id, image, title, author, category }) {
                 alt={author}
                 className="w-12 h-12 rounded-full object-cover"
               />
-              <div>
+              {!isAdmin && (
                 <p className="text-xs font-sm break-all pr-6">
                   {formatText(author)}
+                  <br />
+                  {extractDate(date)}
                 </p>
-                <p className="text-xs text-neutral">{author.timeAgo}</p>
-              </div>
+              )}
             </div>
             <div className="flex gap-2">
               <Link
@@ -72,15 +85,26 @@ export default function BlogCard({ id, image, title, author, category }) {
                 Read More
               </Link>
               {isAdmin && (
-                <Button
-                  variant="destructive"
-                  size="sm"
-                  className="rounded border-2 border-gray-500 hover:bg-red-600 hover:text-white "
-                  onClick={() => handleDelete()}
-                  disabled={isLoading}
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
+                <>
+                  <Button
+                    variant="destructive"
+                    size="sm"
+                    className="rounded border-2 border-gray-500 hover:bg-red-500 hover:text-white "
+                    onClick={() => handleDelete()}
+                    disabled={isLoading}
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="info"
+                    size="sm"
+                    className="rounded border-2 border-gray-500 hover:bg-blue-400 hover:text-white "
+                    onClick={() => handleEdit()}
+                    disabled={isLoading}
+                  >
+                    <Edit2 className="h-4 w-4" />
+                  </Button>
+                </>
               )}
             </div>
           </div>

@@ -27,6 +27,43 @@ export async function GET(req, { params }) {
   }
 }
 
+export async function PATCH(req, { params }) {
+  const { id } = params;
+  const { rawFormData } = await req.json();
+  const { title, category, summary, authorName, referencePostUrl } =
+    rawFormData;
+
+  try {
+    const post = await prisma.post.update({
+      where: { id: parseInt(id) },
+      data: {
+        title: title,
+        category: category,
+        summary: summary,
+        authorName: authorName,
+        referencePostUrl: referencePostUrl,
+        date: new Date().toISOString(),
+      },
+    });
+
+    return new NextResponse(JSON.stringify({ post }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error al editar el post:", error);
+    return new NextResponse(
+      JSON.stringify({ error: "No se pudo editar el post" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
 export async function DELETE(req, { params }) {
   const { id } = params;
 

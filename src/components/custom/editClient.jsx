@@ -3,74 +3,68 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { postData, postImage } from "@/app/api/util/actions";
+import { editDataById } from "@/app/api/util/actions";
 import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useStore } from "@/zustand/config";
 import { redirect } from "next/navigation";
-import { useEffect } from "react";
 
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
-export default function Create() {
+export default function EditClient({ id, post }) {
   const { isLoading, setIsLoading, isAdmin } = useStore((state) => state);
+  const { title, summary, category, referencePostUrl, authorName } = post;
+
+  const [editorContent, setEditorContent] = useState(summary);
+  const [formData, setFormData] = useState({
+    title,
+    category,
+    authorName,
+    referencePostUrl,
+  });
+
   if (isAdmin === false) {
     redirect("/admin/login");
   }
-  const [editorContent, setEditorContent] = useState("");
-
-  useEffect(() => {
-    if (editorContent) {
-      localStorage.setItem("editorContent", editorContent);
-    }
-  }, [editorContent]);
-
-  useEffect(() => {
-    const savedContent = localStorage.getItem("editorContent");
-    if (savedContent) {
-      setEditorContent(savedContent);
-    }
-  }, []);
 
   const ref = useRef();
 
   const handleChange = async (formData) => {
     setIsLoading(true);
-    const file = formData.get("image");
 
-    if (file) {
-      const arrayBuffer = await file.arrayBuffer();
-      const buffer = new Uint8Array(arrayBuffer);
-      const serializedFile = Array.from(buffer);
+    await editDataById(formData, editorContent, id);
+    ref.current.reset();
+    setEditorContent("");
+    setIsLoading(false);
+    redirect(`/blog/${id}`);
+  };
 
-      const fileData = {
-        name: file.name,
-        type: file.type,
-        data: serializedFile,
-      };
-      const image = await postImage(fileData);
-      await postData(formData, editorContent, image.url);
-      ref.current.reset();
-      setEditorContent("");
-      setIsLoading(false);
-      redirect("/blog");
-    }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
     <form
       ref={ref}
       action={handleChange}
-      className=" p-6 border-2 border-gray-200 rounded-xl"
+      className="p-6 border-2 border-gray-200 rounded-xl"
     >
-      <div className="flex flex-col  gap-4">
+      <div className="flex flex-col gap-4">
         <div>
           <div>
             <Label htmlFor="title">Title</Label>
-            <Input maxLength={100} required name="title" disabled={isLoading} />
+            <Input
+              maxLength={100}
+              required
+              name="title"
+              value={formData.title}
+              onChange={handleInputChange}
+              disabled={isLoading}
+            />
           </div>
           <div>
             <Label htmlFor="category">Category</Label>
@@ -78,6 +72,8 @@ export default function Create() {
               maxLength={100}
               required
               name="category"
+              value={formData.category}
+              onChange={handleInputChange}
               disabled={isLoading}
             />
           </div>
@@ -87,17 +83,21 @@ export default function Create() {
               maxLength={100}
               required
               name="authorName"
+              value={formData.authorName}
+              onChange={handleInputChange}
               disabled={isLoading}
             />
           </div>
           <div>
             <Label htmlFor="image">Image URL</Label>
-            <Input required type="file" name="image" disabled={isLoading} />
+            <Input required type="file" name="image" disabled />
           </div>
           <div>
             <Label htmlFor="referencePostUrl">Reference Post URL</Label>
             <Input
               name="referencePostUrl"
+              value={formData.referencePostUrl}
+              onChange={handleInputChange}
               placeholder="https://example.com/reference"
               disabled={isLoading}
             />
@@ -122,7 +122,7 @@ export default function Create() {
                 [{ direction: "rtl" }],
                 [{ color: [] }, { background: [] }],
                 [{ align: [] }],
-                ["video", "image"],
+                ["image", "video"],
                 ["clean"],
               ],
             }}
@@ -131,7 +131,7 @@ export default function Create() {
       </div>
       <div className="flex justify-end w-full mt-4">
         <Button disabled={isLoading} type="submit">
-          Create Post
+          Edit Post
         </Button>
       </div>
     </form>

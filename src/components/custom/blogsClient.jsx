@@ -28,6 +28,7 @@ export function BlogCardsClient({ posts }) {
             title={post.title}
             summary={parse(post.summary)}
             author={post.authorName}
+            date={post.date}
             category={post.category}
           />
         ))}

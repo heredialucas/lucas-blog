@@ -9,6 +9,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Trash2 } from "lucide-react";
 import { useStore } from "@/zustand/config";
+import { Edit2 } from "lucide-react";
 
 export default function ArticleClient({ post, id }) {
   const { isLoading, setIsLoading, isAdmin } = useStore((state) => state);
@@ -17,6 +18,7 @@ export default function ArticleClient({ post, id }) {
     await deleteDataById("post", id);
     setIsLoading(false);
   };
+
   if (!post) return "Post Not Found";
 
   return (
@@ -24,7 +26,9 @@ export default function ArticleClient({ post, id }) {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-8">
           <div className="space-y-4">
-            <span className="text-orange-500 font-medium break-words">{post.category}</span>
+            <span className="text-orange-500 font-medium break-words">
+              {post.category}
+            </span>
             <h1 className="text-4xl font-bold text-gray-900 mb-4 break-words">
               {post.title}
             </h1>
@@ -35,7 +39,9 @@ export default function ArticleClient({ post, id }) {
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <p className="font-medium text-gray-900 break-all">{post.authorName}</p>
+                <p className="font-medium text-gray-900 break-all">
+                  {post.authorName}
+                </p>
                 <p className="text-sm text-gray-500">{formatDate(post.date)}</p>
               </div>
             </div>
@@ -71,15 +77,25 @@ export default function ArticleClient({ post, id }) {
               ← Back to Blog
             </Link>
             {isAdmin && (
-              <Button
-                variant="destructive"
-                size="sm"
-                className="rounded border-2 border-gray-500 hover:bg-red-600 hover:text-white "
-                onClick={() => handleDelete()}
-                disabled={isLoading}
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  size="sm"
+                  className="btn btn-warning bg-error rounded border-2 border-gray-500 hover:bg-red-600 hover:text-white "
+                  onClick={() => handleDelete()}
+                  disabled={isLoading}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+                <Link
+                  variant="info"
+                  size="sm"
+                  className="btn rounded border-2 border-gray-500 hover:bg-blue-400 hover:text-white "
+                  disabled={isLoading}
+                  href={`/admin/edit/${id}`}
+                >
+                  <Edit2 className="h-4 w-4" />
+                </Link>
+              </div>
             )}
           </div>
         </footer>
