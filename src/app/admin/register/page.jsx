@@ -3,14 +3,11 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { login } from "@/app/api/util/actions";
-import { useStore } from "@/zustand/config";
+import { register } from "@/app/api/util/actions";
 import { redirect } from "next/navigation";
 import { useAuthRedirect } from "@/hooks/useStorage";
 
-export default function LoginPage() {
-  const { setIsAdmin } = useStore((state) => state);
-
+export default function RegisterPage() {
   const isAdminStorage = useAuthRedirect();
 
   if (isAdminStorage) {
@@ -18,11 +15,12 @@ export default function LoginPage() {
   }
 
   async function handleLogin(formData) {
-    const { authenticated } = await login(formData);
-    localStorage.setItem("authenticated", authenticated);
-    setIsAdmin(authenticated);
-    if (authenticated) {
-      redirect("/blog");
+    const { registered, message } = await register(formData);
+    console.log("message", message);
+    console.log("registered", registered);
+
+    if (registered) {
+      redirect("/admin/login");
     }
   }
 
@@ -40,7 +38,7 @@ export default function LoginPage() {
         type="submit"
         className="w-full bg-blue-200 hover:bg-blue-300 text-blue-800"
       >
-        Login
+        Register
       </Button>
     </form>
   );

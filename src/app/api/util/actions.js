@@ -34,7 +34,7 @@ export async function login(formData) {
 
   const url = await getUrl();
 
-  const fetchData = await fetch(`${url}/api/admin`, {
+  const fetchData = await fetch(`${url}/api/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -45,6 +45,27 @@ export async function login(formData) {
   if (!fetchData.ok) {
     throw new Error("Error al iniciar sesión");
   }
+  const res = await fetchData.json();
+  return res;
+}
+
+export async function register(formData) {
+  const rawFormData = Object.fromEntries(formData);
+
+  const url = await getUrl();
+
+  const fetchData = await fetch(`${url}/api/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(rawFormData),
+  });
+
+  if (!fetchData.ok) {
+    throw new Error("Error al registrar el usuario");
+  }
+
   const res = await fetchData.json();
   return res;
 }

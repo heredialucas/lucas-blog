@@ -8,6 +8,15 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+model Client {
+  id               Int @id @default(autoincrement())
+  email            String
+  password         String
+  firstName        String?
+  lastName         String?
+  domain           String?
+}
+
 model Post {
   id               Int     @id @default(autoincrement())
   title            String
