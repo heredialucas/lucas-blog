@@ -4,16 +4,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
-import { useStore } from "@/zustand/config";
 import { Button } from "../ui/button";
+import { logout } from "@/app/api/util/actions";
 
-export default function Nav() {
+export function NavClientSide({ isAdmin }) {
   const pathname = usePathname();
-  const { isAdmin, setIsAdmin } = useStore((state) => state);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const handleLogOut = () => {
+    logout();
   };
 
   return (
@@ -69,23 +72,17 @@ export default function Nav() {
           </Link>
           {isAdmin && (
             <Button
-              onClick={() => {
-                setIsAdmin(false);
-                localStorage.clear();
-              }}
+              onClick={() => handleLogOut()}
               className="rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
             >
-              Sing Out
+              Sign Out
             </Button>
           )}
         </div>
 
         {/* Menú hamburguesa para pantallas pequeñas */}
         <div className="block md:hidden">
-          <MenuIcon
-            className="h-6 w-6 text-neutral"
-            onClick={handleMenu}
-          />
+          <MenuIcon className="h-6 w-6 text-neutral" onClick={handleMenu} />
         </div>
       </nav>
 
@@ -139,14 +136,10 @@ export default function Nav() {
             </Link>
             {isAdmin && (
               <Button
-                onClick={() => {
-                  setIsAdmin(false);
-                  setMenuOpen(false);
-                  localStorage.clear();
-                }}
+                onClick={() => handleLogOut()}
                 className=" text-white text-xl rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
               >
-                Sing Out
+                Sign Out
               </Button>
             )}
           </div>

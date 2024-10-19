@@ -4,7 +4,7 @@ import BlogCard from "@/components/custom/blogCard";
 import parse from "html-react-parser";
 import { useStore } from "@/zustand/config";
 
-export function BlogCardsClient({ posts }) {
+export function BlogCardsClient({ posts, isAdmin }) {
   const { isLoading } = useStore((state) => state);
 
   return (
@@ -30,6 +30,7 @@ export function BlogCardsClient({ posts }) {
             author={post.authorName}
             date={post.date}
             category={post.category}
+            isAdmin={isAdmin}
           />
         ))}
       </div>

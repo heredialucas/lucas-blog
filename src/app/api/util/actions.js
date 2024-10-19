@@ -3,6 +3,7 @@
 import { getUrl } from "@/app/api/util/utils";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
 export async function postData(formData, editorContent, imageUrl) {
   const rawFormData = Object.fromEntries(formData);
@@ -45,8 +46,15 @@ export async function login(formData) {
   if (!fetchData.ok) {
     throw new Error("Error al iniciar sesión");
   }
-  const res = await fetchData.json();
-  return res;
+
+  const { authenticated, message, token } = await fetchData.json();
+  cookies().set("token", token);
+  return { authenticated, message };
+}
+
+export async function logout() {
+  cookies().delete("token");
+  redirect("/admin/auth/login");
 }
 
 export async function register(formData) {

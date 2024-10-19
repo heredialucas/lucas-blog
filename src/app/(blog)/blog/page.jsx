@@ -1,4 +1,5 @@
 import { getData } from "@/app/api/util/actions";
+import { useCookie } from "@/hooks/useSignOut";
 import { BlogCardsClient } from "@/components/custom/blogsClient";
 
 export const metadata = {
@@ -8,6 +9,8 @@ export const metadata = {
 
 export default async function BlogCardsServerSide() {
   const { posts } = await getData("posts");
+  const cookie = await useCookie();
 
-  return <BlogCardsClient posts={posts} />;
+
+  return <BlogCardsClient posts={posts} isAdmin={cookie}/>;
 }

@@ -14,8 +14,8 @@ const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
-export default function EditClient({ id, post }) {
-  const { isLoading, setIsLoading, isAdmin } = useStore((state) => state);
+export default function EditClient({ id, post, isAdmin }) {
+  const { isLoading, setIsLoading } = useStore((state) => state);
   const { title, summary, category, referencePostUrl, authorName } = post;
 
   const [editorContent, setEditorContent] = useState(summary);

@@ -1,9 +1,7 @@
-"use client";
 import localFont from "next/font/local";
 import "./globals.css";
-import Nav from "../components/custom/nav";
+import { NavServerSide } from "../components/custom/navServerSide";
 import { useStore } from "@/zustand/config";
-import { useAuthRedirect } from "@/hooks/useStorage";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -17,20 +15,13 @@ const geistMono = localFont({
 });
 
 export default function RootLayout({ children }) {
-  useAuthRedirect();
-  const { isLoading, theme } = useStore((state) => state);
-
   return (
-    <html lang="en" data-theme={theme || "cupcake"}>
+    <html lang="en" data-theme={"cupcake"}>
       <body
         id="body-item"
-        className={`min-h-screen max-w-6xl mx-auto p-6 ${
-          geistSans.variable
-        } ${geistMono.variable} antialiased ${
-          isLoading ? "cursor-wait" : "cursor-default"
-        }`}
+        className={`min-h-screen max-w-6xl mx-auto p-6 ${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        <Nav />
+        <NavServerSide />
         {children}
       </body>
     </html>

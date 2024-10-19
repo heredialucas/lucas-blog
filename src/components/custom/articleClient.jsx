@@ -11,8 +11,8 @@ import { Trash2 } from "lucide-react";
 import { useStore } from "@/zustand/config";
 import { Edit2 } from "lucide-react";
 
-export default function ArticleClient({ post, id }) {
-  const { isLoading, setIsLoading, isAdmin } = useStore((state) => state);
+export default function ArticleClient({ post, id, isAdmin }) {
+  const { isLoading, setIsLoading } = useStore((state) => state);
   const handleDelete = async () => {
     setIsLoading(true);
     await deleteDataById("post", id);

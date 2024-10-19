@@ -16,10 +16,8 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 });
 
 export default function Create() {
-  const { isLoading, setIsLoading, isAdmin } = useStore((state) => state);
-  if (isAdmin === false) {
-    redirect("/admin/login");
-  }
+  const { isLoading, setIsLoading } = useStore((state) => state);
+
   const [editorContent, setEditorContent] = useState("");
 
   useEffect(() => {

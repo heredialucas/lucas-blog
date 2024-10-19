@@ -10,9 +10,17 @@ import { deleteDataById } from "@/app/api/util/actions";
 import { useStore } from "@/zustand/config";
 import { useRouter } from "next/navigation";
 
-export default function BlogCard({ id, image, title, date, author, category }) {
+export default function BlogCard({
+  id,
+  image,
+  title,
+  date,
+  author,
+  category,
+  isAdmin,
+}) {
   const route = useRouter();
-  const { isLoading, setIsLoading, isAdmin } = useStore((state) => state);
+  const { isLoading, setIsLoading } = useStore((state) => state);
   const handleDelete = async () => {
     setIsLoading(true);
     await deleteDataById("post", id);
