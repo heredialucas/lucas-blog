@@ -10,17 +10,17 @@ datasource db {
 
 model Client {
   id        Int     @id @default(autoincrement())
-  email     String
+  email     String  @unique
   password  String
   firstName String
   lastName  String
-  domain    String
+  domain    String  @unique
   isPremium Boolean @default(false)
 }
 
 model Post {
   id               Int     @id @default(autoincrement())
-  userId           Int
+  clientDomain     String
   title            String
   category         String
   summary          String
@@ -28,4 +28,12 @@ model Post {
   imageUrl         String?
   referencePostUrl String?
   date             String?
+}
+
+model InfoClient {
+  id           Int    @id @default(autoincrement())
+  clientDomain String
+  hero         String
+  timeline     String
+  resumeLink   String
 }
