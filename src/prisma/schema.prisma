@@ -9,13 +9,16 @@ datasource db {
 }
 
 model Client {
-  id        Int     @id @default(autoincrement())
-  email     String  @unique
-  password  String
-  firstName String
-  lastName  String
-  domain    String  @unique
-  isPremium Boolean @default(false)
+  id         Int     @id @default(autoincrement())
+  email      String  @unique
+  password   String
+  firstName  String
+  lastName   String
+  domain     String  @unique
+  isPremium  Boolean @default(false)
+  hero       String
+  timeline   String
+  resumeLink String
 }
 
 model Post {
@@ -28,12 +31,4 @@ model Post {
   imageUrl         String?
   referencePostUrl String?
   date             String?
-}
-
-model InfoClient {
-  id           Int    @id @default(autoincrement())
-  clientDomain String
-  hero         String
-  timeline     String
-  resumeLink   String
 }
