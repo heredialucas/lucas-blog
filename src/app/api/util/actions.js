@@ -144,7 +144,7 @@ export const deleteData = async (path) => {
   });
 
   if (!deleteData.ok) {
-    throw new Error("Error al eliminar los posts");
+    throw new Error("Error al eliminar los posts y clientes");
   }
 
   const response = await deleteData.json();

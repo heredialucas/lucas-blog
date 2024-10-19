@@ -64,7 +64,7 @@ export async function DELETE() {
   try {
     const deletePost = await prisma.post.deleteMany({});
 
-    return new NextResponse(JSON.stringify({ deletePost }), {
+    return new NextResponse(JSON.stringify({ deletePost, deleteClient }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });

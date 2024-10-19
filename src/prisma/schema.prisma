@@ -9,16 +9,18 @@ datasource db {
 }
 
 model Client {
-  id               Int     @id @default(autoincrement())
-  email            String
-  password         String
-  firstName        String?
-  lastName         String?
-  domain           String?
+  id        Int     @id @default(autoincrement())
+  email     String
+  password  String
+  firstName String
+  lastName  String
+  domain    String
+  isPremium Boolean @default(false)
 }
 
 model Post {
   id               Int     @id @default(autoincrement())
+  userId           Int
   title            String
   category         String
   summary          String
