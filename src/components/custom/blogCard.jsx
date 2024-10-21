@@ -24,7 +24,7 @@ export default function BlogCard({
   const { isLoading, setIsLoading } = useStore((state) => state);
   const handleDelete = async () => {
     setIsLoading(true);
-    await deleteDataById("post", id);
+    await deleteDataById("post", id, pathname);
     setIsLoading(false);
   };
   const handleEdit = () => {

@@ -6,13 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { sendEmail } from "@/app/api/util/actions";
 import { useRef } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Contacts() {
   const ref = useRef();
+  const pathname = usePathname().split("/")[1];
 
   const handleSubmit = (formData) => {
     ref.current.reset();
-    sendEmail(formData);
+    sendEmail(formData, pathname);
   };
 
   return (

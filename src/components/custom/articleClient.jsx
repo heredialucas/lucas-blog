@@ -17,7 +17,7 @@ export default function ArticleClient({ post, id, isAdmin }) {
   const pathname = usePathname().split("/")[1];
   const handleDelete = async () => {
     setIsLoading(true);
-    await deleteDataById("post", id);
+    await deleteDataById("post", id, pathname);
     setIsLoading(false);
   };
 

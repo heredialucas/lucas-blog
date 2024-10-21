@@ -79,7 +79,7 @@ export async function register(formData) {
   return res;
 }
 
-export async function sendEmail(formData) {
+export async function sendEmail(formData, pathname) {
   const rawFormData = Object.fromEntries(formData);
 
   const url = await getUrl();
@@ -96,7 +96,7 @@ export async function sendEmail(formData) {
     throw new Error("Error al enviar el email");
   }
 
-  redirect("/home");
+  redirect(`/${pathname}`);
 }
 
 export async function postImage(fileData) {
@@ -188,7 +188,7 @@ export const deleteData = async (path) => {
   return response;
 };
 
-export const deleteDataById = async (path, id) => {
+export const deleteDataById = async (path, id, pathname) => {
   const url = await getUrl();
   const deleteData = await fetch(`${url}/api/${path}/${id}`, {
     method: "DELETE",
@@ -202,11 +202,11 @@ export const deleteDataById = async (path, id) => {
     throw new Error("Error al eliminar el post");
   }
 
-  revalidatePath("/blog");
-  redirect("/blog");
+  revalidatePath(`/${pathname}/blog`);
+  redirect(`/${pathname}/blog`);
 };
 
-export const editDataById = async (formData, editorContent, id) => {
+export const editDataById = async (formData, editorContent, id, pathname) => {
   const rawFormData = Object.fromEntries(formData);
 
   rawFormData.summary = editorContent;
@@ -223,8 +223,8 @@ export const editDataById = async (formData, editorContent, id) => {
     throw new Error("Error al editar el post");
   }
 
-  revalidatePath(`/blog/${id}`);
-  redirect(`/blog/${id}`);
+  revalidatePath(`${pathname}/blog/${id}`);
+  redirect(`${pathname}/blog/${id}`);
 };
 
 export const getData = async (path) => {

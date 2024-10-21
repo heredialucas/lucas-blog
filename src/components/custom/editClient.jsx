@@ -35,7 +35,7 @@ export default function EditClient({ id, post, isAdmin }) {
   const handleChange = async (formData) => {
     setIsLoading(true);
 
-    await editDataById(formData, editorContent, id);
+    await editDataById(formData, editorContent, id, pathname);
     ref.current.reset();
     setEditorContent("");
     setIsLoading(false);
