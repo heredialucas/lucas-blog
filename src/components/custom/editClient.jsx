@@ -8,13 +8,15 @@ import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useStore } from "@/zustand/config";
-import { redirect } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
 export default function EditClient({ id, post, isAdmin }) {
+  const ref = useRef();
+  const pathname = usePathname().split("/")[1];
   const { isLoading, setIsLoading } = useStore((state) => state);
   const { title, summary, category, referencePostUrl, authorName } = post;
 
@@ -27,10 +29,8 @@ export default function EditClient({ id, post, isAdmin }) {
   });
 
   if (isAdmin === false) {
-    redirect("/admin/login");
+    redirect("/auth/login");
   }
-
-  const ref = useRef();
 
   const handleChange = async (formData) => {
     setIsLoading(true);
@@ -39,7 +39,7 @@ export default function EditClient({ id, post, isAdmin }) {
     ref.current.reset();
     setEditorContent("");
     setIsLoading(false);
-    redirect(`/blog/${id}`);
+    redirect(`/${pathname}/blog/${id}`);
   };
 
   const handleInputChange = (e) => {

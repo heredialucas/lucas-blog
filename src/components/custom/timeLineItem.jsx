@@ -1,4 +1,11 @@
-export default function TimelineItem({ date, location, title, points, index }) {
+export default function TimelineItem({
+  startDate,
+  endDate,
+  location,
+  title,
+  description,
+  index,
+}) {
   return (
     <div className="flex mb-0">
       <div className="relative flex flex-col items-center">
@@ -19,7 +26,9 @@ export default function TimelineItem({ date, location, title, points, index }) {
           }`}
         >
           <div className="flex flex-col md:flex-row justify-between mb-2">
-            <h3 className="text-lg md:text-xl font-semibold text-gray-800">{title}</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-gray-800">
+              {title}
+            </h3>
           </div>
           <div className="flex mb-4 gap-6">
             <span
@@ -27,13 +36,13 @@ export default function TimelineItem({ date, location, title, points, index }) {
                 index % 2 === 0 ? "text-blue-600" : "text-purple-600"
               } font-medium`}
             >
-              {date}
+              {startDate} - {endDate}
             </span>
             <span className="text-gray-600 text-sm  block">{location}</span>
           </div>
-          {points.length > 0 && (
+          {description.length > 0 && (
             <ul className="space-y-2.5">
-              {points.map((point, idx) => (
+              {description.map((point, idx) => (
                 <li key={idx} className="flex items-start">
                   <span
                     className={`mr-2 mt-1.5 h-1.5 w-1.5 rounded-full ${

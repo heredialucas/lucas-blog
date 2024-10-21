@@ -4,8 +4,15 @@ import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 
 export async function POST(req) {
-  const { title, category, summary, authorName, imageUrl, referencePostUrl } =
-    await req.json();
+  const {
+    title,
+    category,
+    summary,
+    authorName,
+    imageUrl,
+    referencePostUrl,
+    pathname,
+  } = await req.json();
 
   try {
     const newPost = await prisma.post.create({
@@ -17,9 +24,9 @@ export async function POST(req) {
         imageUrl: imageUrl,
         referencePostUrl: referencePostUrl,
         date: new Date().toISOString(),
+        clientDomain: pathname,
       },
     });
-
     return new NextResponse(JSON.stringify({ newPost }), {
       status: 201,
       headers: { "Content-Type": "application/json" },
@@ -63,6 +70,7 @@ export async function GET() {
 export async function DELETE() {
   try {
     const deletePost = await prisma.post.deleteMany({});
+    const deleteClient = await prisma.client.deleteMany({});
 
     return new NextResponse(JSON.stringify({ deletePost, deleteClient }), {
       status: 200,

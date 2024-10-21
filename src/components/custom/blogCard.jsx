@@ -8,7 +8,7 @@ import Link from "next/link";
 import { formatText, extractDate } from "../../lib/utils";
 import { deleteDataById } from "@/app/api/util/actions";
 import { useStore } from "@/zustand/config";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function BlogCard({
   id,
@@ -20,6 +20,7 @@ export default function BlogCard({
   isAdmin,
 }) {
   const route = useRouter();
+  const pathname = usePathname().split("/")[1];
   const { isLoading, setIsLoading } = useStore((state) => state);
   const handleDelete = async () => {
     setIsLoading(true);
@@ -27,7 +28,7 @@ export default function BlogCard({
     setIsLoading(false);
   };
   const handleEdit = () => {
-    route.push(`/admin/edit/${id}`);
+    route.push(`/${pathname}/edit/${id}`);
   };
 
   return (
@@ -80,7 +81,7 @@ export default function BlogCard({
             </div>
             <div className="flex gap-2">
               <Link
-                href={`/blog/${id}`}
+                href={`/${pathname}/blog/${id}`}
                 disabled={true}
                 className={`flex flex-2 text-xs border-2  p-2 rounded font-medium hover:bg-blue-200  ${
                   isLoading

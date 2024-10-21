@@ -6,18 +6,25 @@ import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { logout } from "@/app/api/util/actions";
+import { useStore } from "@/zustand/config";
 
 export function NavClientSide({ isAdmin }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const { client } = useStore();
+  const { domain, isPremium } = client;
 
   const handleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   const handleLogOut = () => {
+    localStorage.removeItem("client");
     logout();
   };
+
+  const getLink = (path) => `/${domain}${path}`;
 
   return (
     <>
@@ -25,9 +32,9 @@ export function NavClientSide({ isAdmin }) {
         {/* Logo/Home Link */}
         <div className="space-x-6 text-neutral">
           <Link
-            href="/home"
+            href={`/${domain}`}
             className={`${
-              pathname === "/home" ? "underline" : ""
+              pathname === `/${domain}` ? "underline" : ""
             } mr-2 h-4 w-4  hover:underline`}
           >
             Home
@@ -37,35 +44,37 @@ export function NavClientSide({ isAdmin }) {
         {/* Links que solo se muestran en pantallas medianas en adelante */}
         <div className="space-x-6 text-neutral hidden md:block">
           <Link
-            href="/jobs"
+            href={getLink("/jobs")}
             className={`${
-              pathname === "/jobs" ? "underline" : ""
+              pathname.includes(`/${domain}/jobs`) ? "underline" : ""
             } mr-2 h-4 w-4 text-neutral hover:underline`}
           >
             Timeline Jobs
           </Link>
           {isAdmin && (
             <Link
-              href="/admin/create"
+              href={getLink("/create")}
               className={`${
-                pathname === "/admin/create" ? "underline" : ""
+                pathname.includes(`/${domain}/create`) ? "underline" : ""
               } mr-2 h-4 w-4 text-neutral hover:underline`}
             >
               Create Post
             </Link>
           )}
+          {(isPremium || isAdmin) && (
+            <Link
+              href={getLink("/blog")}
+              className={`${
+                pathname.includes(`/${domain}/blog`) ? "underline" : ""
+              } mr-2 h-4 w-4 text-neutral hover:underline`}
+            >
+              Blog
+            </Link>
+          )}
           <Link
-            href="/blog"
+            href={getLink("/contact")}
             className={`${
-              pathname === "/blog" ? "underline" : ""
-            } mr-2 h-4 w-4 text-neutral hover:underline`}
-          >
-            Blog
-          </Link>
-          <Link
-            href="/contact"
-            className={`${
-              pathname === "/contact" ? "underline" : ""
+              pathname.includes(`/${domain}/contact`) ? "underline" : ""
             } mr-2 h-4 w-4 text-neutral hover:underline`}
           >
             Contact
@@ -89,7 +98,6 @@ export function NavClientSide({ isAdmin }) {
       {/* Menú desplegable para pantallas pequeñas */}
       {menuOpen && (
         <div className="fixed top-0 left-0 w-full h-full bg-gray-950 bg-opacity-90 z-50 flex flex-col items-start space-y-4 p-8">
-          {/* Botón de cierre */}
           <XIcon
             className="h-6 w-6 text-white self-end"
             onClick={() => setMenuOpen(false)}
@@ -97,19 +105,19 @@ export function NavClientSide({ isAdmin }) {
 
           <div className="flex flex-col h-full self-center justify-center items-center gap-8 font-semibold">
             <Link
-              href="/jobs"
+              href={getLink("/jobs")}
               className={`${
-                pathname === "/jobs" ? "underline" : ""
+                pathname.includes(`/${domain}/jobs`) ? "underline" : ""
               } block text-white text-xl hover:underline`}
-              onClick={() => setMenuOpen(false)} // Cierra el menú al hacer clic
+              onClick={() => setMenuOpen(false)}
             >
               Timeline Jobs
             </Link>
             {isAdmin && (
               <Link
-                href="/admin/create"
+                href={getLink("/create")}
                 className={`${
-                  pathname === "/admin/create" ? "underline" : ""
+                  pathname.includes(`/${domain}/create`) ? "underline" : ""
                 } block text-white text-xl hover:underline`}
                 onClick={() => setMenuOpen(false)}
               >
@@ -117,18 +125,18 @@ export function NavClientSide({ isAdmin }) {
               </Link>
             )}
             <Link
-              href="/blog"
+              href={getLink("/blog")}
               className={`${
-                pathname === "/blog" ? "underline" : ""
+                pathname.includes(`/${domain}/blog`) ? "underline" : ""
               } block text-white text-xl hover:underline`}
               onClick={() => setMenuOpen(false)}
             >
               Blog
             </Link>
             <Link
-              href="/contact"
+              href={getLink("/contact")}
               className={`${
-                pathname === "/contact" ? "underline" : ""
+                pathname.includes(`/${domain}/contact`) ? "underline" : ""
               } block text-white text-xl hover:underline`}
               onClick={() => setMenuOpen(false)}
             >
@@ -137,7 +145,7 @@ export function NavClientSide({ isAdmin }) {
             {isAdmin && (
               <Button
                 onClick={() => handleLogOut()}
-                className=" text-white text-xl rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
+                className="text-white text-xl rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
               >
                 Sign Out
               </Button>

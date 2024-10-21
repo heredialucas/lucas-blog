@@ -8,7 +8,7 @@ import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useStore } from "@/zustand/config";
-import { redirect } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const ReactQuill = dynamic(() => import("react-quill"), {
@@ -17,7 +17,7 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 
 export default function Create() {
   const { isLoading, setIsLoading } = useStore((state) => state);
-
+  const pathname = usePathname().split("/")[1];
   const [editorContent, setEditorContent] = useState("");
 
   useEffect(() => {
@@ -50,11 +50,11 @@ export default function Create() {
         data: serializedFile,
       };
       const image = await postImage(fileData);
-      await postData(formData, editorContent, image.url);
+      await postData(formData, editorContent, image.url, pathname);
       ref.current.reset();
       setEditorContent("");
       setIsLoading(false);
-      redirect("/blog");
+      redirect(`/${pathname}/blog`);
     }
   };
 

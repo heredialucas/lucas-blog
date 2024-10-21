@@ -5,7 +5,16 @@ import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 
 export async function POST(request) {
-  const { email, password } = await request.json();
+  const {
+    email,
+    password,
+    firstName,
+    lastName,
+    domain,
+    resumeLink,
+    timeline,
+    hero,
+  } = await request.json();
 
   const user = await prisma.client.findFirst({
     where: {
@@ -26,6 +35,12 @@ export async function POST(request) {
     data: {
       email,
       password: hashedPassword,
+      firstName,
+      lastName,
+      domain,
+      resumeLink,
+      timeline,
+      hero,
     },
   });
 

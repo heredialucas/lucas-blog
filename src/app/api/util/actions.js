@@ -5,12 +5,13 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
-export async function postData(formData, editorContent, imageUrl) {
+export async function postData(formData, editorContent, imageUrl, pathname) {
   const rawFormData = Object.fromEntries(formData);
 
   rawFormData.summary = editorContent;
   if (imageUrl) {
     rawFormData.imageUrl = imageUrl;
+    rawFormData.pathname = pathname;
   }
 
   const url = await getUrl();
@@ -47,14 +48,14 @@ export async function login(formData) {
     throw new Error("Error al iniciar sesión");
   }
 
-  const { authenticated, message, token } = await fetchData.json();
+  const { authenticated, message, token, domain } = await fetchData.json();
   cookies().set("token", token);
-  return { authenticated, message };
+  return { authenticated, domain, message };
 }
 
 export async function logout() {
   cookies().delete("token");
-  redirect("/admin/auth/login");
+  redirect("/auth/login");
 }
 
 export async function register(formData) {
@@ -128,6 +129,42 @@ export const getDataById = async (path, id) => {
 
   if (!fetchData.ok) {
     throw new Error("Error al obtener el post");
+  }
+
+  const response = await fetchData.json();
+  return response;
+};
+
+export const getClientById = async (id) => {
+  const url = await getUrl();
+  const fetchData = await fetch(`${url}/api/clientById/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
+
+  if (!fetchData.ok) {
+    throw new Error("Error al obtener el cliente");
+  }
+
+  const response = await fetchData.json();
+  return response;
+};
+
+export const getClientInfoByDomain = async (domain) => {
+  const url = await getUrl();
+  const fetchData = await fetch(`${url}/api/clientByDomain/${domain}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "default",
+  });
+
+  if (!fetchData.ok) {
+    throw new Error("Error al obtener el cliente");
   }
 
   const response = await fetchData.json();

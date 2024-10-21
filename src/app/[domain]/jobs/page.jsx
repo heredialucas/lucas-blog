@@ -1,15 +1,17 @@
-import { timelineData } from "./dataWorks";
+"use client";
+
 import Link from "next/link";
 import TimelineItem from "@/components/custom/timeLineItem";
-
-export const metadata = {
-  title: "Heredia Lucas works",
-  description: "Works by Heredia Lucas",
-};
+import { useStore } from "@/zustand/config";
 
 export default function TimelineJobs() {
+  const { client } = useStore();
+  const { timeline } = client;
+  const parsedData =
+    typeof timeline === "string" ? JSON.parse(timeline) : timeline;
+
   return (
-    <div className="max-w-4xl mx-auto p-4 bg-cream-50 transition">
+    <div className="w-full mx-auto p-4 bg-cream-50 transition">
       <div className="text-center mb-12">
         <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-3">
           Professional Timeline
@@ -21,7 +23,7 @@ export default function TimelineJobs() {
         </div>
       </div>
       <div className="relative">
-        {timelineData.map((item, idx) => (
+        {parsedData?.map((item, idx) => (
           <TimelineItem key={idx} {...item} index={idx} />
         ))}
       </div>

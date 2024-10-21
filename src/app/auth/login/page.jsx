@@ -4,13 +4,14 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { login } from "@/app/api/util/actions";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const route = useRouter();
   async function handleLogin(formData) {
-    const { authenticated } = await login(formData);
+    const { authenticated, domain } = await login(formData);
     if (authenticated) {
-      redirect("/blog");
+      route.push(`/${domain}`);
     }
   }
 

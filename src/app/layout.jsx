@@ -1,6 +1,7 @@
+"use client";
+
 import localFont from "next/font/local";
 import "./globals.css";
-import { NavServerSide } from "../components/custom/navServerSide";
 import { useStore } from "@/zustand/config";
 
 const geistSans = localFont({
@@ -15,13 +16,13 @@ const geistMono = localFont({
 });
 
 export default function RootLayout({ children }) {
+  const { theme } = useStore((state) => state);
   return (
-    <html lang="en" data-theme={"cupcake"}>
+    <html lang="en" data-theme={theme || "cupcake"}>
       <body
         id="body-item"
         className={`min-h-screen max-w-6xl mx-auto p-6 ${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        <NavServerSide />
         {children}
       </body>
     </html>

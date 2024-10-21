@@ -11,6 +11,5 @@ export default async function BlogCardsServerSide() {
   const { posts } = await getData("posts");
   const cookie = await useCookie();
 
-
-  return <BlogCardsClient posts={posts} isAdmin={cookie}/>;
+  return <BlogCardsClient posts={posts} isAdmin={cookie} />;
 }

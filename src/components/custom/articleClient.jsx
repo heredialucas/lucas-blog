@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import ProfilePicture from "@/public/lucas.jpeg";
-import { formatDate } from "@/app/(blog)/utils";
+import { formatDate } from "@/app/[domain]/utils";
 import { deleteDataById } from "@/app/api/util/actions";
 import parse from "html-react-parser";
 import Link from "next/link";
@@ -10,9 +10,11 @@ import { Button } from "../ui/button";
 import { Trash2 } from "lucide-react";
 import { useStore } from "@/zustand/config";
 import { Edit2 } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function ArticleClient({ post, id, isAdmin }) {
   const { isLoading, setIsLoading } = useStore((state) => state);
+  const pathname = usePathname().split("/")[1];
   const handleDelete = async () => {
     setIsLoading(true);
     await deleteDataById("post", id);
@@ -91,7 +93,7 @@ export default function ArticleClient({ post, id, isAdmin }) {
                   size="sm"
                   className="btn rounded border-2 border-gray-500 hover:bg-blue-400 hover:text-white "
                   disabled={isLoading}
-                  href={`/admin/edit/${id}`}
+                  href={`/${pathname}/edit/${id}`}
                 >
                   <Edit2 className="h-4 w-4" />
                 </Link>

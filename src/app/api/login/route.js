@@ -30,15 +30,21 @@ export async function POST(request) {
     });
   }
 
-  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-  const token = await new jwt.SignJWT({ id: user.id, email: user.email })
+  const { domain } = user;
+  const secret = new TextEncoder().encode(`${process.env.JWT_SECRET}${domain}`);
+  const token = await new jwt.SignJWT({
+    id: user.id,
+    email: user.email,
+    domain,
+  })
     .setProtectedHeader({ alg: "HS256" })
-    .setExpirationTime("6h")
+    .setExpirationTime("1h")
     .sign(secret);
 
   return NextResponse.json({
     authenticated: true,
     message: "Usuario autenticado",
     token,
+    domain,
   });
 }
