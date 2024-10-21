@@ -224,7 +224,6 @@ export const editDataById = async (formData, editorContent, id, pathname) => {
   }
 
   revalidatePath(`${pathname}/blog/${id}`);
-  redirect(`${pathname}/blog/${id}`);
 };
 
 export const getData = async (path) => {
