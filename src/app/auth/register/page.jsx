@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { register } from "@/app/api/util/actions";
 import { redirect } from "next/navigation";
 import { Trash2 } from "lucide-react";
+import { postImage } from "@/app/api/util/actions";
 
 export default function RegisterPage() {
   const [jobs, setJobs] = useState([
