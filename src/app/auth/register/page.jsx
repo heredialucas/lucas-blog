@@ -87,7 +87,7 @@ export default function RegisterPage() {
     const { registered } = await register(formData);
 
     if (registered) {
-      redirect("/admin/auth/login");
+      redirect("/auth/login");
     }
   }
 

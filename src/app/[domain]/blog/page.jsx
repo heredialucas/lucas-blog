@@ -8,8 +8,8 @@ export const metadata = {
 };
 
 export default async function BlogCardsServerSide() {
-  const { posts } = await getData("posts");
-  const cookie = await useCookie();
+  const { cookie, domain } = await useCookie();
+  const { posts } = await getData("posts", domain.value);
 
   return <BlogCardsClient posts={posts} isAdmin={cookie} />;
 }

@@ -8,15 +8,15 @@ import { cookies } from "next/headers";
 export async function postData(formData, editorContent, imageUrl, pathname) {
   const rawFormData = Object.fromEntries(formData);
 
+  const id = pathname;
   rawFormData.summary = editorContent;
   if (imageUrl) {
     rawFormData.imageUrl = imageUrl;
-    rawFormData.pathname = pathname;
   }
 
   const url = await getUrl();
 
-  const fetchData = await fetch(`${url}/api/posts`, {
+  const fetchData = await fetch(`${url}/api/post/${id}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export async function postData(formData, editorContent, imageUrl, pathname) {
     throw new Error("Error al crear el post");
   }
 
-  revalidatePath("/blog");
+  revalidatePath(`/${pathname}/blog`);
 }
 
 export async function login(formData) {
@@ -50,11 +50,13 @@ export async function login(formData) {
 
   const { authenticated, message, token, domain } = await fetchData.json();
   cookies().set("token", token);
+  cookies().set("domain", domain);
   return { authenticated, domain, message };
 }
 
 export async function logout() {
   cookies().delete("token");
+  cookies().delete("domain");
   redirect("/auth/login");
 }
 
@@ -226,9 +228,9 @@ export const editDataById = async (formData, editorContent, id, pathname) => {
   revalidatePath(`${pathname}/blog/${id}`);
 };
 
-export const getData = async (path) => {
+export const getData = async (path, domain) => {
   const url = await getUrl();
-  const fetchData = await fetch(`${url}/api/${path}`, {
+  const fetchData = await fetch(`${url}/api/${path}/${domain}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

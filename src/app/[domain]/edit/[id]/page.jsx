@@ -4,7 +4,7 @@ import { getDataById } from "@/app/api/util/actions";
 
 export default async function EditServerSide({ params }) {
   const { id } = params;
-  const cookie = await useCookie();
+  const { cookie } = await useCookie();
 
   const { post } = await getDataById("post", id);
 

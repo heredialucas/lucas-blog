@@ -4,7 +4,7 @@ import ArticleClient from "@/components/custom/articleClient";
 
 export default async function ArticleServerSide({ params }) {
   const { id } = params;
-  const cookie = await useCookie();
+  const { cookie } = await useCookie();
 
   const { post } = await getDataById("post", id);
 
