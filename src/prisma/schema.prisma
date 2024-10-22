@@ -20,6 +20,9 @@ model Client {
   hero       String
   timeline   String
   resumeLink String
+  instagram  String
+  facebook   String
+  linkedin   String
 }
 
 model Post {

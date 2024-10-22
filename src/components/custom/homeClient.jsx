@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import ProfilePicture from "@/public/lucas.jpeg";
 import { Instagram, Linkedin } from "lucide-react";
 import { useStore } from "@/zustand/config";
 import { useEffect } from "react";
@@ -17,15 +16,33 @@ export function HomeClient({ client }) {
     }
   }, [client, setClient]);
 
+  const formatHeroText = (text) => {
+    if (!text) return [];
+
+    // Dividir por puntos, pero mantener el punto en cada segmento
+    const sentences = text
+      .split(".")
+      .filter((sentence) => sentence.trim().length > 0)
+      .map((sentence) => sentence.trim() + ".");
+
+    return sentences;
+  };
+
   return (
     <>
-      <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-between mb-12">
-        <div className="md:w-2/3 mb-8 md:mb-0">
+      <div className="flex flex-col-reverse  md:flex-row items-center md:items-start justify-between">
+        <div className="flex flex-col justify-between h-full md:w-2/3 mb-8 md:mb-0">
           <h1 className="text-primary hover:text-secondary text-4xl font-bold mb-2">
             {`Hi! I'm ${clientStore?.firstName} 👋🏼`}
           </h1>
-          <p className="text-neutral mb-6 max-w-xl">{clientStore?.hero}</p>
-          <Button className="btn btn-primary hover:bg-secondary hover:cursor-pointer">
+          <div className="flex flex-col justify-start h-full m-4">
+            {formatHeroText(clientStore?.hero).map((sentence, index) => (
+              <p key={index} className="text-neutral mb-3 max-w-xl">
+                {sentence}
+              </p>
+            ))}
+          </div>
+          <Button className="btn btn-primary w-fit hover:bg-secondary hover:cursor-pointer">
             <a href={clientStore?.resumeLink} target="_blank">
               See Resume
             </a>
@@ -43,20 +60,33 @@ export function HomeClient({ client }) {
       </div>
 
       <div className="flex justify-center gap-10 p-8 md:p-12 ">
-        <a
-          href="https://www.instagram.com/hlucasook/"
-          target="_blank"
-          className="text-neutral hover:text-primary"
-        >
-          <Instagram size={24} />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/heredialucasfran/"
-          target="_blank"
-          className="text-neutral hover:text-primary"
-        >
-          <Linkedin size={24} />
-        </a>
+        {clientStore?.instagram && (
+          <a
+            href={clientStore?.instagram}
+            target="_blank"
+            className="text-neutral hover:text-primary"
+          >
+            <Instagram size={24} />
+          </a>
+        )}
+        {clientStore?.linkedin && (
+          <a
+            href={clientStore?.linkedin}
+            target="_blank"
+            className="text-neutral hover:text-primary"
+          >
+            <Linkedin size={24} />
+          </a>
+        )}
+        {clientStore?.facebook && (
+          <a
+            href={clientStore?.facebook}
+            target="_blank"
+            className="text-neutral hover:text-primary"
+          >
+            <Linkedin size={24} />
+          </a>
+        )}
       </div>
     </>
   );
