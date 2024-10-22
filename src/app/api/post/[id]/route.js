@@ -21,14 +21,17 @@ export async function POST(req, { params }) {
         clientDomain: id,
       },
     });
-    return new NextResponse(JSON.stringify({ newPost }), {
-      status: 201,
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (error) {
-    console.error("Error al crear post:", error);
     return new NextResponse(
-      JSON.stringify({ error: "No se pudo crear el post" }),
+      JSON.stringify({ newPost, message: "Post created successfully" }),
+      {
+        status: 201,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  } catch (error) {
+    console.error("Failed to create post:", error);
+    return new NextResponse(
+      JSON.stringify({ message: "Failed to create post" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
@@ -45,19 +48,16 @@ export async function GET(req, { params }) {
   try {
     const post = await prisma.post.findUnique({ where: { id: parseInt(id) } });
 
-    return new NextResponse(JSON.stringify({ post }), {
+    return new NextResponse(JSON.stringify({ post, message: "Post found" }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("Error al recuperar post:", error);
-    return new NextResponse(
-      JSON.stringify({ error: "No se pudo recuperar post" }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    console.error("Failed to get post:", error);
+    return new NextResponse(JSON.stringify({ message: "Failed to get post" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   } finally {
     await prisma.$disconnect();
   }
@@ -82,14 +82,17 @@ export async function PATCH(req, { params }) {
       },
     });
 
-    return new NextResponse(JSON.stringify({ post }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (error) {
-    console.error("Error al editar el post:", error);
     return new NextResponse(
-      JSON.stringify({ error: "No se pudo editar el post" }),
+      JSON.stringify({ post, message: "Post edited successfully" }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  } catch (error) {
+    console.error("Failed to edit post:", error);
+    return new NextResponse(
+      JSON.stringify({ message: "Failed to edit post" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
@@ -106,14 +109,17 @@ export async function DELETE(req, { params }) {
   try {
     const post = await prisma.post.delete({ where: { id: parseInt(id) } });
 
-    return new NextResponse(JSON.stringify({ post }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (error) {
-    console.error("Error al eliminar post:", error);
     return new NextResponse(
-      JSON.stringify({ error: "No se pudo eliminar post" }),
+      JSON.stringify({ post, message: "Post deleted successfully" }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  } catch (error) {
+    console.error("Failed to delete post:", error);
+    return new NextResponse(
+      JSON.stringify({ message: "Failed to delete post" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },

@@ -16,9 +16,9 @@ export async function GET(req, { params }) {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("Error al recuperar posts:", error);
+    console.error("Failed to get posts:", error);
     return new NextResponse(
-      JSON.stringify({ error: "No se pudo recuperar posts" }),
+      JSON.stringify({ error: "Failed to get posts" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
@@ -39,9 +39,9 @@ export async function DELETE() {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("Error al eliminar posts:", error);
+    console.error("Failed to delete posts:", error);
     return new NextResponse(
-      JSON.stringify({ error: "No se pudo eliminar los posts" }),
+      JSON.stringify({ error: "Failed to delete posts" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },

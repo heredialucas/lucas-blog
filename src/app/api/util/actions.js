@@ -25,10 +25,11 @@ export async function postData(formData, editorContent, imageUrl, pathname) {
   });
 
   if (!fetchData.ok) {
-    throw new Error("Error al crear el post");
+    throw new Error("Failed to create post");
   }
 
   revalidatePath(`/${pathname}/blog`);
+  return fetchData.json();
 }
 
 export async function login(formData) {
@@ -45,12 +46,14 @@ export async function login(formData) {
   });
 
   if (!fetchData.ok) {
-    throw new Error("Error al iniciar sesión");
+    throw new Error("Failed to login");
   }
 
   const { authenticated, message, token, domain } = await fetchData.json();
-  cookies().set("token", token, { maxAge: 3600 });
-  cookies().set("domain", domain, { maxAge: 3600 });
+  if (authenticated) {
+    cookies().set("token", token, { maxAge: 3600 });
+    cookies().set("domain", domain, { maxAge: 3600 });
+  }
   return { authenticated, domain, message };
 }
 
@@ -77,7 +80,7 @@ export async function register(formData, imageUrl) {
   });
 
   if (!fetchData.ok) {
-    throw new Error("Error al registrar el usuario");
+    throw new Error("Failed to register");
   }
 
   const res = await fetchData.json();
@@ -98,10 +101,10 @@ export async function sendEmail(formData, pathname) {
   });
 
   if (!fetchData.ok) {
-    throw new Error("Error al enviar el email");
+    throw new Error("Failed to send email");
   }
 
-  redirect(`/${pathname}`);
+  return fetchData.json();
 }
 
 export async function postImage(fileData) {
@@ -114,7 +117,7 @@ export async function postImage(fileData) {
   });
 
   if (!fetchData.ok) {
-    throw new Error("Error al subir la imagen");
+    throw new Error("Failed to upload image");
   }
 
   const response = await fetchData.json();
@@ -132,7 +135,7 @@ export const getDataById = async (path, id) => {
   });
 
   if (!fetchData.ok) {
-    throw new Error("Error al obtener el post");
+    throw new Error("Failed to get post");
   }
 
   const response = await fetchData.json();
@@ -149,7 +152,7 @@ export const getClientInfoByDomain = async (domain) => {
   });
 
   if (!fetchData.ok) {
-    throw new Error("Error al obtener el cliente");
+    throw new Error("Failed to get client info");
   }
 
   const response = await fetchData.json();
@@ -166,7 +169,7 @@ export const deleteData = async (path) => {
   });
 
   if (!deleteData.ok) {
-    throw new Error("Error al eliminar los posts y clientes");
+    throw new Error("Failed to delete posts and clients");
   }
 
   const response = await deleteData.json();
@@ -184,11 +187,11 @@ export const deleteDataById = async (path, id, pathname) => {
   });
 
   if (!deleteData.ok) {
-    throw new Error("Error al eliminar el post");
+    throw new Error("Failed to delete post");
   }
 
   revalidatePath(`/${pathname}/blog`);
-  redirect(`/${pathname}/blog`);
+  return deleteData.json();
 };
 
 export const editDataById = async (formData, editorContent, id, pathname) => {
@@ -205,10 +208,11 @@ export const editDataById = async (formData, editorContent, id, pathname) => {
   });
 
   if (!updateData.ok) {
-    throw new Error("Error al editar el post");
+    throw new Error("Failed to edit post");
   }
 
   revalidatePath(`${pathname}/blog/${id}`);
+  return updateData.json();
 };
 
 export const getData = async (path, domain) => {
@@ -221,7 +225,7 @@ export const getData = async (path, domain) => {
   });
 
   if (!fetchData.ok) {
-    throw new Error("Error al obtener los posts");
+    throw new Error("Failed to get posts");
   }
 
   const response = await fetchData.json();

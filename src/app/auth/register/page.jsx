@@ -10,6 +10,7 @@ import { redirect } from "next/navigation";
 import { Trash2 } from "lucide-react";
 import { postImage } from "@/app/api/util/actions";
 import { Country } from "country-state-city";
+import { toast } from "react-toastify";
 import {
   Select,
   SelectContent,
@@ -17,6 +18,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  validateDomain,
+  validateEmail,
+  validateHero,
+  validateResumeLink,
+  validateFirstName,
+  validateLastName,
+} from "@/lib/utils";
 
 export default function RegisterPage() {
   const [jobs, setJobs] = useState([
@@ -40,59 +49,6 @@ export default function RegisterPage() {
     linkedin: "",
     resumeLink: "",
   });
-
-  // Validation functions
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email) ? "" : "Please enter a valid email address";
-  };
-
-  const validateFirstName = (name) => {
-    return name.length >= 2
-      ? ""
-      : `First Name must be at least 2 characters long`;
-  };
-
-  const validateLastName = (name) => {
-    return name.length >= 2
-      ? ""
-      : `Last Name must be at least 2 characters long`;
-  };
-
-  const validateDomain = (domain) => {
-    return domain.length >= 3
-      ? ""
-      : "Domain must be at least 3 characters long";
-  };
-
-  const validateHero = (hero) => {
-    if (hero.length < 200) return " Hero must be at least 200 characters long";
-    if (hero.length > 500) return " Hero must be less than 500 characters long";
-
-    return "";
-  };
-
-  const validateResumeLink = (url) => {
-    return url ? "" : "Resume link is required";
-  };
-
-  const validateJobTitle = (title) => {
-    return title.length >= 3
-      ? ""
-      : "Job title must be at least 3 characters long";
-  };
-
-  const validateJobDates = (startDate, endDate) => {
-    if (!startDate) return "Start date is required";
-    if (!endDate && !jobs[0].isCurrent) return "End date is required";
-
-    if (startDate && endDate) {
-      const start = new Date(startDate);
-      const end = new Date(endDate);
-      if (end < start) return "End date cannot be before start date";
-    }
-    return "";
-  };
 
   const handleInputChange = (e, field) => {
     const value = e.target.value;
@@ -218,7 +174,12 @@ export default function RegisterPage() {
     const image = await postImage(fileData);
     const { registered } = await register(formData, image.url);
 
+    if (!registered) {
+      toast.error("Something went wrong");
+    }
+
     if (registered) {
+      toast.success("Registered successfully");
       redirect("/auth/login");
     }
   }

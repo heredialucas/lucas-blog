@@ -16,9 +16,9 @@ export async function GET(req, { params }) {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("Error al recuperar el cliente:", error);
+    console.error("Failed to get client:", error);
     return new NextResponse(
-      JSON.stringify({ error: "No se pudo recuperar el cliente" }),
+      JSON.stringify({ error: "Failed to get client" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },

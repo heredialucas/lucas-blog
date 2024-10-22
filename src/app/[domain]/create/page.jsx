@@ -8,8 +8,9 @@ import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useStore } from "@/zustand/config";
-import { redirect, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
@@ -18,6 +19,7 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 export default function Create() {
   const { isLoading, setIsLoading } = useStore((state) => state);
   const pathname = usePathname().split("/")[1];
+  const router = useRouter();
   const [editorContent, setEditorContent] = useState("");
 
   useEffect(() => {
@@ -50,11 +52,24 @@ export default function Create() {
         data: serializedFile,
       };
       const image = await postImage(fileData);
-      await postData(formData, editorContent, image.url, pathname);
+      const { newPost, message } = await postData(
+        formData,
+        editorContent,
+        image.url,
+        pathname
+      );
+
+      if (!newPost) {
+        toast.error(`${message}`);
+        setIsLoading(false);
+        return;
+      }
+
       ref.current.reset();
       setEditorContent("");
       setIsLoading(false);
-      redirect(`/${pathname}/blog`);
+      toast.success(`${message}`);
+      router.push(`/${pathname}/blog`);
     }
   };
 

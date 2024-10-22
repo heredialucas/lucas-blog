@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Instagram, Linkedin } from "lucide-react";
 import { useStore } from "@/zustand/config";
 import { useEffect } from "react";
+import { formatHeroText } from "@/lib/utils";
+import ProfileDefault from "@/public/profile.jpg";
 
 export function HomeClient({ client }) {
   const { client: clientStore, setClient } = useStore((state) => state);
@@ -16,45 +18,34 @@ export function HomeClient({ client }) {
     }
   }, [client, setClient]);
 
-  const formatHeroText = (text) => {
-    if (!text) return [];
-
-    // Dividir por puntos, pero mantener el punto en cada segmento
-    const sentences = text
-      .split(".")
-      .filter((sentence) => sentence.trim().length > 0)
-      .map((sentence) => sentence.trim() + ".");
-
-    return sentences;
-  };
-
   return (
     <>
-      <div className="flex flex-col-reverse  md:flex-row items-center md:items-start justify-between">
+      <div className="flex flex-col-reverse h-[600px] md:flex-row items-center md:items-start justify-between">
         <div className="flex flex-col justify-between h-full md:w-2/3 mb-8 md:mb-0">
           <h1 className="text-primary hover:text-secondary text-4xl font-bold mb-2">
-            {`Hi! I'm ${clientStore?.firstName} 👋🏼`}
+            {`Hi! I'm ${clientStore?.firstName || "Blogui"} 👋🏼`}
           </h1>
           <div className="flex flex-col justify-start h-full m-4">
-            {formatHeroText(clientStore?.hero).map((sentence, index) => (
-              <p key={index} className="text-neutral mb-3 max-w-xl">
-                {sentence}
-              </p>
-            ))}
+            {clientStore?.hero &&
+              formatHeroText(clientStore?.hero).map((sentence, index) => (
+                <p key={index} className="text-neutral mb-3 max-w-xl">
+                  {sentence}
+                </p>
+              ))}
           </div>
-          <Button className="btn btn-primary w-fit hover:bg-secondary hover:cursor-pointer">
+          <Button className="btn btn-primary text-primary-content w-fit hover:bg-secondary hover:cursor-pointer">
             <a href={clientStore?.resumeLink} target="_blank">
               See Resume
             </a>
           </Button>
         </div>
-        <div className="mb-6 md:w-1/3 flex justify-center">
+        <div className="flex mb-6 h-full md:w-1/3 justify-center">
           <Image
-            src={clientStore.imageUrl}
-            alt="Ana's profile picture"
+            src={clientStore.imageUrl || ProfileDefault}
+            alt={`Profile of ${clientStore?.firstName}`}
             width={300}
             height={300}
-            className="rounded-full object-cover"
+            className="self-center h-fit rounded-full object-cover"
           />
         </div>
       </div>

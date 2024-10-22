@@ -5,12 +5,18 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { login } from "@/app/api/util/actions";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function LoginPage() {
   const route = useRouter();
   async function handleLogin(formData) {
-    const { authenticated, domain } = await login(formData);
+    const { authenticated, message, domain } = await login(formData);
+
+    if (!authenticated) {
+      toast.warning(`${message}`);
+    }
     if (authenticated) {
+      toast.success(`${message}`);
       route.push(`/${domain}`);
     }
   }

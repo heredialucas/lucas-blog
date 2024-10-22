@@ -30,7 +30,7 @@ export async function POST(request) {
   if (user) {
     return NextResponse.json({
       registered: false,
-      message: "El usuario ya existe",
+      message: "User already exists",
     });
   }
 
@@ -57,12 +57,12 @@ export async function POST(request) {
   if (!newUser) {
     return NextResponse.json({
       registered: false,
-      message: "Error al registrar el usuario",
+      message: "Failed to create user",
     });
   }
 
   return NextResponse.json({
     registered: true,
-    message: "Usuario creado correctamente",
+    message: "User created successfully",
   });
 }

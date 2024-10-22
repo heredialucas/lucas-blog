@@ -1,29 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../ui/button";
-import { logout } from "@/app/api/util/actions";
-import { useStore } from "@/zustand/config";
 import { toast } from "react-toastify";
 
-export function NavClientSide({ isAdmin }) {
+export function NavClientSideBlogui() {
   const pathname = usePathname();
+  const route = useRouter();
+  const domain = "blogui";
+  const isPremium = true;
+  const isAdmin = true;
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const { client } = useStore();
-  const { domain, isPremium } = client;
 
   const handleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   const handleLogOut = () => {
-    localStorage.removeItem("client");
-    logout();
     toast.success("Logged out successfully");
+    toast.info("Redirecting to login...");
   };
 
   const getLink = (path) => `/${domain}${path}`;
@@ -53,16 +51,14 @@ export function NavClientSide({ isAdmin }) {
           >
             Timeline Jobs
           </Link>
-          {isAdmin && (
-            <Link
-              href={getLink("/create")}
-              className={`${
-                pathname.includes(`/${domain}/create`) ? "underline" : ""
-              } mr-2 h-4 w-4 text-neutral hover:underline`}
-            >
-              Create Post
-            </Link>
-          )}
+          <Link
+            href={getLink("/create")}
+            className={`${
+              pathname.includes(`/${domain}/create`) ? "underline" : ""
+            } mr-2 h-4 w-4 text-neutral hover:underline`}
+          >
+            Create Post
+          </Link>
           {(isPremium || isAdmin) && (
             <Link
               href={getLink("/blog")}

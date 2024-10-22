@@ -32,12 +32,15 @@ export async function middleware(request) {
 
   // If no token and trying to access protected dynamic domain routes
   if (!cookiesStore && isDynamicDomain) {
+    if (pathSegments[1] === "blogui") {
+      return NextResponse.next();
+    }
     return NextResponse.redirect(`${url}/auth/login`);
   }
 
   // If no token but trying to access the home page
   if (!cookiesStore && pathname === "/") {
-    return NextResponse.redirect(`${url}/auth/login`);
+    return NextResponse.redirect(`${url}/blogui`);
   }
 
   // If there's a token in cookies
@@ -60,9 +63,6 @@ export async function middleware(request) {
     // Allow access to authenticated routes if the domain matches
     return NextResponse.next();
   }
-
-  // Default behavior
-  return NextResponse.next();
 }
 
 export const config = {

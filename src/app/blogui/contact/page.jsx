@@ -4,34 +4,22 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { sendEmail } from "@/app/api/util/actions";
-import { useRef } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-export default function Contacts() {
-  const ref = useRef();
+export default function ContactsBlogui() {
   const router = useRouter();
-  const pathname = usePathname().split("/")[1];
 
-  const handleSubmit = async (formData) => {
-    ref.current.reset();
-    const { data, message } = await sendEmail(formData, pathname);
-
-    if (!data) {
-      toast.error(`${message}`);
-      return;
-    }
-
-    toast.success(`${message}`);
-    router.push(`/${pathname}`);
+  const handleSubmit = async () => {
+    toast.success("Message sent successfully");
+    router.push("/blogui");
   };
 
   return (
     <>
       <div className="w-fit md:w-[600px] bg-[#F2F2F2] p-12 rounded-xl border-2 border-primary">
         <h3 className="text-xl font-semibold text-neutral mb-4">Contact Me</h3>
-        <form ref={ref} action={handleSubmit} className="space-y-4">
+        <form action={handleSubmit} className="space-y-4">
           <div className="grid gap-2">
             <Label htmlFor="name">Name</Label>
             <Input placeholder="Your Name" name="name" />

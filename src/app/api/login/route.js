@@ -17,7 +17,7 @@ export async function POST(request) {
   if (!user) {
     return NextResponse.json({
       authenticated: false,
-      message: "Usuario no encontrado",
+      message: "User not found",
     });
   }
 
@@ -26,7 +26,7 @@ export async function POST(request) {
   if (!isPasswordValid) {
     return NextResponse.json({
       authenticated: false,
-      message: "Contraseña incorrecta",
+      message: "Invalid password",
     });
   }
 
@@ -38,12 +38,12 @@ export async function POST(request) {
     domain,
   })
     .setProtectedHeader({ alg: "HS256" })
-    .setExpirationTime("1h")
+    .setExpirationTime("4h")
     .sign(secret);
 
   return NextResponse.json({
     authenticated: true,
-    message: "Usuario autenticado",
+    message: "Login successful",
     token,
     domain,
   });

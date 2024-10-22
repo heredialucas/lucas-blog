@@ -17,8 +17,16 @@ export default function ArticleClient({ post, id, isAdmin }) {
   const pathname = usePathname().split("/")[1];
   const handleDelete = async () => {
     setIsLoading(true);
-    await deleteDataById("post", id, pathname);
+    const { post, message } = await deleteDataById("post", id, pathname);
+
     setIsLoading(false);
+    if (!post) {
+      toast.error(message);
+      return;
+    }
+
+    toast.success(message);
+    route.push(`/${pathname}/blog`);
   };
 
   if (!post) return "Post Not Found";
