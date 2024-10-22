@@ -72,13 +72,6 @@ export default function RegisterPage() {
     return "";
   };
 
-  const validateLinkedin = (url) => {
-    if (!url) return ""; // Optional field
-    return url.includes("linkedin.com/")
-      ? ""
-      : "Please enter a valid LinkedIn URL";
-  };
-
   const validateResumeLink = (url) => {
     return url ? "" : "Resume link is required";
   };
@@ -120,9 +113,6 @@ export default function RegisterPage() {
         break;
       case "hero":
         error = validateHero(value);
-        break;
-      case "linkedin":
-        error = validateLinkedin(value);
         break;
       case "resumeLink":
         error = validateResumeLink(value);
@@ -317,6 +307,10 @@ export default function RegisterPage() {
       <div>
         <Label htmlFor="linkedin">Linkedin</Label>
         <Input name="linkedin" type="text" />
+      </div>
+      <div>
+        <Label htmlFor="twitter">X</Label>
+        <Input name="twitter" type="text" />
       </div>
       <div>
         <Label htmlFor="facebook">Facebook</Label>

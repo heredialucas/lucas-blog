@@ -23,6 +23,7 @@ model Client {
   instagram  String
   facebook   String
   linkedin   String
+  twitter    String
 }
 
 model Post {

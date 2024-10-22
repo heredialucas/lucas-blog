@@ -14,6 +14,10 @@ export async function POST(request) {
     domain,
     resumeLink,
     timeline,
+    instagram,
+    facebook,
+    linkedin,
+    twitter,
     hero,
   } = await request.json();
 
@@ -42,6 +46,10 @@ export async function POST(request) {
       domain,
       resumeLink,
       timeline,
+      instagram,
+      facebook,
+      linkedin,
+      twitter,
       hero,
     },
   });
