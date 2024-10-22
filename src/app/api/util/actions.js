@@ -137,24 +137,6 @@ export const getDataById = async (path, id) => {
   return response;
 };
 
-export const getClientById = async (id) => {
-  const url = await getUrl();
-  const fetchData = await fetch(`${url}/api/clientById/${id}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: "no-store",
-  });
-
-  if (!fetchData.ok) {
-    throw new Error("Error al obtener el cliente");
-  }
-
-  const response = await fetchData.json();
-  return response;
-};
-
 export const getClientInfoByDomain = async (domain) => {
   const url = await getUrl();
   const fetchData = await fetch(`${url}/api/clientByDomain/${domain}`, {
