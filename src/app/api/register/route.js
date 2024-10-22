@@ -10,6 +10,7 @@ export async function POST(request) {
     password,
     firstName,
     lastName,
+    imageUrl,
     domain,
     resumeLink,
     timeline,
@@ -35,6 +36,7 @@ export async function POST(request) {
     data: {
       email,
       password: hashedPassword,
+      imageUrl,
       firstName,
       lastName,
       domain,

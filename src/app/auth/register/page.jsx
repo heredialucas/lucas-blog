@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { register } from "@/app/api/util/actions";
 import { redirect } from "next/navigation";
+import { Trash2 } from "lucide-react";
 
 export default function RegisterPage() {
   const [jobs, setJobs] = useState([
@@ -83,8 +84,19 @@ export default function RegisterPage() {
   };
   async function handleRegister(formData) {
     formData.append("timeline", JSON.stringify(jobs));
+    const file = formData.get("image");
 
-    const { registered } = await register(formData);
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = new Uint8Array(arrayBuffer);
+    const serializedFile = Array.from(buffer);
+
+    const fileData = {
+      name: file.name,
+      type: file.type,
+      data: serializedFile,
+    };
+    const image = await postImage(fileData);
+    const { registered } = await register(formData, image.url);
 
     if (registered) {
       redirect("/auth/login");
@@ -103,6 +115,10 @@ export default function RegisterPage() {
       <div>
         <Label htmlFor="password">Password</Label>
         <Input name="password" type="password" required />
+      </div>
+      <div>
+        <Label htmlFor="image">Profile Image</Label>
+        <Input required type="file" name="image" />
       </div>
       <div>
         <Label htmlFor="firstName">First Name</Label>
@@ -128,7 +144,14 @@ export default function RegisterPage() {
       <div className="mt-6">
         <h3 className="text-lg font-semibold mb-2">Professional Timeline</h3>
         {jobs.map((job, jobIndex) => (
-          <div key={jobIndex} className="mb-4 p-4 border rounded">
+          <div key={jobIndex} className="flex flex-col mb-4 p-4 border rounded">
+            <Button
+              type="button"
+              onClick={() => removeJob(jobIndex)}
+              className="w-fit self-end bg-red-500 hover:bg-red-600 text-white"
+            >
+              Remove Job
+            </Button>
             <div className="mb-2">
               <Label htmlFor={`jobTitle-${jobIndex}`}>Job Title</Label>
               <Input
@@ -186,7 +209,7 @@ export default function RegisterPage() {
                 required
               />
             </div>
-            <div className="mb-2">
+            <div className="flex flex-col mb-2">
               <Label>Description Points</Label>
               <ol className="list-decimal list-inside">
                 {job.description.map((point, pointIndex) => (
@@ -210,7 +233,7 @@ export default function RegisterPage() {
                       }
                       className="ml-2 p-1 h-auto bg-red-500 hover:bg-red-600 text-white"
                     >
-                      Remove
+                      <Trash2 className="h-4 w-4" />
                     </Button>
                   </li>
                 ))}
@@ -218,18 +241,11 @@ export default function RegisterPage() {
               <Button
                 type="button"
                 onClick={() => addDescriptionPoint(jobIndex)}
-                className="mt-2 bg-green-500 hover:bg-green-600 text-white"
+                className="w-fit self-end mt-2 bg-green-500 hover:bg-green-600 text-white"
               >
-                Add Description Point
+                Add Description
               </Button>
             </div>
-            <Button
-              type="button"
-              onClick={() => removeJob(jobIndex)}
-              className="mt-2 bg-red-500 hover:bg-red-600 text-white"
-            >
-              Remove Job
-            </Button>
           </div>
         ))}
         <Button

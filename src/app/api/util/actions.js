@@ -60,8 +60,11 @@ export async function logout() {
   redirect("/auth/login");
 }
 
-export async function register(formData) {
+export async function register(formData, imageUrl) {
   const rawFormData = Object.fromEntries(formData);
+  if (imageUrl) {
+    rawFormData.imageUrl = imageUrl;
+  }
 
   const url = await getUrl();
 
@@ -126,7 +129,6 @@ export const getDataById = async (path, id) => {
     headers: {
       "Content-Type": "application/json",
     },
-    cache: "no-store",
   });
 
   if (!fetchData.ok) {
@@ -144,7 +146,6 @@ export const getClientInfoByDomain = async (domain) => {
     headers: {
       "Content-Type": "application/json",
     },
-    cache: "default",
   });
 
   if (!fetchData.ok) {
@@ -217,7 +218,6 @@ export const getData = async (path, domain) => {
     headers: {
       "Content-Type": "application/json",
     },
-    cache: "no-store",
   });
 
   if (!fetchData.ok) {

@@ -33,7 +33,7 @@ export function HomeClient({ client }) {
         </div>
         <div className="mb-6 md:w-1/3 flex justify-center">
           <Image
-            src={ProfilePicture}
+            src={clientStore.url}
             alt="Ana's profile picture"
             width={300}
             height={300}

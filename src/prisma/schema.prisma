@@ -12,6 +12,7 @@ model Client {
   id         Int     @id @default(autoincrement())
   email      String  @unique
   password   String
+  imageUrl   String
   firstName  String
   lastName   String
   domain     String  @unique
