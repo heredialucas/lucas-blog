@@ -49,8 +49,8 @@ export async function login(formData) {
   }
 
   const { authenticated, message, token, domain } = await fetchData.json();
-  cookies().set("token", token);
-  cookies().set("domain", domain);
+  cookies().set("token", token, { maxAge: 3600 });
+  cookies().set("domain", domain, { maxAge: 3600 });
   return { authenticated, domain, message };
 }
 
