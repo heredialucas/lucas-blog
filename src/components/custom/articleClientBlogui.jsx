@@ -23,10 +23,10 @@ export default function ArticleClientBlogui({ isAdmin }) {
         <div className="py-8">
           <div className="space-y-4">
             <span className="text-orange-500 font-medium break-words">
-              Category
+              {`Category`}
             </span>
             <h1 className="text-4xl font-bold text-gray-900 mb-4 break-words">
-              Example of Article
+              {`Example of Article`}
             </h1>
             <div className="flex items-center gap-4">
               <Image
@@ -36,9 +36,9 @@ export default function ArticleClientBlogui({ isAdmin }) {
               />
               <div>
                 <p className="font-medium text-gray-900 break-all">
-                  Author: Blogui
+                  {`Author: Blogui`}
                 </p>
-                <p className="text-sm text-gray-500">12-12-2022</p>
+                <p className="text-sm text-gray-500">{`12-12-2022`}</p>
               </div>
             </div>
           </div>
@@ -60,72 +60,72 @@ export default function ArticleClientBlogui({ isAdmin }) {
             <div className="text-gray-800 text-lg leading-relaxed break-words">
               <div class="content">
                 <br />
-                <h2>Create Your Story on Blogui</h2>
+                <h2>{`Create Your Story on Blogui`}</h2>
                 <br />
 
                 <p>
-                  Ready to make your next post amazing? With Blogui, sharing
+                  {`Ready to make your next post amazing? With Blogui, sharing
                   your journey is as easy as it gets! Our editor lets you
-                  express yourself in multiple ways:
+                  express yourself in multiple ways:`}
                 </p>
                 <br />
 
                 <div class="features">
                   <br />
                   <div class="feature">
-                    <h3>📸 Show Your World</h3>
+                    <h3>{`📸 Show Your World`}</h3>
                     <p>
-                      Upload beautiful images to make your posts pop and grab
-                      attention. Your achievements deserve to be seen!
+                      {`Upload beautiful images to make your posts pop and grab
+                      attention. Your achievements deserve to be seen!`}
                     </p>
                   </div>
                   <br />
 
                   <div class="feature">
-                    <h3>🎥 Share More</h3>
+                    <h3>{`🎥 Share More`}</h3>
                     <p>
-                      Embed YouTube videos to bring your stories to life.
+                     {` Embed YouTube videos to bring your stories to life.
                       Whether it's your latest project demo or an inspiring talk
-                      - make it part of your narrative.
+                      - make it part of your narrative.`}
                     </p>
                   </div>
 
                   <br />
                   <div class="feature">
-                    <h3>💻 Tech-Friendly</h3>
+                    <h3>{`💻 Tech-Friendly`}</h3>
                     <p>
-                      Are you a developer? Share your code snippets with syntax
-                      highlighting. Show off your technical expertise in style!
+                      {`Are you a developer? Share your code snippets with syntax
+                      highlighting. Show off your technical expertise in style!`}
                     </p>
                   </div>
 
                   <br />
                   <div class="feature">
-                    <h3>✨ Keep it Professional</h3>
+                    <h3>{`✨ Keep it Professional`}</h3>
                     <p>
-                      Clean, minimalist design ensures your content always looks
+                      {`Clean, minimalist design ensures your content always looks
                       polished and professional - perfect for building your
-                      personal brand.
+                      personal brand.`}
                     </p>
                   </div>
                 </div>
                 <br />
 
                 <p>
-                  Whether you're showcasing your portfolio, sharing professional
+                 {` Whether you're showcasing your portfolio, sharing professional
                   updates, or documenting your journey, Blogui makes it super
-                  easy to create posts that reflect your style.
+                  easy to create posts that reflect your style.`}
                 </p>
 
                 <br />
                 <p>
-                  Your story matters, and we're here to help you tell it
-                  beautifully!
+                  {`Your story matters, and we're here to help you tell it
+                  beautifully!`}
                 </p>
 
                 <br />
                 <div class="cta">
-                  <p>Ready to create your next awesome post?</p>
+                  <p>{`Ready to create your next awesome post?`}</p>
                   <br />
                   <Link className="btn btn-primary" href="/auth/register">
                     Blogui me
