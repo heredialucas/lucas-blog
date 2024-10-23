@@ -1,7 +1,7 @@
 "use client";
 
-import BlogCardBlogui from "@/components/custom/blogCardBlogui";
 import parse from "html-react-parser";
+import BlogCardBlogui from './example-post/blogCardBlogui';
 
 export function BlogCardsClientBlogui({ posts }) {
   return (

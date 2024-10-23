@@ -25,9 +25,11 @@ export async function middleware(request) {
   const protectedDynamicRoutes = ["/create", "/edit"];
 
   const pathSegments = pathname.split("/");
+
   const isDynamicDomain =
     pathSegments.length > 1 &&
     protectedDynamicRoutes.includes(`/${pathSegments[2]}`);
+
   const domainFromPath = pathSegments[1]; // Dynamic part (domain) in the path
 
   // If no token and trying to access protected dynamic domain routes

@@ -87,8 +87,10 @@ export async function register(formData, imageUrl) {
   return res;
 }
 
-export async function sendEmail(formData, pathname) {
+export async function sendEmail(formData, email) {
   const rawFormData = Object.fromEntries(formData);
+
+  rawFormData.userEmail = email;
 
   const url = await getUrl();
 

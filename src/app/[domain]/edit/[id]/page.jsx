@@ -1,4 +1,4 @@
-import EditClient from "@/components/custom/editClient";
+import EditClient from "@/app/[domain]/edit/[id]/editClient";
 import { useCookie } from "@/hooks/useSignOut";
 import { getDataById } from "@/app/api/util/actions";
 

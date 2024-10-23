@@ -1,4 +1,4 @@
-import { NavClientSideBlogui } from "@/components/custom/navClientSideBlogui";
+import { NavClientSideBlogui } from "./navClientSideBlogui";
 
 export default function HomeLayout({ children }) {
   return (

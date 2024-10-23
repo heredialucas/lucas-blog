@@ -1,11 +1,11 @@
-import { EmailTemplate } from "@/components/custom/emailTemplate";
+import { EmailTemplate } from "@/app/[domain]/contact/emailTemplate";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.AUTH_RESEND_KEY);
 
 export async function POST(req) {
-  const { name, email, message } = await req.json();
+  const { name, email, userEmail, message } = await req.json();
 
   if (!name || !email || !message) {
     return NextResponse.json(
@@ -20,7 +20,7 @@ export async function POST(req) {
     const { data, error } = await resend.emails.send({
       from: "Acme <onboarding@resend.dev>",
       reply_to: email,
-      to: ["heredialucasfac22@gmail.com"],
+      to: [userEmail],
       subject: `Contact from Portfolio - ${name}`,
       react: EmailTemplate({ name, email, message }),
     });

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import ProfilePicture from "@/public/profile.jpg";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import { Edit2 } from "lucide-react";
 import { useRouter } from "next/navigation";

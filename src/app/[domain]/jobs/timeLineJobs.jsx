@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import TimelineItem from "@/app/[domain]/jobs/timeLineItem";
-import { jobs } from "./jobs";
+export default function TimelineJobs({ client }) {
+  const { timeline } = client;
+  const parsedData =
+    typeof timeline === "string" ? JSON.parse(timeline) : timeline;
 
-export default function TimelineJobs() {
   return (
     <div className="w-full mx-auto p-4 bg-cream-50 transition">
       <div className="text-center mb-12">
@@ -18,7 +20,7 @@ export default function TimelineJobs() {
         </div>
       </div>
       <div className="relative">
-        {jobs?.map((item, idx) => (
+        {parsedData?.map((item, idx) => (
           <TimelineItem key={idx} {...item} index={idx} />
         ))}
       </div>

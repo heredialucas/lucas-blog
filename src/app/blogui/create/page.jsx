@@ -43,16 +43,21 @@ export default function CreateBlogui() {
             />
           </div>
           <div>
-            <Label htmlFor="image">Image URL</Label>
-            <Input type="file" name="image" placeholder="Image URL" />
+            <Label htmlFor="image">Image</Label>
+            <Input
+              type="file"
+              name="image"
+              className="bg-white"
+              placeholder="Image URL"
+            />
           </div>
-          <div>
+          {/* <div>
             <Label htmlFor="referencePostUrl">Reference Post URL</Label>
             <Input
               name="referencePostUrl"
               placeholder="https://example.com/reference"
             />
-          </div>
+          </div> */}
         </div>
         <div className="w-full h-full">
           <ReactQuill

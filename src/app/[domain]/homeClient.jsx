@@ -12,9 +12,9 @@ export function HomeClient({ client }) {
   const { client: clientStore, setClient } = useStore((state) => state);
 
   useEffect(() => {
-    if (client?.client) {
-      setClient(client.client);
-      localStorage.setItem("client", client.client.domain);
+    if (client) {
+      setClient(client);
+      localStorage.setItem("client", client.domain);
     }
   }, [client, setClient]);
 

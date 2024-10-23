@@ -1,8 +1,8 @@
 "use client";
 
-import BlogCard from "@/components/custom/blogCard";
 import parse from "html-react-parser";
 import { useStore } from "@/zustand/config";
+import BlogCard from "./[id]/blogCard";
 
 export function BlogCardsClient({ posts, isAdmin }) {
   const { isLoading } = useStore((state) => state);

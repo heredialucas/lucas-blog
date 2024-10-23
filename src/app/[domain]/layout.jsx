@@ -1,4 +1,4 @@
-import { NavServerSide } from "@/components/custom/navServerSide";
+import { NavServerSide } from "@/app/[domain]/navServerSide";
 
 export default function HomeLayout({ children }) {
   return (

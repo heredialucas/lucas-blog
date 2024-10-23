@@ -6,7 +6,7 @@ import { formatDate } from "@/app/[domain]/utils";
 import { deleteDataById } from "@/app/api/util/actions";
 import parse from "html-react-parser";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import { useStore } from "@/zustand/config";
 import { Edit2 } from "lucide-react";

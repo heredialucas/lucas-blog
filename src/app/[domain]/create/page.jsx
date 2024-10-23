@@ -69,6 +69,7 @@ export default function Create() {
       setEditorContent("");
       setIsLoading(false);
       toast.success(`${message}`);
+      localStorage.clear();
       router.push(`/${pathname}/blog`);
     }
   };
