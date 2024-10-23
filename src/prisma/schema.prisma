@@ -15,7 +15,7 @@ model Client {
   imageUrl     String?
   firstName    String?
   lastName     String?
-  domain       String?  @unique
+  domain       String  @unique
   isSubscribed Boolean @default(false)
   hero         String?
   timeline     String?

@@ -51,6 +51,10 @@ export default function RegisterPage() {
         <Label htmlFor="password">Password</Label>
         <Input name="password" type="password" required />
       </div>
+      <div>
+        <Label htmlFor="domain">Domain</Label>
+        <Input name="domain" type="text" required />
+      </div>
 
       <Button
         type="submit"

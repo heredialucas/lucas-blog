@@ -5,18 +5,19 @@ import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 
 export async function POST(request) {
-  const { email, password } = await request.json();
+  const { email, password, domain } = await request.json();
 
   const user = await prisma.client.findFirst({
     where: {
       email,
+      domain,
     },
   });
 
   if (user) {
     return NextResponse.json({
       registered: false,
-      message: "User already exists",
+      message: "Email or domain already exists",
     });
   }
 
@@ -26,6 +27,7 @@ export async function POST(request) {
     data: {
       email,
       password: hashedPassword,
+      domain,
     },
   });
 
