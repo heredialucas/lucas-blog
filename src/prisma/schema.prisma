@@ -9,21 +9,21 @@ datasource db {
 }
 
 model Client {
-  id         Int     @id @default(autoincrement())
-  email      String  @unique
-  password   String
-  imageUrl   String
-  firstName  String
-  lastName   String
-  domain     String  @unique
-  isPremium  Boolean @default(false)
-  hero       String
-  timeline   String
-  resumeLink String
-  instagram  String
-  facebook   String
-  linkedin   String
-  twitter    String
+  id           Int     @id @default(autoincrement())
+  email        String  @unique
+  password     String
+  imageUrl     String?
+  firstName    String?
+  lastName     String?
+  domain       String?  @unique
+  isSubscribed Boolean @default(false)
+  hero         String?
+  timeline     String?
+  resumeLink   String?
+  instagram    String?
+  facebook     String?
+  linkedin     String?
+  twitter      String?
 }
 
 model Post {
@@ -33,7 +33,7 @@ model Post {
   category         String
   summary          String
   authorName       String
-  imageUrl         String?
+  imageUrl         String
   referencePostUrl String?
   date             String?
 }

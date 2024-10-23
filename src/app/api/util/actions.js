@@ -63,11 +63,8 @@ export async function logout() {
   redirect("/auth/login");
 }
 
-export async function register(formData, imageUrl) {
+export async function register(formData) {
   const rawFormData = Object.fromEntries(formData);
-  if (imageUrl) {
-    rawFormData.imageUrl = imageUrl;
-  }
 
   const url = await getUrl();
 

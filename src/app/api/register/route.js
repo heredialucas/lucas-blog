@@ -5,6 +5,44 @@ import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 
 export async function POST(request) {
+  const { email, password } = await request.json();
+
+  const user = await prisma.client.findFirst({
+    where: {
+      email,
+    },
+  });
+
+  if (user) {
+    return NextResponse.json({
+      registered: false,
+      message: "User already exists",
+    });
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const newUser = await prisma.client.create({
+    data: {
+      email,
+      password: hashedPassword,
+    },
+  });
+
+  if (!newUser) {
+    return NextResponse.json({
+      registered: false,
+      message: "Failed to create user",
+    });
+  }
+
+  return NextResponse.json({
+    registered: true,
+    message: "User created successfully",
+  });
+}
+
+export async function PATCH(request) {
   const {
     email,
     password,
