@@ -83,6 +83,31 @@ export async function register(formData) {
   const res = await fetchData.json();
   return res;
 }
+export async function configUser(formData, imageUrl, domain) {
+  const rawFormData = Object.fromEntries(formData);
+
+  if (imageUrl) {
+    rawFormData.imageUrl = imageUrl;
+  }
+
+  const url = await getUrl();
+
+  const fetchData = await fetch(`${url}/api/config/${domain}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(rawFormData),
+  });
+
+  if (!fetchData.ok) {
+    throw new Error("Failed to config user");
+  }
+
+  revalidatePath(`/${domain}`);
+  const res = await fetchData.json();
+  return res;
+}
 
 export async function sendEmail(formData, email) {
   const rawFormData = Object.fromEntries(formData);

@@ -1,31 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { register } from "@/app/api/util/actions";
 import { redirect } from "next/navigation";
-import { Trash2 } from "lucide-react";
-import { postImage } from "@/app/api/util/actions";
-import { Country } from "country-state-city";
 import { toast } from "react-toastify";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  validateDomain,
-  validateEmail,
-  validateHero,
-  validateResumeLink,
-  validateFirstName,
-  validateLastName,
-} from "@/lib/utils";
 
 export default function RegisterPage() {
   async function handleRegister(formData) {

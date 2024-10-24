@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -9,9 +9,8 @@ import { toast } from "react-toastify";
 
 export function NavClientSideBlogui() {
   const pathname = usePathname();
-  const route = useRouter();
   const domain = "blogui";
-  const isPremium = true;
+  const isSubscribed = true;
   const isAdmin = true;
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -59,7 +58,7 @@ export function NavClientSideBlogui() {
           >
             Create Post
           </Link>
-          {(isPremium || isAdmin) && (
+          {(isSubscribed || isAdmin) && (
             <Link
               href={getLink("/blog")}
               className={`${
@@ -77,14 +76,13 @@ export function NavClientSideBlogui() {
           >
             Contact
           </Link>
-          {isAdmin && (
-            <Button
-              onClick={() => handleLogOut()}
-              className="rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
-            >
-              Sign Out
-            </Button>
-          )}
+
+          <Link
+            href={`/auth/login`}
+            className="btn btn-primary rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
+          >
+            Log in
+          </Link>
         </div>
 
         {/* Menú hamburguesa para pantallas pequeñas */}
@@ -140,14 +138,14 @@ export function NavClientSideBlogui() {
             >
               Contact
             </Link>
-            {isAdmin && (
+            {/* {isAdmin && (
               <Button
                 onClick={() => handleLogOut()}
                 className="text-white text-xl rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
               >
                 Sign Out
               </Button>
-            )}
+            )} */}
           </div>
         </div>
       )}

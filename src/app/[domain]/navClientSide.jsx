@@ -6,15 +6,11 @@ import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { logout } from "@/app/api/util/actions";
-import { useStore } from "@/zustand/config";
 import { toast } from "react-toastify";
 
-export function NavClientSide({ isAdmin }) {
+export function NavClientSide({ isAdmin, isSubscribed, domain }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const { client } = useStore();
-  const { domain, isPremium } = client;
 
   const handleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -53,7 +49,7 @@ export function NavClientSide({ isAdmin }) {
           >
             Timeline Jobs
           </Link>
-          {isAdmin && (
+          {isSubscribed && (
             <Link
               href={getLink("/create")}
               className={`${
@@ -63,7 +59,7 @@ export function NavClientSide({ isAdmin }) {
               Create Post
             </Link>
           )}
-          {(isPremium || isAdmin) && (
+          {isSubscribed && (
             <Link
               href={getLink("/blog")}
               className={`${
@@ -81,6 +77,14 @@ export function NavClientSide({ isAdmin }) {
           >
             Contact
           </Link>
+          {isAdmin && (
+            <Link
+              href={`/auth/config/${domain}`}
+              className={`mr-2 h-4 w-4 text-neutral hover:underline`}
+            >
+              Configuration
+            </Link>
+          )}
           {isAdmin && (
             <Button
               onClick={() => handleLogOut()}
@@ -144,6 +148,17 @@ export function NavClientSide({ isAdmin }) {
             >
               Contact
             </Link>
+            {isAdmin && (
+              <Link
+                href={getLink(`/auth/config/${domain}`)}
+                className={`${
+                  pathname.includes(`/${domain}/contact`) ? "underline" : ""
+                } block text-white text-xl hover:underline`}
+                onClick={() => setMenuOpen(false)}
+              >
+                Configuration
+              </Link>
+            )}
             {isAdmin && (
               <Button
                 onClick={() => handleLogOut()}

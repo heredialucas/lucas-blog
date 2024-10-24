@@ -5,8 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { register } from "@/app/api/util/actions";
-import { redirect } from "next/navigation";
+import { configUser } from "@/app/api/util/actions";
+import { useRouter } from "next/navigation";
 import { Trash2 } from "lucide-react";
 import { postImage } from "@/app/api/util/actions";
 import { Country } from "country-state-city";
@@ -27,7 +27,10 @@ import {
   validateLastName,
 } from "@/lib/utils";
 
-export default function RegisterPage() {
+export default function ConfigPage({ params }) {
+  const { domain } = params;
+  const router = useRouter();
+
   const [jobs, setJobs] = useState([
     {
       title: "",
@@ -158,7 +161,7 @@ export default function RegisterPage() {
     setJobs(updatedJobs);
   };
 
-  async function handleRegister(formData) {
+  async function handleConfig(formData) {
     formData.append("timeline", JSON.stringify(jobs));
     const file = formData.get("image");
 
@@ -172,57 +175,31 @@ export default function RegisterPage() {
       data: serializedFile,
     };
     const image = await postImage(fileData);
-    const { registered } = await register(formData, image.url);
+    const { configurated } = await configUser(formData, image.url, domain);
 
-    if (!registered) {
+    if (!configurated) {
       toast.error("Something went wrong");
     }
 
-    if (registered) {
-      toast.success("Registered successfully");
-      redirect("/auth/login");
+    if (configurated) {
+      toast.success("Configured successfully");
+      router.push(`/${domain}`);
     }
   }
-
   return (
     <form
-      action={handleRegister}
+      action={handleConfig}
       className="flex flex-col gap-4 border-2 p-10 w-full"
     >
       <div>
-        <Label htmlFor="email">Email</Label>
-        <Input
-          name="email"
-          type="text"
-          required
-          onChange={(e) => handleInputChange(e, "email")}
-        />
-        {formErrors.email && (
-          <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
-        )}
-      </div>
-      <div>
-        <Label htmlFor="password">Password</Label>
-        <Input
-          name="password"
-          type="password"
-          required
-          onChange={(e) => handleInputChange(e, "password")}
-        />
-        {formErrors.password && (
-          <p className="text-red-500 text-sm mt-1">{formErrors.password}</p>
-        )}
-      </div>
-      <div>
         <Label htmlFor="image">Profile Image</Label>
-        <Input required type="file" name="image" />
+        <Input type="file" name="image" />
       </div>
       <div>
         <Label htmlFor="firstName">First Name</Label>
         <Input
           name="firstName"
           type="text"
-          required
           onChange={(e) => handleInputChange(e, "firstName")}
         />
         {formErrors.firstName && (
@@ -234,7 +211,6 @@ export default function RegisterPage() {
         <Input
           name="lastName"
           type="text"
-          required
           onChange={(e) => handleInputChange(e, "lastName")}
         />
         {formErrors.lastName && (
@@ -242,23 +218,10 @@ export default function RegisterPage() {
         )}
       </div>
       <div>
-        <Label htmlFor="domain">Domain</Label>
-        <Input
-          name="domain"
-          type="text"
-          required
-          onChange={(e) => handleInputChange(e, "domain")}
-        />
-        {formErrors.domain && (
-          <p className="text-red-500 text-sm mt-1">{formErrors.domain}</p>
-        )}
-      </div>
-      <div>
         <Label htmlFor="hero">User description</Label>
         <Input
           name="hero"
           type="text"
-          required
           onChange={(e) => handleInputChange(e, "hero")}
         />
         {formErrors.hero && (
@@ -286,7 +249,6 @@ export default function RegisterPage() {
         <Input
           name="resumeLink"
           type="text"
-          required
           onChange={(e) => handleInputChange(e, "resumeLink")}
         />
         {formErrors.resumeLink && (
@@ -312,7 +274,6 @@ export default function RegisterPage() {
                 id={`jobTitle-${jobIndex}`}
                 value={job.title}
                 onChange={(e) => updateJob(jobIndex, "title", e.target.value)}
-                required
               />
               {job.errors.title && (
                 <p className="text-red-500 text-sm mt-1">{job.errors.title}</p>
@@ -330,7 +291,6 @@ export default function RegisterPage() {
                   onChange={(e) =>
                     updateJob(jobIndex, "startDate", e.target.value)
                   }
-                  required
                 />
               </div>
               <div className="flex-1">
@@ -344,7 +304,6 @@ export default function RegisterPage() {
                     updateJob(jobIndex, "endDate", e.target.value)
                   }
                   disabled={job.isCurrent}
-                  required={!job.isCurrent}
                 />
               </div>
             </div>
@@ -407,7 +366,6 @@ export default function RegisterPage() {
                         )
                       }
                       className="inline-block w-[calc(100%-60px)]"
-                      required
                     />
                     <Button
                       type="button"
@@ -444,7 +402,7 @@ export default function RegisterPage() {
         type="submit"
         className="w-full bg-blue-200 hover:bg-blue-300 text-blue-800 mt-6"
       >
-        Register
+        Send
       </Button>
     </form>
   );

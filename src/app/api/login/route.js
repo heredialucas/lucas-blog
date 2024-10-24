@@ -36,6 +36,7 @@ export async function POST(request) {
     id: user.id,
     email: user.email,
     domain,
+    isSubscribed: user.isSubscribed,
   })
     .setProtectedHeader({ alg: "HS256" })
     .setExpirationTime("4h")

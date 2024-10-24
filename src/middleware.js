@@ -21,50 +21,81 @@ export async function middleware(request) {
     }
   };
 
-  // URLs that require authentication
-  const protectedDynamicRoutes = ["/create", "/edit"];
+  // Define routes
+  const publicRoutes = ["/", "/jobs", "/contact"];
+  const subscriberOnlyRoutes = [
+    "/blog/[id]",
+    "/create",
+    "/edit/[id]",
+    "config[domain]",
+  ];
+  const authRoutes = ["/auth/login", "/auth/register"];
 
   const pathSegments = pathname.split("/");
 
-  const isDynamicDomain =
-    pathSegments.length > 1 &&
-    protectedDynamicRoutes.includes(`/${pathSegments[2]}`);
-
-  const domainFromPath = pathSegments[1]; // Dynamic part (domain) in the path
-
-  // If no token and trying to access protected dynamic domain routes
-  if (!cookiesStore && isDynamicDomain) {
-    if (pathSegments[1] === "blogui") {
-      return NextResponse.next();
-    }
-    return NextResponse.redirect(`${url}/auth/login`);
-  }
-
-  // If no token but trying to access the home page
-  if (!cookiesStore && pathname === "/") {
-    return NextResponse.redirect(`${url}/blogui`);
-  }
-
-  // If there's a token in cookies
-  if (cookiesStore) {
-    // Decode the token to extract the user's domain
-    const { domain: tokenDomain } = jwt.decodeJwt(cookiesStore.value);
-    const isValidToken = await verifyToken(cookiesStore.value, tokenDomain);
-
-    // Check if the token is valid and belongs to the correct domain
-    if (!isValidToken || tokenDomain !== domainFromPath) {
-      // Redirect to login or show an error if the user is trying to access a domain they don't belong to
-      return NextResponse.redirect(`${url}/${tokenDomain}`);
-    }
-
-    // Redirect logged-in users away from login/register pages if they are already authenticated
-    if (pathname.startsWith("/auth/") && isValidToken) {
-      return NextResponse.redirect(`${url}/${tokenDomain}`);
-    }
-
-    // Allow access to authenticated routes if the domain matches
+  // Allow access to authentication routes
+  if (authRoutes.some((route) => pathname.endsWith(route))) {
     return NextResponse.next();
   }
+
+  // Handle /blogui routes (static documentation)
+  if (pathname.startsWith("/blogui")) {
+    return NextResponse.next();
+  }
+
+  // Allow direct access to user profiles and their public routes
+  // This includes: /[domain] and /[domain]/jobs
+  if (pathSegments.length >= 2 && pathSegments[1] !== "") {
+    const subscriberOnlyRoutes = protectedDynamicRoutes.some((route) =>
+      pathname.includes(route)
+    );
+    const isSubscriberRoute = subscriberOnlyRoutes.some((route) =>
+      pathname.includes(route)
+    );
+
+    // If it's not a protected route or subscriber-only route, allow access
+    if (!isProtectedRoute && !isSubscriberRoute) {
+      return NextResponse.next();
+    }
+  }
+
+  // If no token exists (not logged in users)
+  if (!cookiesStore) {
+    // Redirect to login only for protected routes
+    if (
+      protectedDynamicRoutes.some((route) => pathname.includes(route)) ||
+      subscriberOnlyRoutes.some((route) => pathname.includes(route))
+    ) {
+      return NextResponse.redirect(new URL("/auth/login", url));
+    }
+
+    return NextResponse.next();
+  }
+
+  // For logged in users, verify their token
+  const tokenData = await verifyToken(cookiesStore.value, pathSegments[1]);
+
+  if (!tokenData) {
+    return NextResponse.redirect(new URL("/auth/login", url));
+  }
+
+  // Check if user is trying to access protected routes of another domain
+  if (
+    protectedDynamicRoutes.some((route) => pathname.includes(route)) &&
+    tokenData.domain !== pathSegments[1]
+  ) {
+    return NextResponse.redirect(new URL("/blogui", url));
+  }
+
+  // Handle non-subscribed users
+  if (
+    !tokenData.isSubscribed &&
+    subscriberOnlyRoutes.some((route) => pathname.includes(route))
+  ) {
+    return NextResponse.redirect(new URL("/blogui", url));
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
