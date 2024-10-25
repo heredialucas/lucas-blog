@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useStore } from "@/zustand/config";
 import { useRouter, usePathname } from "next/navigation";
+import { toast } from "react-toastify";
 
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,

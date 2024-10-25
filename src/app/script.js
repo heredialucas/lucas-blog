@@ -2,6 +2,24 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
+const ChangeUser = async () => {
+  try {
+    await prisma.client.update({
+      where: { domain: "lucas" },
+      data: { isSubscribed: true },
+    });
+
+    console.log("Client updated successfully");
+  } catch (error) {
+    console.error("Failed to update:", error);
+    return new NextResponse(JSON.stringify({ error: "Failed to update" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  } finally {
+    await prisma.$disconnect();
+  }
+};
 const Delete = async () => {
   try {
     await prisma.post.deleteMany({});
@@ -21,4 +39,4 @@ const Delete = async () => {
   }
 };
 
-Delete();
+ChangeUser();

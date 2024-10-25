@@ -49,7 +49,7 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
           >
             Timeline Jobs
           </Link>
-          {isSubscribed && (
+          {isSubscribed && isAdmin && (
             <Link
               href={getLink("/create")}
               className={`${
@@ -93,6 +93,14 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
               Sign Out
             </Button>
           )}
+          {!isAdmin && (
+            <Link
+              href={`/auth/login`}
+              className="btn btn-primary rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
+            >
+              Log in
+            </Link>
+          )}
         </div>
 
         {/* Menú hamburguesa para pantallas pequeñas */}
@@ -119,7 +127,7 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
             >
               Timeline Jobs
             </Link>
-            {isAdmin && (
+            {isAdmin && isSubscribed && (
               <Link
                 href={getLink("/create")}
                 className={`${
@@ -166,6 +174,14 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
               >
                 Sign Out
               </Button>
+            )}
+            {!isAdmin && (
+              <Link
+                href={`/auth/login`}
+                className="btn btn-primary rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
+              >
+                Log in
+              </Link>
             )}
           </div>
         </div>
