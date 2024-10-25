@@ -7,7 +7,6 @@ import { useStore } from "@/zustand/config";
 import { useEffect } from "react";
 import { formatHeroText } from "@/lib/utils";
 import ProfileDefault from "@/public/profile.jpg";
-import Link from "next/link";
 
 export function HomeClient({ client }) {
   const { client: clientStore, setClient } = useStore((state) => state);
@@ -18,6 +17,11 @@ export function HomeClient({ client }) {
       localStorage.setItem("client", client.domain);
     }
   }, [client, setClient]);
+  useEffect(() => {
+    if (clientStore) {
+      console.log(clientStore);
+    }
+  }, [clientStore]);
 
   return (
     <>

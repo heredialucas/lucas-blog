@@ -1,9 +1,10 @@
 import { NavServerSide } from "@/app/[domain]/navServerSide";
 
-export default function HomeLayout({ children }) {
+export default function HomeLayout({ children, params }) {
+  const { domain } = params;
   return (
     <>
-      <NavServerSide />
+      <NavServerSide domain={domain} />
       <div className="flex flex-col md:justify-between  m-12 md:mx-6 ">
         {children}
       </div>

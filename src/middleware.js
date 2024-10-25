@@ -4,71 +4,53 @@ import { getUrl } from "./app/api/util/utils";
 import * as jwt from "jose";
 
 export async function middleware(request) {
-  const { pathname } = request.nextUrl;
-  const url = await getUrl();
-  const cookiesStore = cookies().get("token");
+  // const { pathname } = request.nextUrl;
+  // const url = await getUrl();
+  // const cookieStore = cookies().get("token");
 
-  // Function to verify JWT token
-  const verifyToken = async (token, domain) => {
-    const secret = new TextEncoder().encode(
-      `${process.env.JWT_SECRET}${domain}`
-    );
-    try {
-      const { payload } = await jwt.jwtVerify(token, secret);
-      return payload;
-    } catch (error) {
-      return null;
-    }
-  };
+  // // Split pathname into segments
+  // const pathnameRoutes = pathname.split("/");
 
-  const authRoutes = ["auth", "login", "register"];
-  const publicRoutes = ["/", "jobs", "contact", "blog", "blogui"];
-  const registeredRoutes = ["config"];
-  const subscriberRoutes = ["create", "edit"];
-  const bloguiRoutes = ["blogui"];
+  // // Function to verify JWT token
+  // const verifyToken = async (token, domain) => {
+  //   const secret = new TextEncoder().encode(
+  //     `${process.env.JWT_SECRET}${domain}`
+  //   );
+  //   try {
+  //     const { payload } = await jwt.jwtVerify(token, secret);
+  //     return payload;
+  //   } catch (error) {
+  //     return null;
+  //   }
+  // };
 
-  const pathSegments = pathname.split("/");
-  if (!cookiesStore) {
-    if (bloguiRoutes.some((route) => pathSegments.includes(route))) {
-      return NextResponse.next();
-    }
+  // // Define route groups
+  // const authPaths = ["login", "register"];
+  // const publicRoutes = ["jobs", "contact", "blog"];
+  // const configRoutes = ["config"];
+  // const subscriberRoutes = ["create", "edit"];
 
-    if (registeredRoutes.some((route) => pathSegments.includes(route))) {
-      return NextResponse.rewrite(new URL("/auth/login", request.url));
-    }
+  // if (cookieStore) {
+  //   const { token, domain } = cookieStore;
+  //   const user = await verifyToken(token, domain);
 
-    if (subscriberRoutes.some((route) => pathSegments.includes(route))) {
-      return NextResponse.rewrite(new URL("/auth/login", request.url));
-    }
-  }
+  //   if (!user) {
+  //     return NextResponse.redirect(`${url}/auth/login`);
+  //   }
+  // }
 
-  if (cookiesStore) {
-    const token = cookiesStore.value;
-    const decodedToken = await verifyToken(token, pathSegments[1]);
-    const domain = decodedToken?.domain;
-
-    if (authRoutes.some((route) => pathSegments.includes(route))) {
-      return NextResponse.rewrite(new URL(`/${domain}`, request.url));
-    }
-
-    if (publicRoutes.some((route) => pathSegments.includes(route))) {
-      return NextResponse.next();
-    }
-
-    if (registeredRoutes.some((route) => pathSegments.includes(route))) {
-      return NextResponse.rewrite(new URL(`/${domain}`, request.url));
-    }
-
-    if (subscriberRoutes.some((route) => pathSegments.includes(route))) {
-      return NextResponse.rewrite(new URL(`/${domain}`, request.url));
-    }
-
-    if (bloguiRoutes.some((route) => pathSegments.includes(route))) {
-      return NextResponse.rewrite(new URL(`/${domain}`, request.url));
-    }
-
-    return NextResponse.rewrite(new URL("/auth/login", request.url));
-  }
+  // // if (pathname.startsWith("/blogui")) {
+  // //   return NextResponse.next();
+  // // }
+  // if (authPaths.some((route) => pathnameRoutes.includes(route))) {
+  //   return NextResponse.redirect(`${url}/auth/login`);
+  // }
+  // if (configRoutes.some((route) => pathnameRoutes.includes(route))) {
+  //   return NextResponse.redirect(`${url}/auth/login`);
+  // }
+  // if (subscriberRoutes.some((route) => pathnameRoutes.includes(route))) {
+  //   return NextResponse.redirect(`${url}/auth/login`);
+  // }
 
   return NextResponse.next();
 }
