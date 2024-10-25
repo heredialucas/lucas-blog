@@ -4,55 +4,85 @@ import { getUrl } from "./app/api/util/utils";
 import * as jwt from "jose";
 
 export async function middleware(request) {
-  // const { pathname } = request.nextUrl;
-  // const url = await getUrl();
-  // const cookieStore = cookies().get("token");
+  const { pathname } = request.nextUrl;
+  const url = await getUrl();
+  const cookieToken = cookies().get("token");
+  const cookieDomain = cookies().get("domain");
 
-  // // Split pathname into segments
-  // const pathnameRoutes = pathname.split("/");
+  const pathnameRoutes = pathname.split("/");
+  const pathnameUser = pathnameRoutes[1];
 
-  // // Function to verify JWT token
-  // const verifyToken = async (token, domain) => {
-  //   const secret = new TextEncoder().encode(
-  //     `${process.env.JWT_SECRET}${domain}`
-  //   );
-  //   try {
-  //     const { payload } = await jwt.jwtVerify(token, secret);
-  //     return payload;
-  //   } catch (error) {
-  //     return null;
-  //   }
-  // };
+  const verifyToken = async (token, domain) => {
+    const secret = new TextEncoder().encode(
+      `${process.env.JWT_SECRET}${domain}`
+    );
+    try {
+      const { payload } = await jwt.jwtVerify(token, secret);
+      return payload;
+    } catch (error) {
+      return null;
+    }
+  };
 
-  // // Define route groups
-  // const authPaths = ["login", "register"];
-  // const publicRoutes = ["jobs", "contact", "blog"];
-  // const configRoutes = ["config"];
-  // const subscriberRoutes = ["create", "edit"];
+  const authPaths = ["login", "register"];
+  const publicRoutes = ["jobs", "contact", "blog"];
+  const configRoutes = ["config"];
+  const subscriberRoutes = ["create", "edit"];
 
-  // if (cookieStore) {
-  //   const { token, domain } = cookieStore;
-  //   const user = await verifyToken(token, domain);
+  if (pathnameRoutes.length <= 2 && !cookieToken) {
+    const { client } = await fetch(
+      `${url}/api/clientByDomain/${pathnameUser}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((res) => res.json());
 
-  //   if (!user) {
-  //     return NextResponse.redirect(`${url}/auth/login`);
-  //   }
-  // }
+    if (pathnameUser === "blogui") {
+      return NextResponse.next();
+    }
 
-  // // if (pathname.startsWith("/blogui")) {
-  // //   return NextResponse.next();
-  // // }
-  // if (authPaths.some((route) => pathnameRoutes.includes(route))) {
-  //   return NextResponse.redirect(`${url}/auth/login`);
-  // }
-  // if (configRoutes.some((route) => pathnameRoutes.includes(route))) {
-  //   return NextResponse.redirect(`${url}/auth/login`);
-  // }
-  // if (subscriberRoutes.some((route) => pathnameRoutes.includes(route))) {
-  //   return NextResponse.redirect(`${url}/auth/login`);
-  // }
+    if (!client) {
+      return NextResponse.redirect(`${url}/blogui`);
+    }
 
-  return NextResponse.next();
+    return NextResponse.next();
+  }
+
+  if (!cookieToken) {
+    if (configRoutes.some((route) => pathname.includes(route))) {
+      return NextResponse.redirect(`${url}/auth/login`);
+    }
+    if (subscriberRoutes.some((route) => pathname.includes(route))) {
+      return NextResponse.redirect(`${url}/auth/login`);
+    }
+    return NextResponse.next();
+  }
+
+  if (cookieToken) {
+    const token = cookieToken.value;
+    const domain = cookieDomain.value;
+
+    let modifiedPath =
+      pathnameUser === "config" ? pathnameRoutes[2] : pathnameRoutes[1];
+    const user = await verifyToken(token, modifiedPath);
+
+    if (!user) {
+      return NextResponse.redirect(`${url}/${domain}`);
+    }
+
+    if (configRoutes.some((route) => pathname.includes(route))) {
+      return NextResponse.next();
+    }
+
+    if (authPaths.some((route) => pathname.includes(route))) {
+      return NextResponse.redirect(`${url}/${domain}`);
+    }
+
+    return NextResponse.next();
+  }
 }
 
 export const config = {

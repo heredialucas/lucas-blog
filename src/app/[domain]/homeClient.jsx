@@ -17,11 +17,6 @@ export function HomeClient({ client }) {
       localStorage.setItem("client", client.domain);
     }
   }, [client, setClient]);
-  useEffect(() => {
-    if (clientStore) {
-      console.log(clientStore);
-    }
-  }, [clientStore]);
 
   return (
     <>

@@ -79,7 +79,7 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
           </Link>
           {isAdmin && (
             <Link
-              href={`/auth/config/${domain}`}
+              href={`/config/${domain}`}
               className={`mr-2 h-4 w-4 text-neutral hover:underline`}
             >
               Configuration
@@ -150,7 +150,7 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
             </Link>
             {isAdmin && (
               <Link
-                href={getLink(`/auth/config/${domain}`)}
+                href={`/config/${domain}`}
                 className={`${
                   pathname.includes(`/${domain}/contact`) ? "underline" : ""
                 } block text-white text-xl hover:underline`}

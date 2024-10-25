@@ -42,6 +42,7 @@ export async function login(formData) {
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "no-cache",
     body: JSON.stringify(rawFormData),
   });
 
