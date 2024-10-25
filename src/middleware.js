@@ -21,78 +21,53 @@ export async function middleware(request) {
     }
   };
 
-  // Define routes
-  const publicRoutes = ["/", "/jobs", "/contact"];
-  const subscriberOnlyRoutes = [
-    "/blog/[id]",
-    "/create",
-    "/edit/[id]",
-    "config[domain]",
-  ];
-  const authRoutes = ["/auth/login", "/auth/register"];
+  const authRoutes = ["auth", "login", "register"];
+  const publicRoutes = ["/", "jobs", "contact", "blog", "blogui"];
+  const registeredRoutes = ["config"];
+  const subscriberRoutes = ["create", "edit"];
+  const bloguiRoutes = ["blogui"];
 
   const pathSegments = pathname.split("/");
-
-  // Allow access to authentication routes
-  if (authRoutes.some((route) => pathname.endsWith(route))) {
-    return NextResponse.next();
-  }
-
-  // Handle /blogui routes (static documentation)
-  if (pathname.startsWith("/blogui")) {
-    return NextResponse.next();
-  }
-
-  // Allow direct access to user profiles and their public routes
-  // This includes: /[domain] and /[domain]/jobs
-  if (pathSegments.length >= 2 && pathSegments[1] !== "") {
-    const subscriberOnlyRoutes = protectedDynamicRoutes.some((route) =>
-      pathname.includes(route)
-    );
-    const isSubscriberRoute = subscriberOnlyRoutes.some((route) =>
-      pathname.includes(route)
-    );
-
-    // If it's not a protected route or subscriber-only route, allow access
-    if (!isProtectedRoute && !isSubscriberRoute) {
+  if (!cookiesStore) {
+    if (bloguiRoutes.some((route) => pathSegments.includes(route))) {
       return NextResponse.next();
     }
-  }
 
-  // If no token exists (not logged in users)
-  if (!cookiesStore) {
-    // Redirect to login only for protected routes
-    if (
-      protectedDynamicRoutes.some((route) => pathname.includes(route)) ||
-      subscriberOnlyRoutes.some((route) => pathname.includes(route))
-    ) {
-      return NextResponse.redirect(new URL("/auth/login", url));
+    if (registeredRoutes.some((route) => pathSegments.includes(route))) {
+      return NextResponse.rewrite(new URL("/auth/login", request.url));
     }
 
-    return NextResponse.next();
+    if (subscriberRoutes.some((route) => pathSegments.includes(route))) {
+      return NextResponse.rewrite(new URL("/auth/login", request.url));
+    }
   }
 
-  // For logged in users, verify their token
-  const tokenData = await verifyToken(cookiesStore.value, pathSegments[1]);
+  if (cookiesStore) {
+    const token = cookiesStore.value;
+    const decodedToken = await verifyToken(token, pathSegments[1]);
+    const domain = decodedToken?.domain;
 
-  if (!tokenData) {
-    return NextResponse.redirect(new URL("/auth/login", url));
-  }
+    if (authRoutes.some((route) => pathSegments.includes(route))) {
+      return NextResponse.rewrite(new URL(`/${domain}`, request.url));
+    }
 
-  // Check if user is trying to access protected routes of another domain
-  if (
-    protectedDynamicRoutes.some((route) => pathname.includes(route)) &&
-    tokenData.domain !== pathSegments[1]
-  ) {
-    return NextResponse.redirect(new URL("/blogui", url));
-  }
+    if (publicRoutes.some((route) => pathSegments.includes(route))) {
+      return NextResponse.next();
+    }
 
-  // Handle non-subscribed users
-  if (
-    !tokenData.isSubscribed &&
-    subscriberOnlyRoutes.some((route) => pathname.includes(route))
-  ) {
-    return NextResponse.redirect(new URL("/blogui", url));
+    if (registeredRoutes.some((route) => pathSegments.includes(route))) {
+      return NextResponse.rewrite(new URL(`/${domain}`, request.url));
+    }
+
+    if (subscriberRoutes.some((route) => pathSegments.includes(route))) {
+      return NextResponse.rewrite(new URL(`/${domain}`, request.url));
+    }
+
+    if (bloguiRoutes.some((route) => pathSegments.includes(route))) {
+      return NextResponse.rewrite(new URL(`/${domain}`, request.url));
+    }
+
+    return NextResponse.rewrite(new URL("/auth/login", request.url));
   }
 
   return NextResponse.next();
