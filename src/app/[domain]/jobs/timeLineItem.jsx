@@ -1,7 +1,7 @@
 export default function TimelineItem({
   startDate,
   endDate,
-  location,
+  company,
   title,
   description,
   index,
@@ -38,7 +38,7 @@ export default function TimelineItem({
             >
               {startDate} - {endDate}
             </span>
-            <span className="text-gray-600 text-sm  block">{location}</span>
+            <span className="text-gray-600 text-sm  block">{company}</span>
           </div>
           {description.length > 0 && (
             <ul className="space-y-2.5">

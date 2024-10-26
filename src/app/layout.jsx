@@ -23,7 +23,7 @@ export default function RootLayoutBlogui({ children }) {
     <html lang="en" data-theme={theme || "cupcake"}>
       <body
         id="body-item"
-        className={`min-h-screen max-w-6xl mx-auto p-6 ${geistSans.variable} ${
+        className={`max-w-6xl mx-auto p-6 ${geistSans.variable} ${
           geistMono.variable
         } antialiased ${isLoading ? "cursor-wait" : ""} `}
       >

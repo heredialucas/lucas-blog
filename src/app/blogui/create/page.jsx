@@ -47,6 +47,7 @@ export default function CreateBlogui() {
             <Input
               type="file"
               name="image"
+              accept="image/*"
               className="bg-white"
               placeholder="Image URL"
             />

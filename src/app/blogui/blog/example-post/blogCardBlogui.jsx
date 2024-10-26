@@ -36,7 +36,7 @@ export default function BlogCard({
       >
         <div className="relative h-[160px] overflow-hidden">
           <Image
-            src={image || ""}
+            src={ProfilePicture}
             alt={title || ""}
             width={300}
             height={300}

@@ -2,7 +2,7 @@ export const jobs = [
   {
     startDate: "2024-01-01",
     endDate: "Present",
-    location: "Heaven",
+    company: "Heaven",
     title: "Career Overview Management",
     description: [
       "This is the section of the page where your entire career history will be displayed.",
@@ -15,7 +15,7 @@ export const jobs = [
   {
     startDate: "2022-09-01",
     endDate: "2023-12-31",
-    location: "Argentina",
+    company: "Argentina",
     title: "Frontend Developer",
     description: [
       "Developed and maintained web applications using React.js and modern JavaScript tools.",
@@ -28,7 +28,7 @@ export const jobs = [
   {
     startDate: "2021-05-01",
     endDate: "2022-08-31",
-    location: "San Francisco, CA",
+    company: "San Francisco, CA",
     title: "Junior Web Developer",
     description: [
       "Assisted in building and maintaining client websites using HTML, CSS, and JavaScript.",

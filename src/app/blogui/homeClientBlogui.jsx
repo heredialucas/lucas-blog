@@ -32,7 +32,7 @@ export function HomeClientBlogui() {
             </Link>
             <Link
               className="btn btn-primary text-primary-content w-fit hover:bg-secondary hover:cursor-pointer"
-              href="/lucas"
+              href="/hlucas"
               target="_blank"
             >
               Demo

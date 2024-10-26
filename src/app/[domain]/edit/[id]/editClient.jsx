@@ -104,7 +104,13 @@ export default function EditClient({ id, post, isAdmin }) {
           </div>
           <div>
             <Label htmlFor="image">Image URL</Label>
-            <Input required type="file" name="image" disabled />
+            <Input
+              required
+              type="file"
+              name="image"
+              accept="image/*"
+              disabled
+            />
           </div>
           <div>
             <Label htmlFor="referencePostUrl">Reference Post URL</Label>

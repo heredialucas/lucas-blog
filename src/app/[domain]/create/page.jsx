@@ -106,7 +106,13 @@ export default function Create() {
           </div>
           <div>
             <Label htmlFor="image">Image URL</Label>
-            <Input required type="file" name="image" disabled={isLoading} />
+            <Input
+              required
+              type="file"
+              name="image"
+              accept="image/*"
+              disabled={isLoading}
+            />
           </div>
           <div>
             <Label htmlFor="referencePostUrl">Reference Post URL</Label>
