@@ -187,7 +187,7 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
             {!isAdmin && (
               <Link
                 href={`/auth/login`}
-                className="btn btn-primary rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
+                className="btn btn-primary text-white text-xl rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
               >
                 Log in
               </Link>

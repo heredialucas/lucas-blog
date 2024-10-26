@@ -19,7 +19,7 @@ export function HomeClient({ client }) {
   }, [client, setClient]);
 
   return (
-    <div className="flex flex-col-reverse h-[600px] md:flex-row items-center md:items-start justify-between">
+    <div className="flex flex-col-reverse md:h-[600px] md:flex-row items-center md:items-start justify-between">
       <div className="flex flex-col justify-between h-full md:w-2/3 mb-8 md:mb-0">
         <h1 className="text-primary hover:text-secondary text-4xl font-bold mb-2">
           {`Hi! I'm ${clientStore?.firstName || "{ Your first name }"} 👋🏼`}
