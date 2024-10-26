@@ -6,7 +6,7 @@ const ChangeUser = async () => {
   try {
     await prisma.client.update({
       where: { domain: "hlucas" },
-      data: { email: 'heredialucasfac22@gmail.com' },
+      data: { isSubscribed: true },
     });
 
     console.log("Client updated successfully");

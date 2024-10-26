@@ -72,14 +72,16 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
               Blog
             </Link>
           )}
-          <Link
-            href={getLink("/contact")}
-            className={`${
-              pathname.includes(`/${domain}/contact`) ? "underline" : ""
-            } mr-2 h-4 w-4 text-neutral hover:underline`}
-          >
-            Contact
-          </Link>
+          {isSubscribed && isAdmin && (
+            <Link
+              href={getLink("/contact")}
+              className={`${
+                pathname.includes(`/${domain}/contact`) ? "underline" : ""
+              } mr-2 h-4 w-4 text-neutral hover:underline`}
+            >
+              Contact
+            </Link>
+          )}
           {isAdmin && (
             <Link
               href={`/config/${domain}`}
@@ -152,15 +154,17 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
             >
               Blog
             </Link>
-            <Link
-              href={getLink("/contact")}
-              className={`${
-                pathname.includes(`/${domain}/contact`) ? "underline" : ""
-              } block text-white text-xl hover:underline`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Contact
-            </Link>
+            {isSubscribed && isAdmin && (
+              <Link
+                href={getLink("/contact")}
+                className={`${
+                  pathname.includes(`/${domain}/contact`) ? "underline" : ""
+                } block text-white text-xl hover:underline`}
+                onClick={() => setMenuOpen(false)}
+              >
+                Contact
+              </Link>
+            )}
             {isAdmin && (
               <Link
                 href={`/config/${domain}`}

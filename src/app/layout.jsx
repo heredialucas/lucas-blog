@@ -27,6 +27,7 @@ export default function RootLayoutBlogui({ children }) {
           geistMono.variable
         } antialiased ${isLoading ? "cursor-wait" : ""} `}
       >
+        {children}
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -39,8 +40,6 @@ export default function RootLayoutBlogui({ children }) {
           pauseOnHover
           theme="light"
         />
-
-        {children}
       </body>
     </html>
   );

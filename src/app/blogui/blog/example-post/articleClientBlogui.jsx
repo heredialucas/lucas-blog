@@ -58,7 +58,7 @@ export default function ArticleClientBlogui({ isAdmin }) {
 
           <article className="prose max-w-none pb-20">
             <div className="text-gray-800 text-lg leading-relaxed break-words">
-              <div class="content">
+              <div className="content">
                 <br />
                 <h2>{`Create Your Story on Blogui`}</h2>
                 <br />
@@ -70,9 +70,9 @@ export default function ArticleClientBlogui({ isAdmin }) {
                 </p>
                 <br />
 
-                <div class="features">
+                <div className="features">
                   <br />
-                  <div class="feature">
+                  <div className="feature">
                     <h3>{`📸 Show Your World`}</h3>
                     <p>
                       {`Upload beautiful images to make your posts pop and grab
@@ -81,17 +81,17 @@ export default function ArticleClientBlogui({ isAdmin }) {
                   </div>
                   <br />
 
-                  <div class="feature">
+                  <div className="feature">
                     <h3>{`🎥 Share More`}</h3>
                     <p>
-                     {` Embed YouTube videos to bring your stories to life.
+                      {` Embed YouTube videos to bring your stories to life.
                       Whether it's your latest project demo or an inspiring talk
                       - make it part of your narrative.`}
                     </p>
                   </div>
 
                   <br />
-                  <div class="feature">
+                  <div className="feature">
                     <h3>{`💻 Tech-Friendly`}</h3>
                     <p>
                       {`Are you a developer? Share your code snippets with syntax
@@ -100,7 +100,7 @@ export default function ArticleClientBlogui({ isAdmin }) {
                   </div>
 
                   <br />
-                  <div class="feature">
+                  <div className="feature">
                     <h3>{`✨ Keep it Professional`}</h3>
                     <p>
                       {`Clean, minimalist design ensures your content always looks
@@ -112,7 +112,7 @@ export default function ArticleClientBlogui({ isAdmin }) {
                 <br />
 
                 <p>
-                 {` Whether you're showcasing your portfolio, sharing professional
+                  {` Whether you're showcasing your portfolio, sharing professional
                   updates, or documenting your journey, Blogui makes it super
                   easy to create posts that reflect your style.`}
                 </p>
@@ -124,7 +124,7 @@ export default function ArticleClientBlogui({ isAdmin }) {
                 </p>
 
                 <br />
-                <div class="cta">
+                <div className="cta">
                   <p>{`Ready to create your next awesome post?`}</p>
                   <br />
                   <Link className="btn btn-primary" href="/auth/register">

@@ -57,6 +57,16 @@ export async function middleware(request) {
   }
 
   if (!cookieToken) {
+    if (bloguiRoutes.some((route) => pathname.includes(route))) {
+      return NextResponse.next();
+    }
+    if (configRoutes.some((route) => pathname.includes(route))) {
+      return NextResponse.redirect(`${url}/auth/login`);
+    }
+    if (subscriberRoutes.some((route) => pathname.includes(route))) {
+      return NextResponse.redirect(`${url}/auth/login`);
+    }
+    
     if (blogRoutes.some((route) => pathname.includes(route))) {
       const { client } = await fetch(
         `${url}/api/clientByDomain/${pathnameUser}`,
@@ -78,16 +88,6 @@ export async function middleware(request) {
         }
         return NextResponse.next();
       }
-    }
-
-    if (bloguiRoutes.some((route) => pathname.includes(route))) {
-      return NextResponse.next();
-    }
-    if (configRoutes.some((route) => pathname.includes(route))) {
-      return NextResponse.redirect(`${url}/auth/login`);
-    }
-    if (subscriberRoutes.some((route) => pathname.includes(route))) {
-      return NextResponse.redirect(`${url}/auth/login`);
     }
     return NextResponse.next();
   }
