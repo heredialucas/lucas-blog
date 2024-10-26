@@ -71,7 +71,7 @@ export default function ArticleClient({ post, id, isAdmin }) {
           </div>
 
           <article className="prose max-w-none pb-20">
-            <div className=" text-lg leading-relaxed break-words">
+            <div className="text-[#000] text-lg leading-relaxed break-words">
               {parse(post.summary)}
             </div>
           </article>

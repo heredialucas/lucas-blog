@@ -94,7 +94,7 @@ export default function BlogCard({
               <Link
                 href={`/${pathname}/blog/${id}`}
                 disabled={true}
-                className={`flex flex-2 text-xs border-2  p-2 rounded font-medium hover:bg-blue-200  ${
+                className={`flex flex-2 text-xs border-2  p-2 rounded font-medium   ${
                   isLoading
                     ? "pointer-events-none border-gray-400 text-gray-400"
                     : ""
