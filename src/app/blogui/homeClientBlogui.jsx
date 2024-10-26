@@ -14,8 +14,10 @@ export function HomeClientBlogui() {
         <div className="flex flex-col justify-start h-full m-4">
           <div className="hero-text max-w-xl">
             <p className="text-neutral mb-6">
-              {`Ready to take your professional presence online? Welcome to`}
-              <strong>{`Blogui`}</strong>{`, your space to shine and share your
+              {`Ready to take your professional presence online? Welcome to `}
+
+              <strong>{`Blogui`}</strong>
+              {`, your space to shine and share your
               journey.`}
             </p>
 
@@ -24,23 +26,26 @@ export function HomeClientBlogui() {
             </p>
 
             <p className="text-neutral mb-6">
-              📝 {`Craft a clean, modern CV that captures attention instantly. No
+              📝{" "}
+              {`Craft a clean, modern CV that captures attention instantly. No
               clutter, just your best professional self.`}
             </p>
 
             <p className="text-neutral mb-6">
-             {` ⭐ Tell your career story through an interactive timeline -
+              {` ⭐ Tell your career story through an interactive timeline -
               highlighting your growth, achievements, and key moments.`}
             </p>
 
             <p className="text-neutral mb-6">
-             {` ✍️ Express your insights through a personal blog, building your
+              {` ✍️ Express your insights through a personal blog, building your
               authority and connecting with your audience.`}
             </p>
 
             <p className="text-neutral mb-6">
               {`Freelancer, job seeker, or established professional - we've
-              designed `}<strong>{`Blogui`}</strong> {`to help you stand out in the
+              designed `}
+              <strong>{`Blogui`}</strong>{" "}
+              {`to help you stand out in the
               digital world.`}
             </p>
 
