@@ -72,7 +72,7 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
               Blog
             </Link>
           )}
-          {isSubscribed && isAdmin && (
+          {((isSubscribed && isAdmin) || domain === "hlucas") && (
             <Link
               href={getLink("/contact")}
               className={`${
@@ -154,7 +154,7 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
             >
               Blog
             </Link>
-            {isSubscribed && isAdmin && (
+            {((isSubscribed && isAdmin) || domain === "hlucas") && (
               <Link
                 href={getLink("/contact")}
                 className={`${

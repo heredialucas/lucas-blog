@@ -80,7 +80,7 @@ export default function ArticleClient({ post, id, isAdmin }) {
         <footer className="border-t py-8 mt-12">
           <div className="flex justify-between items-center">
             <Link
-              href="/blog"
+              href={`/${pathname}/blog`}
               variant="ghost"
               className="text-gray-600 hover:text-gray-900"
             >
