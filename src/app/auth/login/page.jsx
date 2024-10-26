@@ -30,11 +30,11 @@ export default function LoginPage() {
     <form action={handleLogin} className="flex flex-col gap-4 border-2 p-10">
       <div>
         <Label htmlFor="email">Email</Label>
-        <Input name="email" type="text" required />
+        <Input className='text-[#000]' name="email" type="text" required />
       </div>
       <div>
         <Label htmlFor="password">Password</Label>
-        <Input name="password" type="password" required />
+        <Input className='text-[#000]' name="password" type="password" required />
       </div>
       <Button
         type="submit"

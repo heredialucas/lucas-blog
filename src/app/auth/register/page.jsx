@@ -55,11 +55,16 @@ export default function RegisterPage() {
     <form action={handleRegister} className="flex flex-col gap-4 border-2 p-10">
       <div>
         <Label htmlFor="email">Email</Label>
-        <Input name="email" type="text" required />
+        <Input className="text-[#000]" name="email" type="text" required />
       </div>
       <div>
         <Label htmlFor="password">Password</Label>
-        <Input name="password" type="password" required />
+        <Input
+          className="text-[#000]"
+          name="password"
+          type="password"
+          required
+        />
       </div>
       <div>
         <Label htmlFor="domain">Domain</Label>
@@ -69,10 +74,12 @@ export default function RegisterPage() {
           value={domain}
           onChange={handleDomainChange}
           required
-          className={domainError ? "border-red-500" : ""}
+          className={domainError ? "border-red-500 text-[#000]" : "text-[#000]"}
         />
         {domainError && (
-          <p className="text-wrap text-red-500 text-xs mt-1 wrap">{domainError}</p>
+          <p className="text-wrap text-red-500 text-xs mt-1 wrap">
+            {domainError}
+          </p>
         )}
       </div>
 

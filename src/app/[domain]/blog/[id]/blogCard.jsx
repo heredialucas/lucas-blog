@@ -97,7 +97,7 @@ export default function BlogCard({
                 className={`flex flex-2 text-xs border-2  p-2 rounded font-medium hover:bg-blue-200  ${
                   isLoading
                     ? "pointer-events-none border-gray-400 text-gray-400"
-                    : "border-gray-500"
+                    : ""
                 }`}
                 aria-disabled={isLoading}
                 tabIndex={isLoading ? -1 : undefined}
@@ -109,7 +109,7 @@ export default function BlogCard({
                   <Button
                     variant="destructive"
                     size="sm"
-                    className="rounded border-2 border-gray-500 hover:bg-red-500 hover:text-white "
+                    className="rounded border-2  hover:bg-red-500  "
                     onClick={() => handleDelete()}
                     disabled={isLoading}
                   >
@@ -118,7 +118,7 @@ export default function BlogCard({
                   <Button
                     variant="info"
                     size="sm"
-                    className="rounded border-2 border-gray-500 hover:bg-blue-400 hover:text-white "
+                    className="rounded border-2    "
                     onClick={() => handleEdit()}
                     disabled={isLoading}
                   >

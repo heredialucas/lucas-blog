@@ -13,7 +13,7 @@ export function HomeClientBlogui() {
         </h1>
         <div className="flex flex-col justify-start h-full m-4">
           <div className="hero-text max-w-xl">
-            <p className="text-neutral mb-6">
+            <p className=" mb-6">
               {`Ready to take your professional presence online? Welcome to `}
 
               <strong>{`Blogui`}</strong>
@@ -21,27 +21,27 @@ export function HomeClientBlogui() {
               journey.`}
             </p>
 
-            <p className="text-neutral mb-6">
+            <p className=" mb-6">
               {`We've made it simple to showcase your professional story:`}
             </p>
 
-            <p className="text-neutral mb-6">
+            <p className=" mb-6">
               📝{" "}
               {`Craft a clean, modern CV that captures attention instantly. No
               clutter, just your best professional self.`}
             </p>
 
-            <p className="text-neutral mb-6">
+            <p className=" mb-6">
               {` ⭐ Tell your career story through an interactive timeline -
               highlighting your growth, achievements, and key moments.`}
             </p>
 
-            <p className="text-neutral mb-6">
+            <p className=" mb-6">
               {` ✍️ Express your insights through a personal blog, building your
               authority and connecting with your audience.`}
             </p>
 
-            <p className="text-neutral mb-6">
+            <p className=" mb-6">
               {`Freelancer, job seeker, or established professional - we've
               designed `}
               <strong>{`Blogui`}</strong>{" "}
@@ -49,12 +49,12 @@ export function HomeClientBlogui() {
               digital world.`}
             </p>
 
-            <p className="text-neutral mb-6">
+            <p className=" mb-6">
               {`Your professional story deserves to be told. Let's make it happen!
               ✨`}
             </p>
 
-            <p className="text-neutral mb-6">{`Ready to get started?`} </p>
+            <p className=" mb-6">{`Ready to get started?`} </p>
           </div>
         </div>
         <div className="flex gap-4">

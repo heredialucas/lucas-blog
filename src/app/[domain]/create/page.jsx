@@ -84,11 +84,18 @@ export default function Create() {
         <div>
           <div>
             <Label htmlFor="title">Title</Label>
-            <Input maxLength={100} required name="title" disabled={isLoading} />
+            <Input
+              className="text-[#000]"
+              maxLength={100}
+              required
+              name="title"
+              disabled={isLoading}
+            />
           </div>
           <div>
             <Label htmlFor="category">Category</Label>
             <Input
+              className="text-[#000]"
               maxLength={100}
               required
               name="category"
@@ -98,6 +105,7 @@ export default function Create() {
           <div>
             <Label htmlFor="authorName">Author Name</Label>
             <Input
+              className="text-[#000]"
               maxLength={100}
               required
               name="authorName"
@@ -107,6 +115,7 @@ export default function Create() {
           <div>
             <Label htmlFor="image">Image URL</Label>
             <Input
+              className="text-[#000]"
               required
               type="file"
               name="image"
@@ -117,6 +126,7 @@ export default function Create() {
           <div>
             <Label htmlFor="referencePostUrl">Reference Post URL</Label>
             <Input
+              className="text-[#000]"
               name="referencePostUrl"
               placeholder="https://example.com/reference"
               disabled={isLoading}

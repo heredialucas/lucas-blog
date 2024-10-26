@@ -71,7 +71,7 @@ export default function ArticleClient({ post, id, isAdmin }) {
           </div>
 
           <article className="prose max-w-none pb-20">
-            <div className="text-gray-800 text-lg leading-relaxed break-words">
+            <div className=" text-lg leading-relaxed break-words">
               {parse(post.summary)}
             </div>
           </article>
@@ -82,7 +82,7 @@ export default function ArticleClient({ post, id, isAdmin }) {
             <Link
               href={`/${pathname}/blog`}
               variant="ghost"
-              className="text-gray-600 hover:text-gray-900"
+              className="text-gray-600 "
             >
               ← Back to Blog
             </Link>
@@ -90,7 +90,7 @@ export default function ArticleClient({ post, id, isAdmin }) {
               <div className="flex gap-2">
                 <Button
                   size="sm"
-                  className="btn btn-warning bg-error rounded border-2 border-gray-500 hover:bg-red-600 hover:text-white "
+                  className="btn btn-warning bg-error rounded border-2    "
                   onClick={() => handleDelete()}
                   disabled={isLoading}
                 >
@@ -99,7 +99,7 @@ export default function ArticleClient({ post, id, isAdmin }) {
                 <Link
                   variant="info"
                   size="sm"
-                  className="btn rounded border-2 border-gray-500 hover:bg-blue-400 hover:text-white "
+                  className="btn rounded border-2    "
                   disabled={isLoading}
                   href={`/${pathname}/edit/${id}`}
                 >

@@ -26,7 +26,7 @@ export default function TimelineItem({
           }`}
         >
           <div className="flex flex-col md:flex-row justify-between mb-2">
-            <h3 className="text-lg md:text-xl font-semibold text-gray-800">
+            <h3 className="text-lg md:text-xl font-semibold ">
               {title}
             </h3>
           </div>

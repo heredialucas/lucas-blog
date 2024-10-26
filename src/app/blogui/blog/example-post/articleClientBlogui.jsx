@@ -57,7 +57,7 @@ export default function ArticleClientBlogui({ isAdmin }) {
           </div>
 
           <article className="prose max-w-none pb-20">
-            <div className="text-gray-800 text-lg leading-relaxed break-words">
+            <div className=" text-lg leading-relaxed break-words">
               <div className="content">
                 <br />
                 <h2>{`Create Your Story on Blogui`}</h2>
@@ -142,7 +142,7 @@ export default function ArticleClientBlogui({ isAdmin }) {
             <Link
               href="/blogui/blog"
               variant="ghost"
-              className="text-gray-600 hover:text-gray-900"
+              className="text-gray-600 "
             >
               ← Back to Blog
             </Link>
@@ -150,7 +150,7 @@ export default function ArticleClientBlogui({ isAdmin }) {
               <div className="flex gap-2">
                 <Button
                   size="sm"
-                  className="btn btn-warning bg-error rounded border-2 border-gray-500 hover:bg-red-600 hover:text-white "
+                  className="btn btn-warning bg-error rounded border-2    "
                   onClick={() => handleDelete()}
                 >
                   <Trash2 className="h-4 w-4" />
@@ -158,7 +158,7 @@ export default function ArticleClientBlogui({ isAdmin }) {
                 <Link
                   variant="info"
                   size="sm"
-                  className="btn rounded border-2 border-gray-500 hover:bg-blue-400 hover:text-white "
+                  className="btn rounded border-2    "
                   href={`/blogui/create`}
                 >
                   <Edit2 className="h-4 w-4" />

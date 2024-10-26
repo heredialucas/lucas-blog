@@ -7,10 +7,7 @@ export default function HomeLayout({ children, params }) {
     <>
       <NavServerSide domain={domain} />
       {children}
-      <div>
-        <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
-        <FooterServerSide domain={domain} />
-      </div>
+      <FooterServerSide domain={domain} />
     </>
   );
 }

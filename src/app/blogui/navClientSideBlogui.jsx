@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useStore } from "@/zustand/config";
 
 export function NavClientSideBlogui() {
   const pathname = usePathname();
@@ -28,7 +29,7 @@ export function NavClientSideBlogui() {
     <>
       <nav className="flex items-center justify-between relative p-6 rounded-xl font-semibold">
         {/* Logo/Home Link */}
-        <div className="space-x-6 text-neutral">
+        <div className="space-x-6 ">
           <Link
             href={`/${domain}`}
             className={`${
@@ -40,12 +41,12 @@ export function NavClientSideBlogui() {
         </div>
 
         {/* Links que solo se muestran en pantallas medianas en adelante */}
-        <div className="space-x-6 text-neutral hidden md:block">
+        <div className="space-x-6  hidden md:block">
           <Link
             href={getLink("/jobs")}
             className={`${
               pathname.includes(`/${domain}/jobs`) ? "underline" : ""
-            } mr-2 h-4 w-4 text-neutral hover:underline`}
+            } mr-2 h-4 w-4  hover:underline`}
           >
             Timeline Jobs
           </Link>
@@ -53,7 +54,7 @@ export function NavClientSideBlogui() {
             href={getLink("/create")}
             className={`${
               pathname.includes(`/${domain}/create`) ? "underline" : ""
-            } mr-2 h-4 w-4 text-neutral hover:underline`}
+            } mr-2 h-4 w-4  hover:underline`}
           >
             Create Post
           </Link>
@@ -62,7 +63,7 @@ export function NavClientSideBlogui() {
               href={getLink("/blog")}
               className={`${
                 pathname.includes(`/${domain}/blog`) ? "underline" : ""
-              } mr-2 h-4 w-4 text-neutral hover:underline`}
+              } mr-2 h-4 w-4  hover:underline`}
             >
               Blog
             </Link>
@@ -71,22 +72,104 @@ export function NavClientSideBlogui() {
             href={getLink("/contact")}
             className={`${
               pathname.includes(`/${domain}/contact`) ? "underline" : ""
-            } mr-2 h-4 w-4 text-neutral hover:underline`}
+            } mr-2 h-4 w-4  hover:underline`}
           >
             Contact
           </Link>
 
           <Link
             href={`/auth/login`}
-            className="btn btn-primary rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
+            className="btn btn-primary rounded-xl border-2 border-gray-400  "
           >
             Log in
           </Link>
+          <div className="dropdown ">
+            <div tabIndex={0} role="button" className="btn m-1">
+              Theme
+              <svg
+                width="12px"
+                height="12px"
+                className="inline-block h-2 w-2 fill-current opacity-60"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 2048 2048"
+              >
+                <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+              </svg>
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl"
+            >
+              <li>
+                <input
+                  type="radio"
+                  name="theme-dropdown"
+                  className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                  aria-label="Cupcake"
+                  value="cupcake"
+                />
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="theme-dropdown"
+                  className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                  aria-label="Dark"
+                  value="dark"
+                />
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="theme-dropdown"
+                  className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                  aria-label="Bumblebee"
+                  value="bumblebee"
+                />
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="theme-dropdown"
+                  className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                  aria-label="Retro"
+                  value="retro"
+                />
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="theme-dropdown"
+                  className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                  aria-label="Cyberpunk"
+                  value="cyberpunk"
+                />
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="theme-dropdown"
+                  className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                  aria-label="Valentine"
+                  value="valentine"
+                />
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="theme-dropdown"
+                  className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                  aria-label="Aqua"
+                  value="aqua"
+                />
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Menú hamburguesa para pantallas pequeñas */}
         <div className="block md:hidden">
-          <MenuIcon className="h-6 w-6 text-neutral" onClick={handleMenu} />
+          <MenuIcon className="h-6 w-6 " onClick={handleMenu} />
         </div>
       </nav>
 
@@ -140,14 +223,14 @@ export function NavClientSideBlogui() {
             {/* {isAdmin && (
               <Button
                 onClick={() => handleLogOut()}
-                className="text-white text-xl rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
+                className="text-white text-xl rounded-xl border-2 border-gray-400  "
               >
                 Sign Out
               </Button>
             )} */}
             <Link
               href={`/auth/login`}
-              className="btn btn-primary text-white text-xl rounded-xl border-2 border-gray-400 hover:bg-gray-500 hover:text-white"
+              className="btn btn-primary text-white text-xl rounded-xl border-2 border-gray-400  "
             >
               Log in
             </Link>

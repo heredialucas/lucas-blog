@@ -20,7 +20,7 @@ const geistMono = localFont({
 export default function RootLayoutBlogui({ children }) {
   const { theme, isLoading } = useStore((state) => state);
   return (
-    <html lang="en" data-theme={theme || "cupcake"}>
+    <html lang="en">
       <body
         id="body-item"
         className={`max-w-6xl mx-auto p-6 ${geistSans.variable} ${

@@ -84,7 +84,7 @@ export default function BlogCard({
                   <Button
                     variant="destructive"
                     size="sm"
-                    className="rounded border-2 border-gray-500 hover:bg-red-500 hover:text-white "
+                    className="rounded border-2  hover:bg-red-500  "
                     onClick={() => handleDelete()}
                   >
                     <Trash2 className="h-4 w-4" />
@@ -92,7 +92,7 @@ export default function BlogCard({
                   <Button
                     variant="info"
                     size="sm"
-                    className="rounded border-2 border-gray-500 hover:bg-blue-400 hover:text-white "
+                    className="rounded border-2    "
                     onClick={() => handleEdit()}
                   >
                     <Edit2 className="h-4 w-4" />
