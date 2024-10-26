@@ -7,18 +7,21 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { logout } from "@/app/api/util/actions";
 import { toast } from "react-toastify";
-
+import { useStore } from "@/zustand/config";
 export function NavClientSide({ isAdmin, isSubscribed, domain }) {
   const pathname = usePathname();
+  const { setIsLoading } = useStore((state) => state);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const handleLogOut = () => {
+  const handleLogOut = async () => {
+    setIsLoading(true);
     localStorage.clear();
-    logout();
+    await logout();
+    setIsLoading(false);
     toast.success("Logged out successfully");
   };
 
@@ -80,7 +83,9 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
           {isAdmin && (
             <Link
               href={`/config/${domain}`}
-              className={`mr-2 h-4 w-4 text-neutral hover:underline`}
+              className={`${
+                pathname === `/config/${domain}` ? "underline" : ""
+              } mr-2 h-4 w-4 text-neutral hover:underline`}
             >
               Configuration
             </Link>

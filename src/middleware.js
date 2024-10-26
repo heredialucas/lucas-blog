@@ -25,7 +25,8 @@ export async function middleware(request) {
   };
 
   const authPaths = ["login", "register"];
-  const publicRoutes = ["jobs", "contact", "blog"];
+  const publicRoutes = ["jobs", "contact"];
+  const blogRoutes = ["blog"];
   const configRoutes = ["config"];
   const subscriberRoutes = ["create", "edit"];
   const bloguiRoutes = ["blogui"];
@@ -56,6 +57,29 @@ export async function middleware(request) {
   }
 
   if (!cookieToken) {
+    if (blogRoutes.some((route) => pathname.includes(route))) {
+      const { client } = await fetch(
+        `${url}/api/clientByDomain/${pathnameUser}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      ).then((res) => res.json());
+
+      if (!client) {
+        return NextResponse.redirect(`${url}/blogui`);
+      }
+      
+      if (client) {
+        if (!client.isSubscribed) {
+          return NextResponse.redirect(`${url}/${client.domain}`);
+        }
+        return NextResponse.next();
+      }
+    }
+
     if (bloguiRoutes.some((route) => pathname.includes(route))) {
       return NextResponse.next();
     }

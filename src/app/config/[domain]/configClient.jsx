@@ -15,7 +15,7 @@ import { useStore } from "@/zustand/config";
 const MAX_IMAGE_SIZE = 1 * 1024 * 1024; // 1 MB
 export default function ConfigClientPage({ client }) {
   const router = useRouter();
-  const { isLoading, setIsLoading } = useStore((state) => state);
+  const { setIsLoading } = useStore((state) => state);
   const [jobs, setJobs] = useState(() => {
     // Intenta parsear el timeline del usuario y convertirlo a un array de objetos
     const parsedTimeline = JSON.parse(client?.timeline);

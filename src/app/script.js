@@ -5,8 +5,8 @@ const prisma = new PrismaClient();
 const ChangeUser = async () => {
   try {
     await prisma.client.update({
-      where: { domain: "lucas" },
-      data: { isSubscribed: true },
+      where: { domain: "hlucas" },
+      data: { email: 'heredialucasfac22@gmail.com' },
     });
 
     console.log("Client updated successfully");
@@ -39,4 +39,4 @@ const Delete = async () => {
   }
 };
 
-// Delete();
+ChangeUser();
