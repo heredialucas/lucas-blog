@@ -1,16 +1,18 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { formatedString } from "../util/utils";
 import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
 export async function POST(request) {
   const { email, password, domain } = await request.json();
+  const formatedData = formatedString(domain);
 
   const user = await prisma.client.findFirst({
     where: {
       email,
-      domain,
+      domain: formatedData,
     },
   });
 
@@ -27,7 +29,7 @@ export async function POST(request) {
     data: {
       email,
       password: hashedPassword,
-      domain,
+      domain: formatedData,
     },
   });
 

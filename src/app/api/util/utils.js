@@ -7,3 +7,8 @@ export const getUrl = async () => {
   const host = headers().get("host");
   return `${protocol}://${host}`;
 };
+
+export const formatedString = (string) => {
+  const formatedData = string.trim().toLowerCase();
+  return formatedData;
+};

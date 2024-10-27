@@ -140,7 +140,7 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
                   name="theme-dropdown"
                   className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
                   aria-label="Dark"
-                  value="dark"
+                  value="darkMode"
                 />
               </li>
               <li>

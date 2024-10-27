@@ -7,6 +7,11 @@ module.exports = {
   ],
   daisyui: {
     themes: [
+      "cupcake",
+      "bumblebee",
+      "retro",
+      "cyberpunk",
+      "valentine",
       {
         darkMode: {
           primary: "#a991f7", // Color primario para el modo oscuro
@@ -16,11 +21,6 @@ module.exports = {
           "base-100": "#1f2937", // Fondo oscuro
         },
       },
-      "cupcake",
-      "bumblebee",
-      "retro",
-      "cyberpunk",
-      "valentine",
     ],
   },
   plugins: [require("tailwindcss-animate"), require("daisyui")],
