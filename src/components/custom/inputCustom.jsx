@@ -22,7 +22,7 @@ export default function LinkCustom() {
       </div>
       <Link
         className="btn btn-primary mx-2"
-        href={`http://localhost:3000/auth/register/${
+        href={`https://blogui.me/auth/register/${
           customPath || `Your-domain`
         }`}
       >
