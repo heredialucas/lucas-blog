@@ -24,7 +24,7 @@ export function HomeClient({ client }) {
         <h1 className=" hover:text-secondary text-4xl font-bold mb-2">
           {`Hi! I'm ${clientStore?.firstName || "{ Your first name }"} 👋🏼`}
         </h1>
-        <div className="grid min-h-[500px] grid-rows-[auto-1fr-auto]  m-4">
+        <div className="min-h-[500px] m-6">
           {clientStore?.hero
             ? formatHeroText(clientStore?.hero).map((sentence, index) => (
                 <p key={index} className="mb-3 max-w-xl">
