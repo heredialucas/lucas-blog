@@ -6,9 +6,10 @@ import { useStore } from "@/zustand/config";
 import { useEffect } from "react";
 import { formatHeroText } from "@/lib/utils";
 import ProfileDefault from "@/public/profile.jpg";
+import PaymentComponent from "@/components/stripe/payment";
 import { Instagram, Linkedin, Facebook } from "lucide-react";
 
-export function HomeClient({ client }) {
+export function HomeClient({ client, isAdmin }) {
   const { client: clientStore, setClient } = useStore((state) => state);
 
   useEffect(() => {
@@ -39,6 +40,11 @@ export function HomeClient({ client }) {
               See Resume
             </a>
           </Button>
+        )}
+        {isAdmin && !client?.isSubscribed && (
+          <div className="my-4">
+            <PaymentComponent domain={clientStore?.domain} />
+          </div>
         )}
       </div>
       <div className="flex flex-col h-full md:w-1/3 justify-center  items-center">

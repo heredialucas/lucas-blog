@@ -71,7 +71,7 @@ export function HomeClientBlogui() {
           >
             Demo
           </Link>
-          <PaymentComponent />
+          <PaymentComponent domain="blogui" />
         </div>
       </div>
       <div className="flex flex-col h-full md:w-1/3 justify-center  items-center">

@@ -28,6 +28,7 @@ export async function middleware(request) {
   const publicRoutes = ["jobs", "contact"];
   const blogRoutes = ["blog"];
   const configRoutes = ["config"];
+  const pricingRoutes = ["pricing"];
   const subscriberRoutes = ["create", "edit"];
   const bloguiRoutes = ["blogui"];
 
@@ -36,6 +37,9 @@ export async function middleware(request) {
       return NextResponse.redirect(`${url}/blogui`);
     }
     if (bloguiRoutes.some((route) => pathname.includes(route))) {
+      return NextResponse.next();
+    }
+    if (pricingRoutes.some((route) => pathname.includes(route))) {
       return NextResponse.next();
     }
 
@@ -63,10 +67,13 @@ export async function middleware(request) {
     if (configRoutes.some((route) => pathname.includes(route))) {
       return NextResponse.redirect(`${url}/auth/login`);
     }
+    if (pricingRoutes.some((route) => pathname.includes(route))) {
+      return NextResponse.next();
+    }
     if (subscriberRoutes.some((route) => pathname.includes(route))) {
       return NextResponse.redirect(`${url}/auth/login`);
     }
-    
+
     if (blogRoutes.some((route) => pathname.includes(route))) {
       const { client } = await fetch(
         `${url}/api/clientByDomain/${pathnameUser}`,
@@ -81,7 +88,7 @@ export async function middleware(request) {
       if (!client) {
         return NextResponse.redirect(`${url}/blogui`);
       }
-      
+
       if (client) {
         if (!client.isSubscribed) {
           return NextResponse.redirect(`${url}/${client.domain}`);

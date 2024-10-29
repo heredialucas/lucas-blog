@@ -6,13 +6,9 @@ const product = {
   priceId: "prod_R74XAwo5qfoo4B",
 };
 
-const PaymentComponent = () => {
+const PaymentComponent = ({ domain }) => {
   return (
-    <Link
-      href={`${product.link}?prefilled_email=heredialucasfac22@gmail.com`}
-      target="_blank"
-      className="btn btn-primary"
-    >
+    <Link href={`/${domain}/pricing`} className="btn btn-primary">
       Get premium
     </Link>
   );
