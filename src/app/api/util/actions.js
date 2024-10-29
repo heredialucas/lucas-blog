@@ -58,10 +58,10 @@ export async function login(formData) {
   return { authenticated, domain, message };
 }
 
-export async function logout() {
+export async function logout(domain) {
   cookies().delete("token");
   cookies().delete("domain");
-  redirect("/auth/login");
+  redirect(`/${domain}`);
 }
 
 export async function register(formData) {

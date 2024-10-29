@@ -20,7 +20,7 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
   const handleLogOut = async () => {
     setIsLoading(true);
     localStorage.clear();
-    await logout();
+    await logout(domain);
     setIsLoading(false);
     toast.success("Logged out successfully");
   };
@@ -90,22 +90,6 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
               } mr-2 h-4 w-4  hover:underline`}
             >
               Configuration
-            </Link>
-          )}
-          {isAdmin && (
-            <Button
-              onClick={() => handleLogOut()}
-              className="rounded-xl border-2 border-gray-400  "
-            >
-              Sign Out
-            </Button>
-          )}
-          {!isAdmin && (
-            <Link
-              href={`/auth/login`}
-              className="btn btn-primary rounded-xl border-2 border-gray-400  "
-            >
-              Log in
             </Link>
           )}
           <div className="dropdown ">
@@ -181,6 +165,22 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
               </li>
             </ul>
           </div>
+          {isAdmin && (
+            <Button
+              onClick={() => handleLogOut()}
+              className="rounded-xl border-2 border-gray-400  "
+            >
+              Sign Out
+            </Button>
+          )}
+          {!isAdmin && (
+            <Link
+              href={`/auth/login`}
+              className="btn btn-primary rounded-xl border-2 border-gray-400  "
+            >
+              Log in
+            </Link>
+          )}
         </div>
 
         {/* Menú hamburguesa para pantallas pequeñas */}

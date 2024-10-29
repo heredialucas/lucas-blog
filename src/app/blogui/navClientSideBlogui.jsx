@@ -76,13 +76,6 @@ export function NavClientSideBlogui() {
           >
             Contact
           </Link>
-
-          <Link
-            href={`/auth/login`}
-            className="btn btn-primary rounded-xl border-2 border-gray-400  "
-          >
-            Log in
-          </Link>
           <div className="dropdown ">
             <div tabIndex={0} role="button" className="btn m-1">
               Theme
@@ -156,6 +149,12 @@ export function NavClientSideBlogui() {
               </li>
             </ul>
           </div>
+          <Link
+            href={`/auth/login`}
+            className="btn btn-primary rounded-xl border-2 border-gray-400  "
+          >
+            Log in
+          </Link>
         </div>
 
         {/* Menú hamburguesa para pantallas pequeñas */}

@@ -8,9 +8,11 @@ import { register } from "@/app/api/util/actions";
 import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
 
-export default function RegisterPage() {
+export default function RegisterPage({ params }) {
+  const { domain } = params;
+
   const [domainError, setDomainError] = useState("");
-  const [domain, setDomain] = useState("");
+  const [domainState, setDomainState] = useState(domain);
 
   const validateDomain = (value) => {
     // Expresión regular que solo permite letras, números y guiones
@@ -27,7 +29,7 @@ export default function RegisterPage() {
 
   const handleDomainChange = (e) => {
     const value = e.target.value;
-    setDomain(value);
+    setDomainState(value);
     validateDomain(value);
   };
 
@@ -71,7 +73,7 @@ export default function RegisterPage() {
         <Input
           name="domain"
           type="text"
-          value={domain}
+          value={domainState}
           onChange={handleDomainChange}
           required
           className={domainError ? "border-red-500 text-[#000]" : "text-[#000]"}

@@ -3,11 +3,14 @@
 import Image from "next/image";
 import ProfileDefault from "@/public/profile.jpg";
 import Link from "next/link";
+import LinkCustom from "@/components/custom/inputCustom";
+import PaymentComponent from "@/components/stripe/payment";
+import { Instagram, Linkedin, Facebook } from "lucide-react";
 
 export function HomeClientBlogui() {
   return (
-    <div className="flex flex-col-reverse md:h-[600px] md:flex-row items-center md:items-start justify-between">
-      <div className="flex flex-col justify-between h-full md:w-2/3 mb-8 md:mb-0">
+    <div className="flex flex-col-reverse md:flex-row justify-between items-center">
+      <div className="flex flex-col justify-between md:w-2/3 mb-8 md:mb-0">
         <h1 className="text-primary hover:text-secondary text-4xl font-bold mb-2">
           {`Hi! I'm Blogui 👋🏼`}
         </h1>
@@ -58,22 +61,20 @@ export function HomeClientBlogui() {
           </div>
         </div>
         <div className="flex gap-4">
+          <LinkCustom />
+        </div>
+        <div className="flex items-center gap-4">
           <Link
-            className="btn btn-primary text-primary-content w-fit hover:bg-secondary hover:cursor-pointer"
-            href="/auth/register"
-          >
-            Blogui me
-          </Link>
-          <Link
-            className="btn btn-primary text-primary-content py-2 px-4 hover:bg-secondary hover:cursor-pointer"
+            className="btn btn-primary w-fit my-4 px-4 py-2 hover:cursor-pointer"
             href="/hlucas"
             target="_blank"
           >
             Demo
           </Link>
+          <PaymentComponent />
         </div>
       </div>
-      <div className="flex mb-6 h-full md:w-1/3 justify-center">
+      <div className="flex flex-col h-full md:w-1/3 justify-center  items-center">
         <Image
           src={ProfileDefault}
           alt={`Profile of Blogui`}
@@ -81,6 +82,22 @@ export function HomeClientBlogui() {
           height={300}
           className="self-center h-fit rounded-full object-cover"
         />
+        <div className="flex h-fit w-fit justify-center gap-10 p-8 md:p-12">
+          <a
+            href={`https://www.instagram.com/hlucasook/`}
+            target="_blank"
+            className=" hover:text-primary"
+          >
+            <Instagram size={24} />
+          </a>
+          <a
+            href={`https://www.linkedin.com/in/heredialucasfran/`}
+            target="_blank"
+            className=" hover:text-primary"
+          >
+            <Linkedin size={24} />
+          </a>
+        </div>
       </div>
     </div>
   );
