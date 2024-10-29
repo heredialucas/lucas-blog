@@ -24,7 +24,7 @@ export default function RootLayoutBlogui({ children }) {
       <body
         id="body-item"
         data-theme={theme || "cupcake"}
-        className={` max-w-6xl mx-auto p-6 ${geistSans.variable} ${
+        className={`grid min-h-dvh grid-rows-[auto_1fr_auto] max-w-6xl mx-auto p-6 ${geistSans.variable} ${
           geistMono.variable
         } antialiased ${isLoading ? "cursor-wait" : ""} `}
       >
