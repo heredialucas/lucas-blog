@@ -1,25 +1,7 @@
 "use client";
 
-import { saveTheme } from "@/app/api/util/actions";
-import { Button } from "@/components/ui/button";
-import { useStore } from "@/zustand/config";
-import { toast } from "react-toastify";
 import { themes } from "@/lib/utils";
-
 export default function ThemeClientServer({ domain }) {
-  const { theme, setTheme, setIsLoading } = useStore((state) => state);
-
-  const handleTheme = async () => {
-    setIsLoading(true);
-    const { user } = await saveTheme(theme, domain);
-    if (!user) {
-      toast.error("Something went wrong");
-    }
-
-    toast.success("Saved successfully");
-    setIsLoading(false);
-  };
-
   return (
     <div className="flex gap-6 items-center mx-auto p-4  transition">
       <div className="dropdown ">
@@ -53,9 +35,6 @@ export default function ThemeClientServer({ domain }) {
           ))}
         </ul>
       </div>
-      <Button className="btn btn-primary" onClick={() => handleTheme()}>
-        Save theme
-      </Button>
     </div>
   );
 }

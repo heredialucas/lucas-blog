@@ -64,10 +64,10 @@ export async function logout(domain) {
   redirect(`/${domain}`);
 }
 
-export async function saveTheme(theme) {
+export async function saveTheme(theme, domain) {
   const url = await getUrl();
 
-  const fetchData = await fetch(`${url}/api/saveTheme`, {
+  const fetchData = await fetch(`${url}/api/saveTheme/${domain}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

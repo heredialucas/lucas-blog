@@ -3,7 +3,7 @@
 import { create } from "zustand";
 
 export const useStore = create((set) => ({
-  theme: "light",
+  theme: "",
   setTheme: (value) => set(() => ({ theme: value })),
   client: {},
   setClient: (value) => set(() => ({ client: value })),

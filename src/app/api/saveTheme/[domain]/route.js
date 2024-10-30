@@ -1,10 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
 export async function POST(request, { params }) {
   const { domain } = params;
-  const { theme } = await request.json();
+  const theme = await request.json();
+
   try {
     const user = await prisma.client.update({
       where: {
@@ -14,15 +16,19 @@ export async function POST(request, { params }) {
         theme,
       },
     });
-    return new NextResponse(JSON.stringify({ user }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+
+    if (!user) {
+      return NextResponse.json({
+        message: "User not found",
+      });
+    }
+
+    return NextResponse.json({ user });
   } catch (error) {
     console.error("Failed to save theme:", error);
-    return new NextResponse(JSON.stringify({ error: "Failed to save theme" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
+    return NextResponse.json({
+      error,
+      message: "Failed to create user",
     });
   }
 }

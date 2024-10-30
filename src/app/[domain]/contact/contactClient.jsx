@@ -9,8 +9,10 @@ import { useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useStore } from "@/zustand/config";
+import { useClientStorage } from "@/hooks/useClientStore";
 
 export default function ContactsClient({ client }) {
+  useClientStorage(client);
   const [formData, setFormData] = useState({
     name: "",
     email: "",

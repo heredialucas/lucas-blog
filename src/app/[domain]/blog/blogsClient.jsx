@@ -3,8 +3,10 @@
 import parse from "html-react-parser";
 import { useStore } from "@/zustand/config";
 import BlogCard from "./[id]/blogCard";
+import { useClientStorage } from "@/hooks/useClientStore";
 
-export function BlogCardsClient({ posts, isAdmin }) {
+export function BlogCardsClient({ posts, isAdmin, client }) {
+  useClientStorage(client);
   const { isLoading } = useStore((state) => state);
 
   return (

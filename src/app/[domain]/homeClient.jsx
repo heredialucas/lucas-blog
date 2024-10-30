@@ -3,21 +3,16 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/zustand/config";
-import { useEffect } from "react";
 import { formatHeroText } from "@/lib/utils";
 import ProfileDefault from "@/public/profile.jpg";
 import PaymentComponent from "@/components/stripe/payment";
 import { Instagram, Linkedin, Facebook } from "lucide-react";
+import { useClientStorage } from "@/hooks/useClientStore";
 
 export function HomeClient({ client, isAdmin }) {
-  const { client: clientStore, setClient } = useStore((state) => state);
+  const { client: clientStore } = useStore((state) => state);
 
-  useEffect(() => {
-    if (client) {
-      setClient(client);
-      localStorage.setItem("client", client.domain);
-    }
-  }, [client, setClient]);
+  useClientStorage(client);
 
   return (
     <div className="flex flex-col-reverse md:flex-row justify-between items-center">

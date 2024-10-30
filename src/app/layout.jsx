@@ -18,9 +18,9 @@ const geistMono = localFont({
 });
 
 export default function RootLayoutBlogui({ children }) {
-  const { isLoading } = useStore((state) => state);
+  const { isLoading, theme, client } = useStore((state) => state);
   return (
-    <html lang="en">
+    <html data-theme={theme || client?.theme || "light"} lang="en">
       <body
         id="body-item"
         className={`grid min-h-dvh grid-rows-[auto_1fr_auto] max-w-6xl mx-auto p-6 ${

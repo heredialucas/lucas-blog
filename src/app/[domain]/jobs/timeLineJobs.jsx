@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import TimelineItem from "@/app/[domain]/jobs/timeLineItem";
+import { useClientStorage } from "@/hooks/useClientStore";
+
 export default function TimelineJobs({ client }) {
+  useClientStorage(client);
   const { timeline } = client;
   const parsedData =
     typeof timeline === "string" ? JSON.parse(timeline) : timeline;

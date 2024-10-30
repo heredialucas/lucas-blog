@@ -11,9 +11,11 @@ import { Trash2 } from "lucide-react";
 import { postImage } from "@/app/api/util/actions";
 import { toast } from "react-toastify";
 import { useStore } from "@/zustand/config";
+import { useClientStorage } from "@/hooks/useClientStore";
 
 const MAX_IMAGE_SIZE = 1 * 1024 * 1024; // 1 MB
 export default function ConfigClientPage({ client }) {
+  useClientStorage(client);
   const router = useRouter();
   const { setIsLoading } = useStore((state) => state);
   const [jobs, setJobs] = useState(() => {

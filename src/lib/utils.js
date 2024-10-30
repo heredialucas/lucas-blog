@@ -35,3 +35,38 @@ export function extractDate(isoString) {
   // Retorna la fecha en formato YYYY-MM-DD
   return `${year}-${month}-${day}`;
 }
+
+export const themes = [
+  { nameLower: "light", nameUpper: "Light" },
+  { nameLower: "dark", nameUpper: "Dark" },
+  { nameLower: "cupcake", nameUpper: "Cupcake" },
+  { nameLower: "bumblebee", nameUpper: "Bumblebee" },
+  { nameLower: "emerald", nameUpper: "Emerald" },
+  { nameLower: "corporate", nameUpper: "Corporate" },
+  { nameLower: "synthwave", nameUpper: "Synthwave" },
+  { nameLower: "retro", nameUpper: "Retro" },
+  { nameLower: "cyberpunk", nameUpper: "Cyberpunk" },
+  { nameLower: "valentine", nameUpper: "Valentine" },
+  { nameLower: "halloween", nameUpper: "Halloween" },
+  { nameLower: "garden", nameUpper: "Garden" },
+  { nameLower: "forest", nameUpper: "Forest" },
+  { nameLower: "aqua", nameUpper: "Aqua" },
+  { nameLower: "lofi", nameUpper: "Lofi" },
+  { nameLower: "pastel", nameUpper: "Pastel" },
+  { nameLower: "fantasy", nameUpper: "Fantasy" },
+  { nameLower: "wireframe", nameUpper: "Wireframe" },
+  { nameLower: "black", nameUpper: "Black" },
+  { nameLower: "luxury", nameUpper: "Luxury" },
+  { nameLower: "dracula", nameUpper: "Dracula" },
+  { nameLower: "cmyk", nameUpper: "Cmyk" },
+  { nameLower: "autumn", nameUpper: "Autumn" },
+  { nameLower: "business", nameUpper: "Business" },
+  { nameLower: "acid", nameUpper: "Acid" },
+  { nameLower: "lemonade", nameUpper: "Lemonade" },
+  { nameLower: "night", nameUpper: "Night" },
+  { nameLower: "coffee", nameUpper: "Coffee" },
+  { nameLower: "winter", nameUpper: "Winter" },
+  { nameLower: "dim", nameUpper: "Dim" },
+  { nameLower: "nord", nameUpper: "Nord" },
+  { nameLower: "sunset", nameUpper: "Sunset" },
+];
