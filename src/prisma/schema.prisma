@@ -24,6 +24,8 @@ model Client {
   facebook     String?
   linkedin     String?
   twitter      String?
+  customerId   String?
+  theme        String?
 }
 
 model Post {

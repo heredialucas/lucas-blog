@@ -10,7 +10,7 @@ export default function LinkCustom() {
   return (
     <>
       <div className="flex bg-primary w-full max-w-md rounded-md shadow-sm focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary">
-        <Label className="inline-flex items-center px-3 text-[#444]">
+        <Label className="inline-flex items-center px-3">
           <strong>blogui.me/</strong>
         </Label>
         <Input
@@ -22,9 +22,7 @@ export default function LinkCustom() {
       </div>
       <Link
         className="btn btn-primary mx-2"
-        href={`https://blogui.me/auth/register/${
-          customPath || `Your-domain`
-        }`}
+        href={`https://blogui.me/auth/register/${customPath || `Your-domain`}`}
       >
         Get started
       </Link>

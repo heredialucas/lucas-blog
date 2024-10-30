@@ -170,7 +170,7 @@ export default function ConfigClientPage({ client }) {
       <div>
         <Label htmlFor="firstName">First Name</Label>
         <Input
-          className="text-[#000]"
+          className=""
           name="firstName"
           type="text"
           value={formData?.firstName}
@@ -181,7 +181,7 @@ export default function ConfigClientPage({ client }) {
       <div>
         <Label htmlFor="lastName">Last Name</Label>
         <Input
-          className="text-[#000]"
+          className=""
           name="lastName"
           type="text"
           value={formData?.lastName}
@@ -192,9 +192,9 @@ export default function ConfigClientPage({ client }) {
         <Label htmlFor="hero">User description</Label>
 
         <Input
-          className="text-[#000]"
+          className=""
           name="hero"
-          type="text"
+          type="textarea"
           value={formData?.hero}
           onChange={(e) => handleInputChange(e, "hero")}
         />
@@ -205,7 +205,7 @@ export default function ConfigClientPage({ client }) {
       <div>
         <Label htmlFor="linkedin">Linkedin</Label>
         <Input
-          className="text-[#000]"
+          className=""
           name="linkedin"
           type="text"
           value={formData?.linkedin}
@@ -215,7 +215,7 @@ export default function ConfigClientPage({ client }) {
       <div>
         <Label htmlFor="twitter">X</Label>
         <Input
-          className="text-[#000]"
+          className=""
           name="twitter"
           type="text"
           value={formData?.twitter}
@@ -225,7 +225,7 @@ export default function ConfigClientPage({ client }) {
       <div>
         <Label htmlFor="facebook">Facebook</Label>
         <Input
-          className="text-[#000]"
+          className=""
           name="facebook"
           type="text"
           value={formData?.facebook}
@@ -235,7 +235,7 @@ export default function ConfigClientPage({ client }) {
       <div>
         <Label htmlFor="instagram">Instagram</Label>
         <Input
-          className="text-[#000]"
+          className=""
           name="instagram"
           type="text"
           value={formData?.instagram}
@@ -245,7 +245,7 @@ export default function ConfigClientPage({ client }) {
       <div>
         <Label htmlFor="resumeLink">Resume link</Label>
         <Input
-          className="text-[#000]"
+          className=""
           name="resumeLink"
           type="text"
           value={formData?.resumeLink}
@@ -271,7 +271,7 @@ export default function ConfigClientPage({ client }) {
             <div className="mb-2">
               <Label htmlFor={`jobTitle-${jobIndex}`}>Job Title</Label>
               <Input
-                className="text-[#000]"
+                className=""
                 id={`jobTitle-${jobIndex}`}
                 value={job.title}
                 onChange={(e) => updateJob(jobIndex, "title", e.target.value)}
@@ -282,7 +282,7 @@ export default function ConfigClientPage({ client }) {
               <div className="flex-1">
                 <Label htmlFor={`jobStartDate-${jobIndex}`}>Start Date</Label>
                 <Input
-                  className="text-[#000]"
+                  className=""
                   id={`jobStartDate-${jobIndex}`}
                   type="date"
                   value={job.startDate}
@@ -295,7 +295,7 @@ export default function ConfigClientPage({ client }) {
               <div className="flex-1">
                 <Label htmlFor={`jobEndDate-${jobIndex}`}>End Date</Label>
                 <Input
-                  className="text-[#000]"
+                  className=""
                   id={`jobEndDate-${jobIndex}`}
                   type="date"
                   value={job.endDate}
@@ -326,7 +326,7 @@ export default function ConfigClientPage({ client }) {
             <div className="mb-2">
               <Label htmlFor={`jobTitle-${jobIndex}`}>Company</Label>
               <Input
-                className="text-[#000]"
+                className=""
                 id={`jobTitle-${jobIndex}`}
                 value={job.company}
                 onChange={(e) => updateJob(jobIndex, "company", e.target.value)}
@@ -347,7 +347,7 @@ export default function ConfigClientPage({ client }) {
                           e.target.value
                         )
                       }
-                      className="text-[#000] inline-block w-[calc(100%-60px)]"
+                      className=" inline-block w-[calc(100%-60px)]"
                     />
                     <Button
                       type="button"

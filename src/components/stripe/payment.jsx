@@ -1,11 +1,24 @@
 "use client";
 import Link from "next/link";
 
-const product = {
-  link: "https://buy.stripe.com/test_28o8AB7Xj5OfgDKbII",
-  priceId: "prod_R74XAwo5qfoo4B",
-};
-
+const product = [
+  {
+    link: "",
+    priceId: "prod_R7WyUvLmG3yohD",
+    name: "Annual",
+    description: "Get access to all features",
+    price: 24.99,
+    currency: "USD",
+    period: "year",
+    features: [
+      "All Free features",
+      "Create unlimited posts",
+      "Advanced profile customization",
+      "Priority support",
+    ],
+    buttonText: "Get Started",
+  },
+];
 const PaymentComponent = ({ domain }) => {
   return (
     <Link href={`/${domain}/pricing`} className="btn btn-primary">

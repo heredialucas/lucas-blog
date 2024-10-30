@@ -18,15 +18,14 @@ const geistMono = localFont({
 });
 
 export default function RootLayoutBlogui({ children }) {
-  const { theme, isLoading } = useStore((state) => state);
+  const { isLoading } = useStore((state) => state);
   return (
     <html lang="en">
       <body
         id="body-item"
-        data-theme={theme || "cupcake"}
-        className={`grid min-h-dvh grid-rows-[auto_1fr_auto] max-w-6xl mx-auto p-6 ${geistSans.variable} ${
-          geistMono.variable
-        } antialiased ${isLoading ? "cursor-wait" : ""} `}
+        className={`grid min-h-dvh grid-rows-[auto_1fr_auto] max-w-6xl mx-auto p-6 ${
+          geistSans.variable
+        } ${geistMono.variable} antialiased ${isLoading ? "cursor-wait" : ""} `}
       >
         {children}
         <ToastContainer

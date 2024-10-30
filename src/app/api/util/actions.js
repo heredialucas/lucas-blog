@@ -64,6 +64,26 @@ export async function logout(domain) {
   redirect(`/${domain}`);
 }
 
+export async function saveTheme(theme) {
+  const url = await getUrl();
+
+  const fetchData = await fetch(`${url}/api/saveTheme`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-cache",
+    body: JSON.stringify(theme),
+  });
+
+  if (!fetchData.ok) {
+    throw new Error("Failed to save theme");
+  }
+
+  const res = await fetchData.json();
+  return res;
+}
+
 export async function register(formData) {
   const rawFormData = Object.fromEntries(formData);
 
