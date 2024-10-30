@@ -137,6 +137,7 @@ export function NavClientSideBlogui() {
             >
               Contact
             </Link>
+            <ThemeClientServer />
             <Link
               href={`/auth/login`}
               className="btn btn-primary text-white text-xl rounded-xl border-2 border-gray-400  "

@@ -16,6 +16,12 @@ export function FooterClientSide({ client }) {
         >
           Visit my blog
         </a>
+        <p className="text-xs mt-2">
+          Styled with{" "}
+          <a href="https://daisyui.com/" target="_blank">
+            DaisyUI
+          </a>
+        </p>
       </div>
     </>
   );
