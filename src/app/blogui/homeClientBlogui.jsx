@@ -4,6 +4,7 @@ import Image from "next/image";
 import ProfileDefault from "@/public/profile.jpg";
 import Link from "next/link";
 import LinkCustom from "@/components/custom/inputCustom";
+import PaymentComponent from "@/components/stripe/payment";
 import { Instagram, Linkedin } from "lucide-react";
 
 export function HomeClientBlogui() {
@@ -70,6 +71,7 @@ export function HomeClientBlogui() {
           >
             Demo
           </Link>
+          <PaymentComponent domain="blogui" />
         </div>
       </div>
       <div className="flex flex-col h-full md:w-1/3 justify-center  items-center">

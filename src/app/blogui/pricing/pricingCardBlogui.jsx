@@ -55,7 +55,7 @@ export default function PricingCard({
       </CardContent>
       <CardFooter>
         <a
-          href={`${link}?prefilled_email=${client.email}`}
+          href={link}
           className="btn btn-primary w-full"
           target="_blank"
           disabled={disabled}

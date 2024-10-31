@@ -37,7 +37,7 @@ export function HomeClient({ client, isAdmin }) {
           </Button>
         )}
         {isAdmin && !client?.isSubscribed && (
-          <div className="my-4">
+          <div className="my-4 md:hidden">
             <PaymentComponent domain={clientStore?.domain} />
           </div>
         )}

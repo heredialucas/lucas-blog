@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { logout } from "@/app/api/util/actions";
 import { toast } from "react-toastify";
 import { useStore } from "@/zustand/config";
+import PaymentComponent from "@/components/stripe/payment";
 export function NavClientSide({ isAdmin, isSubscribed, domain }) {
   const pathname = usePathname();
   const { setIsLoading } = useStore((state) => state);
@@ -90,6 +91,8 @@ export function NavClientSide({ isAdmin, isSubscribed, domain }) {
               Configuration
             </Link>
           )}
+          {isAdmin && !isSubscribed && <PaymentComponent domain={domain} />}
+
           {isAdmin && (
             <Button
               onClick={() => handleLogOut()}
