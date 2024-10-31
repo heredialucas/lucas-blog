@@ -10,7 +10,7 @@ export function FooterClientSide({ client }) {
           <strong>Heredia Lucas</strong>
         </p>
         <a
-          href="https://lucasdev-three.vercel.app/hlucas/blog"
+          href="https://blogui.me/hlucas/blog"
           target="_blank"
           className="text-primary hover:underline"
         >
