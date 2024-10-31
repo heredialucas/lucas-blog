@@ -1,27 +1,34 @@
-Blogui
-Blogui is a SaaS platform designed to help you establish your professional presence online. With Blogui, you can create a personal page that tells your professional story, showcasing your achievements, experiences, and insights.
+# Blogui
 
-Features
-Modern CV: Craft a clean, modern resume that instantly captures attention, free of clutter, and highlights the best of your professional self.
+**Blogui** is a SaaS platform designed to help you establish your professional presence online. With Blogui, you can create a personal page that tells your professional story, showcasing your achievements, experiences, and insights.
 
-Interactive Timeline: Visually showcase your career journey, emphasizing key moments, accomplishments, and growth.
+## Features
 
-Personal Blog: Share your thoughts and knowledge through a personal blog, building your authority and connecting with your audience.
+- **Modern CV**: Craft a clean, modern resume that instantly captures attention, free of clutter, and highlights the best of your professional self.
+  
+- **Interactive Timeline**: Visually showcase your career journey, emphasizing key moments, accomplishments, and growth.
 
-Who Is Blogui For?
+- **Personal Blog**: Share your thoughts and knowledge through a personal blog, building your authority and connecting with your audience.
+
+## Who Is Blogui For?
+
 Blogui is perfect for freelancers, job seekers, and established professionals looking to stand out in the digital world.
 
-Getting Started
-Enter your custom domain and click Get started.
-Try out the platform by selecting the Demo option.
-Explore additional features with Get Premium.
-Screenshot
+## Getting Started
 
-Installation & Usage
-To get started with Blogui, visit blogui.me and create your profile in minutes.
+1. Enter your custom domain and click **Get started**.
+2. Try out the platform by selecting the **Demo** option.
+3. Explore additional features with **Get Premium**.
 
-Author
-This project was developed by Heredia Lucas.
+## Screenshot
 
-License
-This project is licensed under the MIT License.
+![Blogui Screenshot](path/to/screenshot.png)
+
+## Installation & Usage
+
+To get started with Blogui, visit [blogui.me](https://blogui.me) and create your profile in minutes.
+
+## Author
+
+This project was developed by [Heredia Lucas](https://github.com/heredialucas).
+
