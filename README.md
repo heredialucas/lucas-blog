@@ -20,10 +20,6 @@ Blogui is perfect for freelancers, job seekers, and established professionals lo
 2. Try out the platform by selecting the **Demo** option.
 3. Explore additional features with **Get Premium**.
 
-## Screenshot
-
-![Blogui Screenshot](path/to/screenshot.png)
-
 ## Installation & Usage
 
 To get started with Blogui, visit [blogui.me](https://blogui.me) and create your profile in minutes.
