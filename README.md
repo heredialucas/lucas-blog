@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Blogui
+Blogui is a SaaS platform designed to help you establish your professional presence online. With Blogui, you can create a personal page that tells your professional story, showcasing your achievements, experiences, and insights.
 
-## Getting Started
+Features
+Modern CV: Craft a clean, modern resume that instantly captures attention, free of clutter, and highlights the best of your professional self.
 
-First, run the development server:
+Interactive Timeline: Visually showcase your career journey, emphasizing key moments, accomplishments, and growth.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Personal Blog: Share your thoughts and knowledge through a personal blog, building your authority and connecting with your audience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Who Is Blogui For?
+Blogui is perfect for freelancers, job seekers, and established professionals looking to stand out in the digital world.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Getting Started
+Enter your custom domain and click Get started.
+Try out the platform by selecting the Demo option.
+Explore additional features with Get Premium.
+Screenshot
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Installation & Usage
+To get started with Blogui, visit blogui.me and create your profile in minutes.
 
-## Learn More
+Author
+This project was developed by Heredia Lucas.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+License
+This project is licensed under the MIT License.
