@@ -1,4 +1,4 @@
-import Link from "next/link";
+"use client";
 import {
   Card,
   CardHeader,
@@ -6,6 +6,7 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
+import { useClientStorage } from "@/hooks/useClientStore";
 
 export default function PricingCard({
   title,
@@ -14,8 +15,11 @@ export default function PricingCard({
   period,
   features,
   buttonText,
-  buttonLink,
+  link,
+  disabled,
+  client,
 }) {
+  useClientStorage(client);
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
@@ -50,11 +54,14 @@ export default function PricingCard({
         </ul>
       </CardContent>
       <CardFooter>
-        <Link href={buttonLink} className="w-full">
-          <button className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300">
-            {buttonText}
-          </button>
-        </Link>
+        <a
+          href={link}
+          className="btn btn-primary w-full"
+          target="_blank"
+          disabled={disabled}
+        >
+          {buttonText}
+        </a>
       </CardFooter>
     </Card>
   );

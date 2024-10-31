@@ -26,9 +26,35 @@ export async function POST(request) {
   let eventType = event.type;
   let chargeId;
   let charge;
+  let customerEmail = event.data.object.customer_email;
 
   try {
     switch (eventType) {
+      case "checkout.session.completed":
+        if (!customerEmail) {
+          return NextResponse.json({
+            error: "Customer email not found",
+          });
+        }
+
+        const client = await prisma.client.update({
+          where: {
+            email: customerEmail,
+          },
+          data: {
+            isSubscribed: true,
+          },
+        });
+
+        if (client) {
+          return NextResponse.json({
+            message: "Checkout session completed",
+          });
+        } else {
+          return NextResponse.json({
+            error: "Client not found",
+          });
+        }
       case "charge.succeeded":
         chargeId = data.object.id;
         charge = await stripe.charges.retrieve(chargeId);
