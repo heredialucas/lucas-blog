@@ -27,7 +27,7 @@ export default function CreateBlogui() {
       </div>
       <form
         action={handleChange}
-        className=" p-6 border-2 border-gray-200 rounded-xl"
+        className="p-4 md:p-6 border-2 border-gray-200 rounded-xl"
       >
         <div className="flex flex-col  gap-4">
           <div>

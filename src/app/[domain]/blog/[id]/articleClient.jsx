@@ -36,42 +36,42 @@ export default function ArticleClient({ post, id, isAdmin }) {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-8">
           <div className="space-y-4">
-            <span className="text-orange-500 font-medium break-words">
+            <span className="text-sm md:text-lg text-orange-500 font-medium break-words">
               {post.category}
             </span>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4 break-words">
+            <h1 className="text-xl md:text-4xl font-bold text-gray-900 mb-4 break-words">
               {post.title}
             </h1>
             <div className="flex items-center gap-4">
               <Image
                 src={ProfilePicture}
                 alt={post.authorName}
-                className="w-12 h-12 rounded-full object-cover"
+                className="w-6 h-6 md:w-12 md:h-12 rounded-full object-cover"
               />
               <div>
                 <p className="font-medium text-gray-900 break-all">
                   {post.authorName}
                 </p>
-                <p className="text-sm text-gray-500">{formatDate(post.date)}</p>
+                <p className="text-xs md:text-sm text-gray-500">{formatDate(post.date)}</p>
               </div>
             </div>
           </div>
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
+          <div className="mb-8 md:mb-12">
             <Image
               src={post.imageUrl}
               alt={post.title}
               priority={true}
               width={1200}
               height={600}
-              className="w-full h-[500px] object-cover rounded-lg"
+              className="w-full h-[300px] md:h-[500px] object-cover rounded-lg"
             />
           </div>
 
           <article className="prose max-w-none pb-20">
-            <div className=" text-lg leading-relaxed break-words">
+            <div className="text-sm md:text-lg leading-relaxed break-words">
               {parse(post.summary)}
             </div>
           </article>
@@ -99,7 +99,7 @@ export default function ArticleClient({ post, id, isAdmin }) {
                 <Link
                   variant="info"
                   size="sm"
-                  className="btn rounded border-2    "
+                  className="btn rounded border-2"
                   disabled={isLoading}
                   href={`/${pathname}/edit/${id}`}
                 >

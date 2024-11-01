@@ -8,7 +8,7 @@ export default function TimelineJobs() {
   return (
     <div className="w-full mx-auto p-4 bg-cream-50 transition">
       <div className="text-center mb-12">
-        <h2 className="text-2xl md:text-3xl font-semibold  mb-3">
+        <h2 className="text-xl md:text-3xl font-semibold  mb-3">
           Professional Timeline
         </h2>
         <div className="flex justify-center gap-1.5">

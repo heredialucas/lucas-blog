@@ -158,7 +158,7 @@ export default function ConfigClientPage({ client }) {
   return (
     <form
       action={handleConfig}
-      className="flex flex-col gap-4 border-2 p-10 w-full"
+      className="flex flex-col gap-4 border-2 p-2 md:p-10 w-full"
     >
       <div>
         <Label htmlFor="image">Profile Image</Label>

@@ -78,7 +78,7 @@ export default function Create() {
     <form
       ref={ref}
       action={handleChange}
-      className=" p-6 border-2 border-gray-200 rounded-xl"
+      className="p-2 md:p-6 border-2 border-gray-200 rounded-xl"
     >
       <div className="flex flex-col  gap-4">
         <div>
@@ -120,15 +120,6 @@ export default function Create() {
               type="file"
               name="image"
               accept="image/*"
-              disabled={isLoading}
-            />
-          </div>
-          <div>
-            <Label htmlFor="referencePostUrl">Reference Post URL</Label>
-            <Input
-              className=""
-              name="referencePostUrl"
-              placeholder="https://example.com/reference"
               disabled={isLoading}
             />
           </div>

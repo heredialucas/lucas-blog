@@ -17,8 +17,8 @@ export default function ContactsBlogui() {
 
   return (
     <>
-      <div className="w-fit md:w-[600px] bg-[#F2F2F2] p-12 rounded-xl border-2 border-primary">
-        <h3 className="text-xl font-semibold  mb-4">Contact Me</h3>
+      <div className="w-full md:w-[600px] bg-[#F2F2F2] p-4 md:p-12 rounded-xl border-2 border-primary">
+        <h3 className="text-lg md:text-xl font-semibold  mb-4">Contact Me</h3>
         <form action={handleSubmit} className="space-y-4">
           <div className="grid gap-2">
             <Label htmlFor="name">Name</Label>

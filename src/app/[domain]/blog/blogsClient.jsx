@@ -16,7 +16,7 @@ export function BlogCardsClient({ posts, isAdmin, client }) {
       }`}
     >
       <div className="flex justify-between items-center mb-8">
-        <h1 className=" text-2xl font-semibold">Blog Posts</h1>
+        <h1 className="text-xl md:text-2xl font-semibold">Blog Posts</h1>
       </div>
 
       {posts.length === 0 && <p>No posts found.</p>}

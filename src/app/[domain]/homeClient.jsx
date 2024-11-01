@@ -17,10 +17,10 @@ export function HomeClient({ client, isAdmin }) {
   return (
     <div className="flex flex-col-reverse md:flex-row justify-between items-center">
       <div className="flex flex-col h-full justify-between md:w-2/3 mb-8 md:mb-0">
-        <h1 className=" hover:text-secondary text-4xl font-bold mb-2">
+        <h1 className=" hover:text-secondary text-2xl md:text-4xl font-bold mb-2">
           {`Hi! I'm ${clientStore?.firstName || "{ Your first name }"} 👋🏼`}
         </h1>
-        <div className="min-h-[500px] m-6">
+        <div className="min-h-[500px] m-6 text-base">
           {clientStore?.hero
             ? formatHeroText(clientStore?.hero).map((sentence, index) => (
                 <p key={index} className="mb-3 max-w-xl">
@@ -48,7 +48,7 @@ export function HomeClient({ client, isAdmin }) {
           alt={`Profile of ${clientStore?.firstName}`}
           width={300}
           height={300}
-          className="self-center h-fit rounded-full object-cover"
+          className="self-center h-[300px] md:h-fit rounded-full object-cover"
         />
         <div className="flex justify-center gap-10 p-8">
           {client?.instagram && (

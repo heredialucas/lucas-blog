@@ -11,10 +11,10 @@ export function HomeClientBlogui() {
   return (
     <div className="flex flex-col-reverse md:flex-row justify-between items-center">
       <div className="flex flex-col justify-between md:w-2/3 mb-8 md:mb-0">
-        <h1 className="text-primary hover:text-secondary text-4xl font-bold mb-2">
+        <h1 className="text-primary hover:text-secondary text-2xl md:text-4xl font-bold mb-2">
           {`Hi! I'm Blogui 👋🏼`}
         </h1>
-        <div className="flex flex-col justify-start h-full m-4">
+        <div className="flex flex-col text-base justify-start h-full m-4">
           <div className="hero-text max-w-xl">
             <p className=" mb-6">
               {`Ready to take your professional presence online? Welcome to `}
@@ -60,7 +60,7 @@ export function HomeClientBlogui() {
             <p className=" mb-6">{`Ready to get started?`} </p>
           </div>
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-col w-full md:flex-row gap-4">
           <LinkCustom />
         </div>
         <div className="flex items-center gap-4">
@@ -69,7 +69,7 @@ export function HomeClientBlogui() {
             href="/hlucas"
             target="_blank"
           >
-            Demo
+            See Demo
           </Link>
           <PaymentComponent domain="blogui" />
         </div>

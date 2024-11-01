@@ -19,37 +19,37 @@ export default function TimelineItem({
         ></div>
       </div>
 
-      <div className="flex-1 pl-8 pb-16">
+      <div className="flex-1 pl-4 md:pl-8 pb-8 md:pb-16">
         <div
-          className={`rounded-lg p-6 transition-all hover:shadow-md ${
+          className={`rounded-lg p-2 pt-0 md:p-6 transition-all hover:shadow-md ${
             index % 2 === 0 ? "bg-blue-50/50" : "bg-purple-50/50"
           }`}
         >
           <div className="flex flex-col md:flex-row justify-between mb-2">
-            <h3 className="text-lg md:text-xl font-semibold ">
+            <h3 className="text-base md:text-xl font-semibold ">
               {title}
             </h3>
           </div>
           <div className="flex mb-4 gap-6">
             <span
-              className={`text-sm ${
+              className={`text-xs md:text-sm ${
                 index % 2 === 0 ? "text-blue-600" : "text-purple-600"
               } font-medium`}
             >
               {startDate} - {endDate}
             </span>
-            <span className="text-gray-600 text-sm  block">{company}</span>
+            <span className="text-gray-600 text-xs md:text-sm  block">{company}</span>
           </div>
           {description.length > 0 && (
             <ul className="space-y-2.5">
               {description.map((point, idx) => (
                 <li key={idx} className="flex items-start">
                   <span
-                    className={`mr-2 mt-1.5 h-1.5 w-1.5 rounded-full ${
+                    className={`mr-2 mt-1.5 h-1.5 w-2 rounded-full ${
                       index % 2 === 0 ? "bg-blue-300" : "bg-purple-300"
                     }`}
                   ></span>
-                  <span className="text-gray-700 text-sm leading-relaxed">
+                  <span className="text-gray-700 text-xs md:text-sm leading-relaxed">
                     {point}
                   </span>
                 </li>
