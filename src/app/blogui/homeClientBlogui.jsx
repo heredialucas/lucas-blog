@@ -60,7 +60,7 @@ export function HomeClientBlogui() {
             <p className=" mb-6">{`Ready to get started?`} </p>
           </div>
         </div>
-        <div className="flex flex-col w-full md:flex-row gap-4">
+        <div className="flex gap-4">
           <LinkCustom />
         </div>
         <div className="flex items-center gap-4">
