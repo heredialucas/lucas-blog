@@ -27,27 +27,36 @@ export default function LoginPage() {
   }
 
   return (
-    <form action={handleLogin} className="flex flex-col gap-4 border-2 p-10">
+    <form
+      action={handleLogin}
+      className="flex flex-col gap-4 border-2 px-10 py-5 rounded"
+    >
       <div>
-        <Label htmlFor="email">Email</Label>
-        <Input className='' name="email" type="text" required />
+        <Label htmlFor="email" className="text-gray-600 tracking-wide">
+          Email
+        </Label>
+        <Input className="" name="email" type="text" required />
       </div>
       <div>
-        <Label htmlFor="password">Password</Label>
-        <Input className='' name="password" type="password" required />
+        <Label htmlFor="password" className="text-gray-600 tracking-wide">
+          Password
+        </Label>
+        <Input className="" name="password" type="password" required />
       </div>
       <Button
         type="submit"
-        className="btn btn-primary rounded w-full bg-blue-200 hover:bg-blue-300 text-blue-800"
+        className="btn rounded w-full bg-gray-200 hover:bg-blue-300 text-gray-800 hover:text-white tracking-wide"
       >
         Login
       </Button>
-      <Link
-        href="/blogui"
-        className="btn btn-primary rounded bg-blue-200 hover:bg-blue-300 text-blue-800"
-      >
-        Go back
-      </Link>
+      <div className="flex justify-between gap-4">
+        <div className="text-gray-600 tracking-wide hover:text-blue-300 cursor-pointer">
+          <Link href="/blogui">Go back</Link>
+        </div>
+        <div className="text-gray-600 tracking-wide hover:text-blue-300 cursor-pointer">
+          <Link href="/auth/register/Your-domain">Register</Link>
+        </div>
+      </div>
     </form>
   );
 }
