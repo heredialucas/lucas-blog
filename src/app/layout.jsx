@@ -5,6 +5,7 @@ import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { useStore } from "@/zustand/config";
 import { ToastContainer } from "react-toastify";
+import CookieBanner from "@/components/ui/cookieBanner";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -23,7 +24,7 @@ export default function RootLayoutBlogui({ children }) {
     <html data-theme={theme || client?.theme || "cupcake"} lang="en">
       <body
         id="body-item"
-        className={`grid min-h-dvh grid-rows-[auto_1fr_auto] max-w-6xl mx-auto p-6 ${
+        className={`grid min-h-dvh grid-rows-[auto_1fr_auto] max-w-6xl mx-auto px-6 pt-6 ${
           geistSans.variable
         } ${geistMono.variable} antialiased ${isLoading ? "cursor-wait" : ""} `}
       >
@@ -40,6 +41,7 @@ export default function RootLayoutBlogui({ children }) {
           pauseOnHover
           theme="light"
         />
+        <CookieBanner />
       </body>
     </html>
   );
