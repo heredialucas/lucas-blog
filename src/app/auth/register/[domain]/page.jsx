@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { register } from "@/app/api/util/actions";
 import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 export default function RegisterPage({ params }) {
   const { domain } = params;
@@ -54,29 +55,35 @@ export default function RegisterPage({ params }) {
   }
 
   return (
-    <form action={handleRegister} className="flex flex-col gap-4 border-2 p-10">
+    <form
+      action={handleRegister}
+      className="flex flex-col gap-4 border-2 px-10 py-5 rounded"
+    >
       <div>
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email" className="text-gray-600 tracking-wide">
+          Email
+        </Label>
         <Input className="" name="email" type="text" required />
       </div>
       <div>
-        <Label htmlFor="password">Password</Label>
-        <Input
-          className=""
-          name="password"
-          type="password"
-          required
-        />
+        <Label htmlFor="password" className="text-gray-600 tracking-wide">
+          Password
+        </Label>
+        <Input className="" name="password" type="password" required />
       </div>
       <div>
-        <Label htmlFor="domain">Domain</Label>
+        <Label htmlFor="domain" className="text-gray-600 tracking-wide">
+          Domain
+        </Label>
         <Input
           name="domain"
           type="text"
           value={domainState}
           onChange={handleDomainChange}
           required
-          className={domainError ? "border-red-500 " : ""}
+          className={`${
+            domainError ? "border-red-500 " : ""
+          } placeholder-gray-400`}
         />
         {domainError && (
           <p className="text-wrap text-red-500 text-xs mt-1 wrap">
@@ -88,10 +95,18 @@ export default function RegisterPage({ params }) {
       <Button
         type="submit"
         disabled={domainError}
-        className="w-full bg-blue-200 hover:bg-blue-300 text-blue-800 mt-6"
+        className="btn rounded w-full bg-gray-200 hover:bg-blue-300 text-gray-800 hover:text-white tracking-wide"
       >
         Register
       </Button>
+      <div className="flex justify-between gap-4">
+        <div className="text-gray-600 tracking-wide hover:text-blue-300 cursor-pointer">
+          <Link href="/blogui">Go back</Link>
+        </div>
+        <div className="text-gray-600 tracking-wide hover:text-blue-300 cursor-pointer">
+          <Link href="/auth/login">Login</Link>
+        </div>
+      </div>
     </form>
   );
 }
