@@ -9,6 +9,10 @@ export function BlogCardsClient({ posts, isAdmin, client }) {
   useClientStorage(client);
   const { isLoading } = useStore((state) => state);
 
+  const formatedPostsByDate = posts.sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
+
   return (
     <div
       className={`container mx-auto p-6 ${
@@ -22,7 +26,7 @@ export function BlogCardsClient({ posts, isAdmin, client }) {
       {posts.length === 0 && <p>No posts found.</p>}
 
       <div className="flex flex-wrap gap-6">
-        {posts.map((post) => (
+        {formatedPostsByDate.map((post) => (
           <BlogCard
             key={post.id}
             id={post.id}
