@@ -1,12 +1,15 @@
-import { getDataById } from "@/app/api/util/actions";
+import { Article } from "./article";
+import { Loading } from "@/components/custom/loading";
+import { Suspense } from "react";
 import { useCookie } from "@/hooks/useSignOut";
-import ArticleClient from "./articleClient";
 
 export default async function ArticleServerSide({ params }) {
   const { id } = params;
   const { cookie } = await useCookie();
 
-  const { post } = await getDataById("post", id);
-
-  return <ArticleClient post={post} id={id} isAdmin={cookie} />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <Article id={id} isAdmin={cookie} />
+    </Suspense>
+  );
 }

@@ -1,14 +1,19 @@
-import { getData } from "@/app/api/util/actions";
+import { BlogCards } from "@/app/[domain]/blog/blogs";
+import { Loading } from "@/components/custom/loading";
+import { Suspense } from "react";
 import { useCookie } from "@/hooks/useSignOut";
-import { BlogCardsClient } from "@/app/[domain]/blog/blogsClient";
-import { getClientInfoByDomain } from "@/app/api/util/actions";
+import { BlogCardsTitle } from "@/app/[domain]/blog/blogCardsTitle";
 
 export default async function BlogCardsServerSide({ params }) {
   const { domain } = params;
   const { cookie } = await useCookie();
-  const { client } = await getClientInfoByDomain(domain);
 
-  const { posts } = await getData("posts", domain);
-
-  return <BlogCardsClient posts={posts} isAdmin={cookie} client={client} />;
+  return (
+    <>
+      <BlogCardsTitle />
+      <Suspense fallback={<Loading />}>
+        <BlogCards domain={domain} isAdmin={cookie} />
+      </Suspense>
+    </>
+  );
 }

@@ -1,9 +1,13 @@
-import TimelineJobs from "./timeLineJobs";
-import { getClientInfoByDomain } from "@/app/api/util/actions";
+import { Loading } from "@/components/custom/loading";
+import { Suspense } from "react";
+import { TimelineJobs } from "./timelineJobs";
 
 export default async function TimelineJobsServer({ params }) {
   const { domain } = params;
-  const { client } = await getClientInfoByDomain(domain);
 
-  return <TimelineJobs client={client} />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <TimelineJobs domain={domain} />
+    </Suspense>
+  );
 }

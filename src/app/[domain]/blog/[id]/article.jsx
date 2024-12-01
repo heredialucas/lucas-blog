@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import ProfilePicture from "@/public/lucas.jpeg";
 import { formatDate } from "@/app/[domain]/utils";
@@ -8,25 +6,26 @@ import parse from "html-react-parser";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
-import { useStore } from "@/zustand/config";
 import { Edit2 } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { getDataById } from "@/app/api/util/actions";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-export default function ArticleClient({ post, id, isAdmin }) {
-  const { isLoading, setIsLoading } = useStore((state) => state);
-  const pathname = usePathname().split("/")[1];
+export async function Article({ id, isAdmin }) {
+  const pathname = headers().get("referer").split("/")[3];
+
+  const { post } = await getDataById("post", id);
+
   const handleDelete = async () => {
-    setIsLoading(true);
     const { post, message } = await deleteDataById("post", id, pathname);
 
-    setIsLoading(false);
     if (!post) {
       toast.error(message);
       return;
     }
 
     toast.success(message);
-    route.push(`/${pathname}/blog`);
+    redirect(`/${pathname}/blog`);
   };
 
   if (!post) return "Post Not Found";
@@ -52,7 +51,9 @@ export default function ArticleClient({ post, id, isAdmin }) {
                 <p className="font-medium text-gray-900 break-all">
                   {post.authorName}
                 </p>
-                <p className="text-xs md:text-sm text-gray-500">{formatDate(post.date)}</p>
+                <p className="text-xs md:text-sm text-gray-500">
+                  {formatDate(post.date)}
+                </p>
               </div>
             </div>
           </div>

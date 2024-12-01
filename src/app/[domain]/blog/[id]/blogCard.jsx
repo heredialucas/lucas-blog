@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,7 @@ import { useStore } from "@/zustand/config";
 import { useRouter, usePathname } from "next/navigation";
 import { toast } from "react-toastify";
 
-export default function BlogCard({
+export function BlogCard({
   id,
   image,
   title,

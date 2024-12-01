@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -382,7 +384,7 @@ export default function ConfigClientPage({ client }) {
         type="submit"
         className="w-full bg-blue-200 hover:bg-blue-300 text-blue-800 mt-6"
       >
-        Send
+        Save Changes
       </Button>
     </form>
   );

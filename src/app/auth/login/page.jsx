@@ -1,28 +1,17 @@
-"use client";
-
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { login } from "@/app/api/util/actions";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
 import Link from "next/link";
-import { useStore } from "@/zustand/config";
 
 export default function LoginPage() {
-  const route = useRouter();
-  const { setIsLoading } = useStore((state) => state);
   async function handleLogin(formData) {
-    setIsLoading(true);
+    "use server";
     const { authenticated, message, domain } = await login(formData);
 
-    setIsLoading(false);
-    if (!authenticated) {
-      toast.warning(`${message}`);
-    }
     if (authenticated) {
-      toast.success(`${message}`);
-      route.push(`/${domain}`);
+      redirect(`/${domain}`);
     }
   }
 

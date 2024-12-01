@@ -1,25 +1,17 @@
+import { getData } from "@/app/api/util/actions";
+import { BlogCard } from "./[id]/blogCard";
 import parse from "html-react-parser";
-import { useStore } from "@/zustand/config";
-import BlogCard from "./[id]/blogCard";
 
-export function BlogCardsClient({ posts, isAdmin }) {
-  const { isLoading } = useStore((state) => state);
+export async function BlogCards({ domain, isAdmin }) {
+  const { posts } = await getData("posts", domain);
 
   const formatedPostsByDate = posts.sort((a, b) => {
     return new Date(b.date) - new Date(a.date);
   });
 
   return (
-    <div
-      className={`container mx-auto p-6 ${
-        isLoading ? "cursor-wait" : "cursor-default"
-      }`}
-    >
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-xl md:text-2xl font-semibold">Blog Posts</h1>
-      </div>
-
-      {posts.length === 0 && <p>No posts found.</p>}
+    <div className={`container mx-auto p-6`}>
+      {posts.length === 0 && <h2>No posts found.</h2>}
 
       <div className="flex flex-wrap gap-6">
         {formatedPostsByDate.map((post) => (

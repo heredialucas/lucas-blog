@@ -1,12 +1,24 @@
 import Link from "next/link";
 import TimelineItem from "@/app/[domain]/jobs/timeLineItem";
+import { getClientInfoByDomain } from "@/app/api/util/actions";
 
-export default function TimelineJobs({ client }) {
-  const { timeline } = client;
+export async function TimelineJobs({ domain }) {
+  const { client } = await getClientInfoByDomain(domain);
+
+  if (!client.timeline) {
+    return (
+      <h2 className="w-full mx-auto p-4 bg-cream-50 transition">
+        No timeline found
+      </h2>
+    );
+  }
+
   const parsedData =
-    typeof timeline === "string" ? JSON.parse(timeline) : timeline;
+    typeof client.timeline === "string"
+      ? JSON.parse(client.timeline)
+      : client.timeline;
 
-  const sortData = parsedData.sort((a, b) => {
+  const sortData = parsedData?.sort((a, b) => {
     return new Date(b.startDate) - new Date(a.startDate);
   });
 
