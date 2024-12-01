@@ -1,4 +1,3 @@
-"use client";
 import {
   Card,
   CardHeader,
@@ -6,7 +5,6 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-import { useClientStorage } from "@/hooks/useClientStore";
 
 export default function PricingCard({
   title,
@@ -17,9 +15,7 @@ export default function PricingCard({
   buttonText,
   link,
   disabled,
-  client,
 }) {
-  useClientStorage(client);
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>

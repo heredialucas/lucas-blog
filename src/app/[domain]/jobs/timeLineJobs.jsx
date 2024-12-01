@@ -1,14 +1,14 @@
-"use client";
-
 import Link from "next/link";
 import TimelineItem from "@/app/[domain]/jobs/timeLineItem";
-import { useClientStorage } from "@/hooks/useClientStore";
 
 export default function TimelineJobs({ client }) {
-  useClientStorage(client);
   const { timeline } = client;
   const parsedData =
     typeof timeline === "string" ? JSON.parse(timeline) : timeline;
+
+  const sortData = parsedData.sort((a, b) => {
+    return new Date(b.startDate) - new Date(a.startDate);
+  });
 
   return (
     <div className="w-full mx-auto p-4 bg-cream-50 transition">
@@ -23,7 +23,7 @@ export default function TimelineJobs({ client }) {
         </div>
       </div>
       <div className="relative">
-        {parsedData?.map((item, idx) => (
+        {sortData?.map((item, idx) => (
           <TimelineItem key={idx} {...item} index={idx} />
         ))}
       </div>

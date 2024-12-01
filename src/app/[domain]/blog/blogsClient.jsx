@@ -1,12 +1,8 @@
-"use client";
-
 import parse from "html-react-parser";
 import { useStore } from "@/zustand/config";
 import BlogCard from "./[id]/blogCard";
-import { useClientStorage } from "@/hooks/useClientStore";
 
-export function BlogCardsClient({ posts, isAdmin, client }) {
-  useClientStorage(client);
+export function BlogCardsClient({ posts, isAdmin }) {
   const { isLoading } = useStore((state) => state);
 
   const formatedPostsByDate = posts.sort((a, b) => {

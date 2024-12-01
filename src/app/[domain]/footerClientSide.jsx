@@ -1,7 +1,4 @@
-"use client";
-import { Instagram, Linkedin, Facebook } from "lucide-react";
-
-export function FooterClientSide({ client }) {
+export function FooterClientSide() {
   return (
     <div className="text-center m-6 p-4">
       <p className="text-sm -600">
