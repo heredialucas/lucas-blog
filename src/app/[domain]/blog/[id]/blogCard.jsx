@@ -1,45 +1,25 @@
-"use client";
-
-import Image from "next/image";
+import { ButtonDeleteCard } from "../components/buttonCard";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Trash2, Edit2 } from "lucide-react";
-import ProfilePicture from "@/public/profile.jpg";
-import Link from "next/link";
+import { Edit2 } from "lucide-react";
 import { formatText, extractDate } from "@/lib/utils";
-import { deleteDataById } from "@/app/api/util/actions";
-import { useStore } from "@/zustand/config";
-import { useRouter, usePathname } from "next/navigation";
-import { toast } from "react-toastify";
+import { getClientInfoByDomain } from "@/app/api/util/actions";
+import { headers } from "next/headers";
+import Image from "next/image";
+import Link from "next/link";
+import ProfilePicture from "@/public/profile.jpg";
 
-export function BlogCard({
-  id,
-  image,
-  title,
-  date,
+export async function BlogCard({
   author,
   category,
+  date,
+  domain,
+  id,
+  image,
   isAdmin,
+  title,
 }) {
-  const route = useRouter();
-  const pathname = usePathname().split("/")[1];
-  const { client, isLoading, setIsLoading } = useStore((state) => state);
-  const handleDelete = async () => {
-    setIsLoading(true);
-    const { post, message } = await deleteDataById("post", id, pathname);
-
-    setIsLoading(false);
-    if (!post) {
-      toast.error(message);
-      return;
-    }
-
-    toast.success(message);
-    route.push(`/${pathname}/blog`);
-  };
-  const handleEdit = () => {
-    route.push(`/${pathname}/edit/${id}`);
-  };
+  const { client } = await getClientInfoByDomain(domain);
+  const pathname = headers().get("referer")?.split("/")[3];
 
   return (
     <>
@@ -94,37 +74,19 @@ export function BlogCard({
             <div className="flex gap-2">
               <Link
                 href={`/${pathname}/blog/${id}`}
-                disabled={true}
-                className={`flex flex-2 text-xs border-2  p-2 rounded font-medium   ${
-                  isLoading
-                    ? "pointer-events-none border-gray-400 text-gray-400"
-                    : ""
-                }`}
-                aria-disabled={isLoading}
-                tabIndex={isLoading ? -1 : undefined}
+                className={`flex flex-2 justify-center items-center text-xs border-2  p-2 rounded font-medium`}
               >
                 Read More
               </Link>
               {isAdmin && (
                 <>
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    className="rounded border-2  hover:bg-red-500  "
-                    onClick={() => handleDelete()}
-                    disabled={isLoading}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="info"
-                    size="sm"
-                    className="rounded border-2    "
-                    onClick={() => handleEdit()}
-                    disabled={isLoading}
+                  <ButtonDeleteCard id={id} />
+                  <Link
+                    className="flex justify-center items-center rounded border-2 p-2 "
+                    href={`/${pathname}/edit/${id}`}
                   >
                     <Edit2 className="h-4 w-4" />
-                  </Button>
+                  </Link>
                 </>
               )}
             </div>

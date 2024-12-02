@@ -1,11 +1,9 @@
-"use client";
-
-import localFont from "next/font/local";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
-import { useStore } from "@/zustand/config";
 import { ToastContainer } from "react-toastify";
 import CookieBanner from "@/components/ui/cookieBanner";
+import localFont from "next/font/local";
+import { useCookie } from "@/hooks/useSignOut";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -18,19 +16,18 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export default function RootLayoutBlogui({ children }) {
-  const { isLoading, theme, client } = useStore((state) => state);
+export default async function RootLayoutBlogui({ children }) {
+  const { theme } = await useCookie();
+
   return (
-    <html data-theme={theme || client?.theme || "cupcake"} lang="en">
+    <html data-theme={theme.value || "cupcake"} lang="en">
       <body
         id="body-item"
-        className={`grid min-h-dvh grid-rows-[auto_1fr_auto] max-w-6xl mx-auto px-6 pt-6 ${
-          geistSans.variable
-        } ${geistMono.variable} antialiased ${isLoading ? "cursor-wait" : ""} `}
+        className={`grid min-h-dvh grid-rows-[auto_1fr_auto] max-w-6xl mx-auto px-6 pt-6 ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
         <ToastContainer
-          position="top-right"
+          position="bottom-right"
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop={false}

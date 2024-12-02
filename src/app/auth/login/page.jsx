@@ -1,17 +1,26 @@
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { login } from "@/app/api/util/actions";
-import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function LoginPage() {
+  const router = useRouter();
   async function handleLogin(formData) {
-    "use server";
     const { authenticated, message, domain } = await login(formData);
 
+    if (!authenticated) {
+      toast.error(message);
+      return;
+    }
+
+    toast.success(message);
     if (authenticated) {
-      redirect(`/${domain}`);
+      router.push(`/${domain}`);
     }
   }
 

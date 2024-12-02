@@ -50,10 +50,12 @@ export async function login(formData) {
     throw new Error("Failed to login");
   }
 
-  const { authenticated, message, token, domain } = await fetchData.json();
+  const { authenticated, message, token, domain, theme } =
+    await fetchData.json();
   if (authenticated) {
     cookies().set("token", token, { maxAge: 3600 });
     cookies().set("domain", domain, { maxAge: 3600 });
+    cookies().set("theme", theme, { maxAge: 3600 });
   }
   return { authenticated, domain, message };
 }
@@ -80,6 +82,7 @@ export async function saveTheme(theme, domain) {
     throw new Error("Failed to save theme");
   }
 
+  cookies().set("theme", theme, { maxAge: 3600 });
   const res = await fetchData.json();
   return res;
 }

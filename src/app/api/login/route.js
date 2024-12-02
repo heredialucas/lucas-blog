@@ -30,7 +30,7 @@ export async function POST(request) {
     });
   }
 
-  const { domain } = user;
+  const { domain, theme } = user;
   const secret = new TextEncoder().encode(`${process.env.JWT_SECRET}${domain}`);
   const token = await new jwt.SignJWT({
     id: user.id,
@@ -47,5 +47,6 @@ export async function POST(request) {
     message: "Login successful",
     token,
     domain,
+    theme,
   });
 }

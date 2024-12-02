@@ -25,6 +25,7 @@ export async function BlogCards({ domain, isAdmin }) {
             date={post.date}
             category={post.category}
             isAdmin={isAdmin}
+            domain={domain}
           />
         ))}
       </div>

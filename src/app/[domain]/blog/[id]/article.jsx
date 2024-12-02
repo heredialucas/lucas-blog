@@ -1,26 +1,17 @@
-import Image from "next/image";
-import ProfilePicture from "@/public/lucas.jpeg";
-import { formatDate } from "@/app/[domain]/utils";
-import { deleteDataById } from "@/app/api/util/actions";
-import parse from "html-react-parser";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Trash2 } from "lucide-react";
+import { ButtonDeleteArticle } from "@/app/[domain]/blog/components/buttonArticle";
 import { Edit2 } from "lucide-react";
+import { formatDate } from "@/app/[domain]/utils";
 import { getDataById } from "@/app/api/util/actions";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import parse from "html-react-parser";
+import ProfilePicture from "@/public/lucas.jpeg";
 
 export async function Article({ id, isAdmin }) {
-  const pathname = headers().get("referer").split("/")[3];
+  const pathname = headers().get("referer")?.split("/")[3];
 
   const { post } = await getDataById("post", id);
-
-  const handleDelete = async () => {
-    const { post, message } = await deleteDataById("post", id, pathname);
-
-    redirect(`/${pathname}/blog`);
-  };
 
   if (!post) return "Post Not Found";
 
@@ -39,7 +30,7 @@ export async function Article({ id, isAdmin }) {
               <Image
                 src={ProfilePicture}
                 alt={post.authorName}
-                className="w-6 h-6 md:w-12 md:h-12 rounded-full object-cover"
+                className="w-6 h-6 md:w-12 md:h-12 rounded-full object-cover "
               />
               <div>
                 <p className="font-medium text-gray-900 break-all">
@@ -61,7 +52,7 @@ export async function Article({ id, isAdmin }) {
               priority={true}
               width={1200}
               height={600}
-              className="w-full h-[300px] md:h-[500px] object-cover rounded-lg"
+              className="w-full h-[300px] md:h-[500px] object-cover rounded-lg border border-gray-400"
             />
           </div>
 
@@ -83,13 +74,7 @@ export async function Article({ id, isAdmin }) {
             </Link>
             {isAdmin && (
               <div className="flex gap-2">
-                <Button
-                  size="sm"
-                  className="btn btn-warning bg-error rounded border-2    "
-                  onClick={() => handleDelete()}
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
+                <ButtonDeleteArticle id={id} />
                 <Link
                   variant="info"
                   size="sm"

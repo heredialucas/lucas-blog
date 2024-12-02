@@ -7,21 +7,32 @@ import { toast } from "react-toastify";
 import { themes } from "@/lib/utils";
 
 export default function ThemeClientServer({ domain }) {
-  const { theme, setTheme, setIsLoading } = useStore((state) => state);
+  const { theme, setTheme } = useStore((state) => state);
 
+  console.log("\n\n");
+  console.log(theme);
+  console.log("\n\n");
   const handleTheme = async () => {
-    setIsLoading(true);
     const { user } = await saveTheme(theme, domain);
     if (!user) {
       toast.error("Something went wrong");
     }
 
     toast.success("Saved successfully");
-    setIsLoading(false);
   };
 
   return (
     <div className="flex gap-6 items-center mx-auto p-4  transition">
+      {theme.length ? (
+        <div>
+          <p>Selected theme</p>
+          <span className="text-sm bg-primary px-2 py-1 rounded-lg">
+            {theme}
+          </span>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="dropdown ">
         <div tabIndex={0} role="button" className="btn m-1">
           Theme
@@ -53,7 +64,11 @@ export default function ThemeClientServer({ domain }) {
           ))}
         </ul>
       </div>
-      <Button className="btn btn-primary" onClick={() => handleTheme()}>
+      <Button
+        className="btn btn-primary"
+        onClick={() => handleTheme()}
+        disabled={!theme.length}
+      >
         Save theme
       </Button>
     </div>

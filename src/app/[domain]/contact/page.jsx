@@ -7,11 +7,11 @@ export default async function ContactServer({ params }) {
   const { domain } = params;
 
   return (
-    <div className="w-full md:w-[600px] p-4 md:p-12 rounded-xl border-2 border-primary">
+    <>
       <ContactTitle domain={domain} />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<Loading height="fit" />}>
         <ContactForm domain={domain} />
       </Suspense>
-    </div>
+    </>
   );
 }
