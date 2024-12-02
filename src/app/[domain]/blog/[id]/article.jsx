@@ -19,12 +19,6 @@ export async function Article({ id, isAdmin }) {
   const handleDelete = async () => {
     const { post, message } = await deleteDataById("post", id, pathname);
 
-    if (!post) {
-      toast.error(message);
-      return;
-    }
-
-    toast.success(message);
     redirect(`/${pathname}/blog`);
   };
 
@@ -93,7 +87,6 @@ export async function Article({ id, isAdmin }) {
                   size="sm"
                   className="btn btn-warning bg-error rounded border-2    "
                   onClick={() => handleDelete()}
-                  disabled={isLoading}
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
@@ -101,7 +94,6 @@ export async function Article({ id, isAdmin }) {
                   variant="info"
                   size="sm"
                   className="btn rounded border-2"
-                  disabled={isLoading}
                   href={`/${pathname}/edit/${id}`}
                 >
                   <Edit2 className="h-4 w-4" />
