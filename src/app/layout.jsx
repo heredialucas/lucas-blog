@@ -20,7 +20,7 @@ export default async function RootLayoutBlogui({ children }) {
   const { theme } = await useCookie();
 
   return (
-    <html data-theme={theme.value || "cupcake"} lang="en">
+    <html data-theme={theme?.value || "cupcake"} lang="en">
       <body
         id="body-item"
         className={`grid min-h-dvh grid-rows-[auto_1fr_auto] max-w-6xl mx-auto px-6 pt-6 ${geistSans.variable} ${geistMono.variable} antialiased`}
