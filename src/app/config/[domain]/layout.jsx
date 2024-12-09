@@ -1,6 +1,6 @@
 import { NavClientSide } from "@/app/[domain]/navClientSide";
 import { useCookie } from "@/hooks/useSignOut";
-import { getClientInfoByDomain } from "@/app/server/actions/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 import { FooterServerSide } from "@/app/[domain]/footerServerSide";
 export default async function ConfigLayout({ params, children }) {
   const { domain } = params;

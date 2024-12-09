@@ -3,7 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { postData, postImage } from "@/app/server/actions/actions";
+import { postData } from "@/app/server/actions/postData";
+import { postImage } from "@/app/server/actions/postImage";
 import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
@@ -51,11 +52,11 @@ export default function Create() {
         type: file.type,
         data: serializedFile,
       };
-      const image = await postImage(fileData);
+      const { blobUploaded } = await postImage(fileData);
       const { newPost, message } = await postData(
         formData,
         editorContent,
-        image.url,
+        blobUploaded.url,
         pathname
       );
 

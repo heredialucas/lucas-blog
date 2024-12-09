@@ -1,5 +1,5 @@
 import { formatHeroText } from "@/lib/utils";
-import { getClientInfoByDomain } from "@/app/server/actions/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 
 export async function HomeHeroText({ domain }) {
   const { client } = await getClientInfoByDomain(domain);

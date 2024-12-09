@@ -1,6 +1,6 @@
 import Link from "next/link";
 import TimelineItem from "@/app/[domain]/jobs/timeLineItem";
-import { getClientInfoByDomain } from "@/app/server/actions/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 
 export async function TimelineJobs({ domain }) {
   const { client } = await getClientInfoByDomain(domain);

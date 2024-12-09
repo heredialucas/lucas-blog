@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { configUser } from "@/app/server/actions/actions";
+import { configUser } from "@/app/server/actions/configUser";
 import { useRouter } from "next/navigation";
 import { Trash2 } from "lucide-react";
-import { postImage } from "@/app/server/actions/actions";
+import { postImage } from "@/app/server/actions/postImage";
 import { toast } from "react-toastify";
 import { useStore } from "@/zustand/config";
 
@@ -118,39 +118,51 @@ export default function ConfigClientPage({ client }) {
   };
 
   async function handleConfig(formData) {
+    let response;
     setIsLoading(true);
     formData.append("timeline", JSON.stringify(jobs));
     const file = formData.get("image");
 
-    if (file.size > MAX_IMAGE_SIZE) {
-      toast.error("Image size should be less than 500kb");
-      return;
+    if (file.size > 0) {
+      if (file.size > MAX_IMAGE_SIZE) {
+        toast.error("Image size should be less than 500kb");
+        return;
+      }
+
+      const arrayBuffer = await file.arrayBuffer();
+      const buffer = new Uint8Array(arrayBuffer);
+      const serializedFile = Array.from(buffer);
+
+      const fileData = {
+        name: file.name,
+        type: file.type,
+        data: serializedFile,
+      };
+      const { blobUploaded } = await postImage(fileData);
+
+      const { success } = await configUser(
+        formData,
+        blobUploaded?.url,
+        client?.domain
+      );
+      response = success;
+    } else {
+      const { success } = await configUser(
+        formData,
+        client?.imageUrl,
+        client?.domain
+      );
+      response = success;
     }
 
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = new Uint8Array(arrayBuffer);
-    const serializedFile = Array.from(buffer);
-
-    const fileData = {
-      name: file.name,
-      type: file.type,
-      data: serializedFile,
-    };
-    const image = await postImage(fileData);
-    const { configurated } = await configUser(
-      formData,
-      image.url,
-      client?.domain
-    );
-
     setIsLoading(false);
-    if (!configurated) {
+    if (!response) {
       toast.error("Something went wrong");
     }
 
-    if (configurated) {
+    if (response) {
       toast.success("Configured successfully");
-      router.push(`/${client?.domain}`);
+      router.push(`/${client?.domain}/jobs`);
     }
   }
   return (

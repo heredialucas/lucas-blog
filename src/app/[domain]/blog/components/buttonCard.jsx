@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { deleteDataById } from "@/app/server/actions/actions";
+import { deletePost } from "@/app/server/actions/deletePost";
 import { Trash2 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -11,7 +11,7 @@ export function ButtonDeleteCard({ id }) {
   const pathname = usePathname()?.split("/")[1];
 
   const handleDelete = async () => {
-    const { post, message } = await deleteDataById("post", id, pathname);
+    const { post, message } = await deletePost(id, pathname);
 
     if (!post) {
       toast.error(message);

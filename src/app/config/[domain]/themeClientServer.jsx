@@ -1,6 +1,6 @@
 "use client";
 
-import { saveTheme } from "@/app/server/actions/actions";
+import { saveTheme } from "@/app/server/actions/saveTheme";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/zustand/config";
 import { toast } from "react-toastify";
@@ -9,9 +9,6 @@ import { themes } from "@/lib/utils";
 export default function ThemeClientServer({ domain }) {
   const { theme, setTheme } = useStore((state) => state);
 
-  console.log("\n\n");
-  console.log(theme);
-  console.log("\n\n");
   const handleTheme = async () => {
     const { user } = await saveTheme(theme, domain);
     if (!user) {

@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { editDataById } from "@/app/server/actions/actions";
+import { updatePost } from "@/app/server/actions/updatePost";
 import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
@@ -37,7 +37,7 @@ export default function EditClient({ id, post, isAdmin }) {
   const handleChange = async (formData) => {
     setIsLoading(true);
 
-    const { post, message } = await editDataById(
+    const { post, message } = await updatePost(
       formData,
       editorContent,
       id,

@@ -1,19 +1,15 @@
 import { EmailTemplate } from "@/app/[domain]/contact/emailTemplate";
-import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.AUTH_RESEND_KEY);
 
-export async function POST(req) {
-  const { name, email, userEmail, message } = await req.json();
+export async function sendEmail(formData, email) {
+  const rawFormData = Object.fromEntries(formData);
+
+  const { name, email: userEmail, message } = rawFormData;
 
   if (!name || !email || !message) {
-    return NextResponse.json(
-      {
-        message: "Name, email, and message are required",
-      },
-      { status: 400 }
-    );
+    return { success: false, message: "All fields are required" };
   }
 
   try {
@@ -26,14 +22,11 @@ export async function POST(req) {
     });
 
     if (error) {
-      return NextResponse.json({ error }, { status: 500 });
+      return { success: false, message: "Failed to send email" };
     }
 
-    return NextResponse.json({ data, message: "Email sent successfully" });
+    return { success: true, data, message: "Email sent successfully" };
   } catch (error) {
-    return NextResponse.json(
-      { message: "Failed to send email" },
-      { status: 500 }
-    );
+    return { success: false, message: "Failed to send email" };
   }
 }

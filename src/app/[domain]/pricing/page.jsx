@@ -1,5 +1,5 @@
 import PricingCard from "./pricingCard";
-import { getClientInfoByDomain } from "@/app/server/actions/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 
 const freePlan = [
   {

@@ -1,6 +1,6 @@
 import PricingCardBlogui from "./pricingCardBlogui";
 import LinkCustom from "@/components/custom/inputCustom";
-import { getClientInfoByDomain } from "@/app/server/actions/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 
 const freePlan = [
   {

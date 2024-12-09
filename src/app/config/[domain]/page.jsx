@@ -1,6 +1,6 @@
 import ConfigClient from "./configClient";
 import ThemeClientServer from "./themeClientServer";
-import { getClientInfoByDomain } from "@/app/server/actions/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 
 export default async function ConfigServerSide({ params }) {
   const { domain } = params;

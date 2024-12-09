@@ -1,4 +1,4 @@
-import { getClientInfoByDomain } from "../../../server/actions/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 
 export async function HomeHeroName({ domain }) {
   const { client } = await getClientInfoByDomain(domain);

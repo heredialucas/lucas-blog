@@ -1,6 +1,6 @@
 import { NavClientSide } from "./navClientSide";
 import { useCookie } from "@/hooks/useSignOut";
-import { getClientInfoByDomain } from "@/app/server/actions/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 
 export async function NavServerSide({ domain }) {
   const { cookie } = await useCookie();

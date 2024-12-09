@@ -1,7 +1,7 @@
 import { ButtonDeleteArticle } from "@/app/[domain]/blog/components/buttonArticle";
 import { Edit2 } from "lucide-react";
 import { formatDate } from "@/app/[domain]/utils";
-import { getDataById } from "@/app/server/actions/actions";
+import { getPost } from "@/app/server/actions/getPost";
 import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import ProfilePicture from "@/public/lucas.jpeg";
 export async function Article({ id, isAdmin }) {
   const pathname = headers().get("referer")?.split("/")[3];
 
-  const { post } = await getDataById("post", id);
+  const { post } = await getPost(id);
 
   if (!post) return "Post Not Found";
 

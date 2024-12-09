@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { getClientInfoByDomain } from "../../../server/actions/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 
 export async function HomeHeroResume({ domain }) {
   const { client } = await getClientInfoByDomain(domain);
-  
+
   if (!client?.resumeLink) {
     return <></>;
   }

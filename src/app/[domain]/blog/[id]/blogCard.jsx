@@ -2,7 +2,7 @@ import { ButtonDeleteCard } from "../components/buttonCard";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Edit2 } from "lucide-react";
 import { formatText, extractDate } from "@/lib/utils";
-import { getClientInfoByDomain } from "@/app/server/actions/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";

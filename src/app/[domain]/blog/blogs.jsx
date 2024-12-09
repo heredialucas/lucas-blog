@@ -1,9 +1,9 @@
-import { getData } from "@/app/server/actions/actions";
+import { getPosts } from "@/app/server/actions/getPosts";
 import { BlogCard } from "./[id]/blogCard";
 import parse from "html-react-parser";
 
 export async function BlogCards({ domain, isAdmin }) {
-  const { posts } = await getData("posts", domain);
+  const { posts } = await getPosts(domain);
 
   const formatedPostsByDate = posts.sort((a, b) => {
     return new Date(b.date) - new Date(a.date);
