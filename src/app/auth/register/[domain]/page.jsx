@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { register } from "@/app/api/util/actions";
+import { register } from "@/app/server/actions/actions";
 import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getClientInfoByDomain } from "@/app/api/util/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/actions";
 
 export async function HomeHeroImg({ domain }) {
   const { client } = await getClientInfoByDomain(domain);

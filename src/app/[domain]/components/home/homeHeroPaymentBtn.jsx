@@ -1,4 +1,4 @@
-import { getClientInfoByDomain } from "@/app/api/util/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/actions";
 import PaymentComponent from "@/components/stripe/payment";
 
 export async function HomeHeroPaymentBtn({ domain }) {

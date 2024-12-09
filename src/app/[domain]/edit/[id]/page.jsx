@@ -1,6 +1,6 @@
 import EditClient from "@/app/[domain]/edit/[id]/editClient";
 import { useCookie } from "@/hooks/useSignOut";
-import { getDataById } from "@/app/api/util/actions";
+import { getDataById } from "@/app/server/actions/actions";
 
 export default async function EditServerSide({ params }) {
   const { id } = params;

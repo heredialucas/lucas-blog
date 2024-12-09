@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { logout } from "@/app/api/util/actions";
+import { logout } from "@/app/server/actions/actions";
 import { toast } from "react-toastify";
 import { useStore } from "@/zustand/config";
 import PaymentComponent from "@/components/stripe/payment";

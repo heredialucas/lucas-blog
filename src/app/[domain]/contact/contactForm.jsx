@@ -2,9 +2,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { sendEmail } from "@/app/api/util/actions";
+import { sendEmail } from "@/app/server/actions/actions";
 import { redirect } from "next/navigation";
-import { getClientInfoByDomain } from "@/app/api/util/actions";
+import { getClientInfoByDomain } from "@/app/server/actions/actions";
 import { headers } from "next/headers";
 
 export async function ContactForm({ domain }) {

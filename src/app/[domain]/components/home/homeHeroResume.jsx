@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { getClientInfoByDomain } from "../../../api/util/actions";
+import { getClientInfoByDomain } from "../../../server/actions/actions";
 
 export async function HomeHeroResume({ domain }) {
   const { client } = await getClientInfoByDomain(domain);

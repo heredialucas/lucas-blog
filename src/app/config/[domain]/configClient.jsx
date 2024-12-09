@@ -5,10 +5,10 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { configUser } from "@/app/api/util/actions";
+import { configUser } from "@/app/server/actions/actions";
 import { useRouter } from "next/navigation";
 import { Trash2 } from "lucide-react";
-import { postImage } from "@/app/api/util/actions";
+import { postImage } from "@/app/server/actions/actions";
 import { toast } from "react-toastify";
 import { useStore } from "@/zustand/config";
 

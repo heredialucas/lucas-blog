@@ -1,6 +1,6 @@
 "use client";
 
-import { saveTheme } from "@/app/api/util/actions";
+import { saveTheme } from "@/app/server/actions/actions";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/zustand/config";
 import { toast } from "react-toastify";

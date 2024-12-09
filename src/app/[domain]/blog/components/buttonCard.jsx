@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { deleteDataById } from "@/app/api/util/actions";
+import { deleteDataById } from "@/app/server/actions/actions";
 import { Trash2 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -25,7 +25,7 @@ export function ButtonDeleteCard({ id }) {
   return (
     <Button
       size="sm"
-      className="btn btn-warning bg-error rounded border-2"
+      className="btn bg-red-400  rounded border-2"
       onClick={() => handleDelete()}
     >
       <Trash2 className="h-4 w-4" />

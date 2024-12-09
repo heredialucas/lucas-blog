@@ -1,7 +1,7 @@
 import { ButtonDeleteArticle } from "@/app/[domain]/blog/components/buttonArticle";
 import { Edit2 } from "lucide-react";
 import { formatDate } from "@/app/[domain]/utils";
-import { getDataById } from "@/app/api/util/actions";
+import { getDataById } from "@/app/server/actions/actions";
 import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";

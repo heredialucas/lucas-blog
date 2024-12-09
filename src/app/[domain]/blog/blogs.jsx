@@ -1,4 +1,4 @@
-import { getData } from "@/app/api/util/actions";
+import { getData } from "@/app/server/actions/actions";
 import { BlogCard } from "./[id]/blogCard";
 import parse from "html-react-parser";
 
