@@ -112,16 +112,6 @@ export default function EditClient({ id, post, isAdmin }) {
               disabled
             />
           </div>
-          <div>
-            <Label htmlFor="referencePostUrl">Reference Post URL</Label>
-            <Input
-              name="referencePostUrl"
-              value={formData.referencePostUrl}
-              onChange={handleInputChange}
-              placeholder="https://example.com/reference"
-              disabled={isLoading}
-            />
-          </div>
         </div>
         <div className="w-full h-full">
           <ReactQuill
