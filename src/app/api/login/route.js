@@ -32,7 +32,7 @@ export async function POST(request) {
 
   const { domain, theme } = user;
   const secret = new TextEncoder().encode(`${process.env.JWT_SECRET}${domain}`);
-  const token = await new jwt.SignJWT({
+  const tokenBlogui = await new jwt.SignJWT({
     id: user.id,
     email: user.email,
     domain,
@@ -45,7 +45,7 @@ export async function POST(request) {
   return NextResponse.json({
     authenticated: true,
     message: "Login successful",
-    token,
+    tokenBlogui,
     domain,
     theme,
   });

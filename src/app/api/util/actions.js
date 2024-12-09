@@ -50,10 +50,10 @@ export async function login(formData) {
     throw new Error("Failed to login");
   }
 
-  const { authenticated, message, token, domain, theme } =
+  const { authenticated, message, tokenBlogui, domain, theme } =
     await fetchData.json();
   if (authenticated) {
-    cookies().set("token", token, { maxAge: 3600 });
+    cookies().set("tokenBlogui", tokenBlogui, { maxAge: 3600 });
     cookies().set("domain", domain, { maxAge: 3600 });
     cookies().set("theme", theme, { maxAge: 3600 });
   }
@@ -61,7 +61,7 @@ export async function login(formData) {
 }
 
 export async function logout(domain) {
-  cookies().delete("token");
+  cookies().delete("tokenBlogui");
   cookies().delete("domain");
   redirect(`/${domain}`);
 }

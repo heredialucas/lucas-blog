@@ -6,18 +6,18 @@ import * as jwt from "jose";
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
   const url = await getUrl();
-  const cookieToken = cookies().get("token");
+  const cookieToken = cookies().get("tokenBlogui");
   const cookieDomain = cookies().get("domain");
 
   const pathnameRoutes = pathname.split("/");
   const pathnameUser = pathnameRoutes[1];
 
-  const verifyToken = async (token, domain) => {
+  const verifyToken = async (tokenBlogui, domain) => {
     const secret = new TextEncoder().encode(
       `${process.env.JWT_SECRET}${domain}`
     );
     try {
-      const { payload } = await jwt.jwtVerify(token, secret);
+      const { payload } = await jwt.jwtVerify(tokenBlogui, secret);
       return payload;
     } catch (error) {
       return null;
@@ -100,12 +100,12 @@ export async function middleware(request) {
   }
 
   if (cookieToken) {
-    const token = cookieToken.value;
+    const tokenBlogui = cookieToken.value;
     const domain = cookieDomain.value;
 
     let modifiedPath =
       pathnameUser === "config" ? pathnameRoutes[2] : pathnameRoutes[1];
-    const user = await verifyToken(token, modifiedPath);
+    const user = await verifyToken(tokenBlogui, modifiedPath);
 
     if (!user) {
       return NextResponse.redirect(`${url}/${domain}`);
