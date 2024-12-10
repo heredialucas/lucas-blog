@@ -1,7 +1,13 @@
 import { FooterServerSide } from "./footerServerSide";
 import { NavServerSide } from "./navServerSide";
 
-export default function HomeLayout({ children, params }) {
+export default async function HomeLayout(props) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const { domain } = params;
   return (
     <>

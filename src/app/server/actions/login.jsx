@@ -24,9 +24,9 @@ export async function login(formData) {
   const { authenticated, message, tokenBlogui, domain, theme } =
     await fetchData.json();
   if (authenticated) {
-    cookies().set("tokenBlogui", tokenBlogui, { maxAge: 3600 });
-    cookies().set("domain", domain, { maxAge: 3600 });
-    cookies().set("theme", theme, { maxAge: 3600 });
+    (await cookies()).set("tokenBlogui", tokenBlogui, { maxAge: 3600 });
+    (await cookies()).set("domain", domain, { maxAge: 3600 });
+    (await cookies()).set("theme", theme, { maxAge: 3600 });
   }
   return { authenticated, domain, message };
 }

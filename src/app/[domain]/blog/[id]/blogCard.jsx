@@ -19,7 +19,7 @@ export async function BlogCard({
   title,
 }) {
   const { client } = await getClientInfoByDomain(domain);
-  const pathname = headers().get("referer")?.split("/")[3];
+  const pathname = (await headers()).get("referer")?.split("/")[3];
 
   return (
     <>

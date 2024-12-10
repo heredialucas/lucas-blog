@@ -2,7 +2,8 @@ import EditClient from "@/app/[domain]/edit/[id]/editClient";
 import { useCookie } from "@/hooks/useSignOut";
 import { getPost } from "@/app/server/actions/getPost";
 
-export default async function EditServerSide({ params }) {
+export default async function EditServerSide(props) {
+  const params = await props.params;
   const { id } = params;
   const { cookie } = await useCookie();
 

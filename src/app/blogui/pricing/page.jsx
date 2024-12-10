@@ -63,7 +63,8 @@ const subscribedPlan = [
         : "https://buy.stripe.com/7sI7wbfbW4FVeHu145",
   },
 ];
-export default async function PricingPlansBlogui({ params }) {
+export default async function PricingPlansBlogui(props) {
+  const params = await props.params;
   const { domain } = params;
   const { client } = await getClientInfoByDomain(domain);
 

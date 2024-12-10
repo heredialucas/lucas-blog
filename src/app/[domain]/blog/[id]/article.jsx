@@ -9,7 +9,7 @@ import parse from "html-react-parser";
 import ProfilePicture from "@/public/lucas.jpeg";
 
 export async function Article({ id, isAdmin }) {
-  const pathname = headers().get("referer")?.split("/")[3];
+  const pathname = (await headers()).get("referer")?.split("/")[3];
 
   const { post } = await getPost(id);
 

@@ -12,8 +12,8 @@ import * as jwt from "jose";
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
   const url = await getUrl();
-  const cookieToken = cookies().get("tokenBlogui");
-  const cookieDomain = cookies().get("domain");
+  const cookieToken = (await cookies()).get("tokenBlogui");
+  const cookieDomain = (await cookies()).get("domain");
 
   const pathnameRoutes = pathname.split("/");
   const pathnameUser = pathnameRoutes[1];

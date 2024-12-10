@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, use } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,8 @@ import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
 
-export default function RegisterPage({ params }) {
+export default function RegisterPage(props) {
+  const params = use(props.params);
   const { domain } = params;
 
   const [domainError, setDomainError] = useState("");

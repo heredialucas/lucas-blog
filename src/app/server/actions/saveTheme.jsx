@@ -19,7 +19,7 @@ export async function saveTheme(theme, domain) {
       return { success: false, message: "User not found" };
     }
 
-    cookies().set("theme", theme, { maxAge: 3600 });
+    (await cookies()).set("theme", theme, { maxAge: 3600 });
 
     return { success: true, user, message: "Theme saved successfully" };
   } catch (error) {

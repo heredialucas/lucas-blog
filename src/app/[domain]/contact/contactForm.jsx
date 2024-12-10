@@ -11,7 +11,7 @@ export async function ContactForm({ domain }) {
   const { client } = await getClientInfoByDomain(domain);
   const { email } = client;
 
-  const pathname = headers().get("referer")?.split("/")[3];
+  const pathname = (await headers()).get("referer")?.split("/")[3];
   const handleSubmit = async (formData) => {
     "use server";
 
