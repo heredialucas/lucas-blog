@@ -1,9 +1,10 @@
 import { cookies } from "next/headers";
 
-export async function useCookie() {
-  const cookie = (await cookies()).has("tokenBlogui");
-  const domain = (await cookies()).get("domain");
-  const theme = (await cookies()).get("theme");
+export function getCookie() {
+  const cookieStore = cookies();
+  const cookie = cookieStore.has("tokenBlogui");
+  const domain = cookieStore.get("domain");
+  const theme = cookieStore.get("theme");
 
   return { cookie, domain, theme };
 }

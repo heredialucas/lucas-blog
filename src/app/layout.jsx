@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import CookieBanner from "@/components/ui/cookieBanner";
 import localFont from "next/font/local";
-import { useCookie } from "@/hooks/useSignOut";
+import { getCookie } from "@/hooks/useSignOut";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export default async function RootLayoutBlogui({ children }) {
-  const { theme } = await useCookie();
+  const { theme } = getCookie();
 
   return (
     <html data-theme={theme?.value || "cupcake"} lang="en">

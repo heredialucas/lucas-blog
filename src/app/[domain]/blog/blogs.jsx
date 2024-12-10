@@ -2,6 +2,8 @@ import { getPosts } from "@/app/server/actions/getPosts";
 import { BlogCard } from "./[id]/blogCard";
 import parse from "html-react-parser";
 
+export const fetchCache = "force-cache";
+
 export async function BlogCards({ domain, isAdmin }) {
   const { posts } = await getPosts(domain);
 

@@ -6,12 +6,12 @@ import { Label } from "@/components/ui/label";
 import { updatePost } from "@/app/server/actions/updatePost";
 import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css";
+import "react-quill-new/dist/quill.snow.css";
 import { useStore } from "@/zustand/config";
 import { useRouter, usePathname } from "next/navigation";
 import { toast } from "react-toastify";
 
-const ReactQuill = dynamic(() => import("react-quill"), {
+const ReactQuill = dynamic(() => import("react-quill-new"), {
   ssr: false,
 });
 

@@ -7,13 +7,13 @@ import { postData } from "@/app/server/actions/postData";
 import { postImage } from "@/app/server/actions/postImage";
 import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css";
+import "react-quill-new/dist/quill.snow.css";
 import { useStore } from "@/zustand/config";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
-const ReactQuill = dynamic(() => import("react-quill"), {
+const ReactQuill = dynamic(() => import("react-quill-new"), {
   ssr: false,
 });
 

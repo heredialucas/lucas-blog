@@ -1,16 +1,14 @@
 import { NavClientSide } from "@/app/[domain]/navClientSide";
-import { useCookie } from "@/hooks/useSignOut";
+import { getCookie } from "@/hooks/useSignOut";
 import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 import { FooterServerSide } from "@/app/[domain]/footerServerSide";
 export default async function ConfigLayout(props) {
   const params = await props.params;
 
-  const {
-    children
-  } = props;
+  const { children } = props;
 
   const { domain } = params;
-  const { cookie } = await useCookie();
+  const { cookie } = getCookie();
   const { client } = await getClientInfoByDomain(domain);
 
   return (
