@@ -1,15 +1,9 @@
 import { getPosts } from "@/app/server/actions/getPosts";
 import { BlogCard } from "./[id]/blogCard";
 import parse from "html-react-parser";
-import { unstable_cache } from "next/cache";
-
-const getPostsCached = unstable_cache(
-  async (domain) => getPosts(domain),
-  ["posts"]
-);
 
 export async function BlogCards({ domain, isAdmin }) {
-  const { posts } = await getPostsCached(domain);
+  const { posts } = await getPosts(domain);
 
   const formatedPostsByDate = posts.sort((a, b) => {
     return new Date(b.date) - new Date(a.date);
