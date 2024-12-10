@@ -49,13 +49,13 @@ export async function middleware(request) {
       return NextResponse.next();
     }
 
-    // const client = prisma.client.findFirst({
-    //   where: { pathnameUser },
-    // });
+    const { client } = await fetch(`${url}/api/getClient/${pathnameUser}`).then(
+      (res) => res.json()
+    );
 
-    // if (!client) {
-    //   return NextResponse.redirect(`${url}/blogui`);
-    // }
+    if (!client) {
+      return NextResponse.redirect(`${url}/blogui`);
+    }
 
     return NextResponse.next();
   }
@@ -75,18 +75,19 @@ export async function middleware(request) {
     }
 
     if (blogRoutes.some((route) => pathname.includes(route))) {
-      // const client = prisma.client.findFirst({
-      //   where: { pathnameUser },
-      // });
-      // if (!client) {
-      //   return NextResponse.redirect(`${url}/blogui`);
-      // }
-      // if (client) {
-      //   if (!client.isSubscribed) {
-      //     return NextResponse.redirect(`${url}/${client.domain}`);
-      //   }
-      //   return NextResponse.next();
-      // }
+      const { client } = await fetch(
+        `${url}/api/getClient/${pathnameUser}`
+      ).then((res) => res.json());
+
+      if (!client) {
+        return NextResponse.redirect(`${url}/blogui`);
+      }
+      if (client) {
+        if (!client.isSubscribed) {
+          return NextResponse.redirect(`${url}/${client.domain}`);
+        }
+        return NextResponse.next();
+      }
     }
     return NextResponse.next();
   }
