@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 
-export function getCookie() {
-  const cookieStore = cookies();
+export async function getCookie() {
+  const cookieStore = await cookies();
   const cookie = cookieStore.has("tokenBlogui");
   const domain = cookieStore.get("domain");
   const theme = cookieStore.get("theme");
