@@ -3,7 +3,7 @@ import { getCookie } from "@/hooks/useSignOut";
 import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 
 export async function NavServerSide({ domain }) {
-  const { cookie } = getCookie();
+  const { cookie } = await getCookie();
   const { client } = await getClientInfoByDomain(domain);
 
   return (

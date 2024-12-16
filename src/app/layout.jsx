@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export default async function RootLayoutBlogui({ children }) {
-  const { theme } = getCookie();
+  const { theme } = await getCookie();
 
   return (
     <html data-theme={theme?.value || "cupcake"} lang="en">

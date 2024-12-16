@@ -5,7 +5,7 @@ import { getPost } from "@/app/server/actions/getPost";
 export default async function EditServerSide(props) {
   const params = await props.params;
   const { id } = params;
-  const { cookie } = getCookie();
+  const { cookie } = await getCookie();
 
   const { post } = await getPost(id);
 

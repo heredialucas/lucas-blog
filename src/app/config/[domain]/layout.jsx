@@ -8,7 +8,7 @@ export default async function ConfigLayout(props) {
   const { children } = props;
 
   const { domain } = params;
-  const { cookie } = getCookie();
+  const { cookie } = await getCookie();
   const { client } = await getClientInfoByDomain(domain);
 
   return (

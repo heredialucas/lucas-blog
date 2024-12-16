@@ -20,16 +20,6 @@ export default function ThemeClientServer({ domain }) {
 
   return (
     <div className="flex gap-6 items-center mx-auto p-4  transition">
-      {theme.length ? (
-        <div>
-          <p>Selected theme</p>
-          <span className="text-sm bg-primary px-2 py-1 rounded-lg">
-            {theme}
-          </span>
-        </div>
-      ) : (
-        ""
-      )}
       <div className="dropdown ">
         <div tabIndex={0} role="button" className="btn m-1">
           Theme
@@ -68,6 +58,16 @@ export default function ThemeClientServer({ domain }) {
       >
         Save theme
       </Button>
+      {theme.length ? (
+        <div>
+          <p>Selected theme</p>
+          <span className="text-sm bg-primary px-2 py-1 rounded-lg">
+            {theme}
+          </span>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

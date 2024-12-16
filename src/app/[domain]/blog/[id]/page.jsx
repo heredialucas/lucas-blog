@@ -4,7 +4,7 @@ import { getCookie } from "@/hooks/useSignOut";
 export default async function ArticleServerSide(props) {
   const params = await props.params;
   const { id } = params;
-  const { cookie } = getCookie();
+  const { cookie } = await getCookie();
 
   return <Article id={id} isAdmin={cookie} />;
 }
