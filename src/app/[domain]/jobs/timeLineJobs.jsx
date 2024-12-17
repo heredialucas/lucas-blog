@@ -2,6 +2,8 @@ import Link from "next/link";
 import TimelineItem from "@/app/[domain]/jobs/timeLineItem";
 import { getClientInfoByDomain } from "@/app/server/actions/getClientInfoByDomain";
 
+export const revalidate = 86400; // 1 day
+
 export async function TimelineJobs({ domain }) {
   const { client } = await getClientInfoByDomain(domain);
 
